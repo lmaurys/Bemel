@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.cargowise.com/Schemas/Universal/2011/11"
+           xmlns:tns="http://www.cargowise.com/Schemas/Universal/2011/11"
+           xmlns="http://www.cargowise.com/Schemas/Universal/2011/11"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified">
+
+  <!-- Common reusable structures across UniversalTransaction and UniversalShipment -->
+  <xs:complexType name="CodeDescriptionType">
+    <xs:all>
+      <xs:element name="Code" type="xs:string" minOccurs="1"/>
+      <xs:element name="Description" type="xs:string" minOccurs="1"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="CodeNameType">
+    <xs:all>
+      <xs:element name="Code" type="xs:string" minOccurs="1"/>
+      <xs:element name="Name" type="xs:string" minOccurs="1"/>
+    </xs:all>
+  </xs:complexType>
+
+  <xs:complexType name="DataSourceType">
+    <xs:all>
+      <xs:element name="Type" type="xs:string" minOccurs="1"/>
+      <xs:element name="Key" type="xs:string" minOccurs="1"/>
+    </xs:all>
+  </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,3033 @@
+<UniversalShipment xmlns="http://www.cargowise.com/Schemas/Universal/2011/11" version="1.1">
+  <Shipment>
+    <DataContext>
+      <DataSourceCollection>
+        <DataSource>
+          <Type>ForwardingConsol</Type>
+          <Key>CSL040001125</Key>
+        </DataSource>
+        <DataSource>
+          <Type>ForwardingShipment</Type>
+          <Key>SHP040001679</Key>
+        </DataSource>
+      </DataSourceCollection>
+      <ActionPurpose>
+        <Code>RDB</Code>
+        <Description>ROME Data - Booking</Description>
+      </ActionPurpose>
+      <Company>
+        <Code>TBC</Code>
+        <Country>
+          <Code>CO</Code>
+          <Name>Colombia</Name>
+        </Country>
+        <Name>TIBA COLOMBIA S.A.S.</Name>
+      </Company>
+      <DataProvider>TI2TR2TBC</DataProvider>
+      <EnterpriseID>TI2</EnterpriseID>
+      <EventBranch>
+        <Code>BOG</Code>
+        <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+      </EventBranch>
+      <EventDepartment>
+        <Code>FEA</Code>
+        <Name>Forwarding Export Air</Name>
+      </EventDepartment>
+      <EventReference>|NEW=05-Aug-25|OLD=22-Jul-25|TYP=BKQ</EventReference>
+      <EventType>
+        <Code>EST</Code>
+        <Description>Estimated Date Changed</Description>
+      </EventType>
+      <EventUser>
+        <Code>NR0</Code>
+        <Name>Nataly Rojas Rivas</Name>
+      </EventUser>
+      <ServerID>TR2</ServerID>
+      <Timestamp>1754324986</Timestamp>
+      <TriggerCount>8</TriggerCount>
+      <TriggerDate>2025-08-05T11:15:00.000-05:00</TriggerDate>
+      <TriggerDescription>Integration ROME Data Booking EST</TriggerDescription>
+      <TriggerReference>'&lt;JobHeader.JH_JobLocalReference&gt;'!='' &amp;&amp; '&lt;If("&lt;Left("&lt;Origin.Code&gt;",2)&gt;"=="&lt;Left("&lt;Destination.Code&gt;",2)&gt;","&lt;GetCustomField(Domestic Incoterm)&gt;","&lt;JS_INCO&gt;")&gt;'!='' &amp;&amp; '&lt;DepartureConsol.JK_JX_JA_E_FirstDEP&gt;'!='' &amp;&amp; '&lt;ArrivalConsol.JK_JX_JB_E_LastARV&gt;'!='' &amp;&amp; '&lt;DepartureConsol.LoadPort.RL_Code&gt;'!='' &amp;&amp; '&lt;ArrivalConsol.DischargePort.RL_Code&gt;'!='' &amp;&amp; '&lt;JobHeader.LocalCharges.OH_Code&gt;'!='' &amp;&amp; ('&lt;Consignor.OH_Code&gt;'!='' || '&lt;Consignee.OH_Code&gt;'!='') &amp;&amp; ('&lt;MostInterestingTransport.CarrierPK&gt;'!='' || '&lt;MostInterestingTransport.CreditorPK&gt;'!='') &amp;&amp; '&lt;Consols.JK_SystemCreateTimeUtc&gt;'!='' &amp;&amp; '&lt;GetCustomField(ROME Integration Service)&gt;'!='N' &amp;&amp; '&lt;GetCustomField(Apply Workflow)&gt;'!='N'</TriggerReference>
+      <TriggerType>Trigger</TriggerType>
+      <RecipientRoleCollection>
+        <RecipientRole>
+          <Code>ORP</Code>
+          <Description>Organization Proxy</Description>
+        </RecipientRole>
+      </RecipientRoleCollection>
+    </DataContext>
+    <AgentsReference></AgentsReference>
+    <AWBServiceLevel>
+      <Code>STD</Code>
+      <Description>Standard</Description>
+    </AWBServiceLevel>
+    <BookingConfirmationReference></BookingConfirmationReference>
+    <CarrierContractNumber>DSDSFSFS</CarrierContractNumber>
+    <ChargeableRate>0.0000</ChargeableRate>
+    <ConsolCommodity>
+      <Code></Code>
+    </ConsolCommodity>
+    <ContainerCount>0</ContainerCount>
+    <ContainerMode>
+      <Code>LSE</Code>
+      <Description>Loose</Description>
+    </ContainerMode>
+    <DocumentedChargeable>5010.020</DocumentedChargeable>
+    <DocumentedVolume>30</DocumentedVolume>
+    <DocumentedWeight>70</DocumentedWeight>
+    <ElectronicBillOfLadingReference></ElectronicBillOfLadingReference>
+    <EventBranchHomePort>
+      <Code>COBOG</Code>
+      <Name>Bogota</Name>
+    </EventBranchHomePort>
+    <FreightRate>0.0000</FreightRate>
+    <FreightRateCurrency>
+      <Code>COP</Code>
+      <Description>Colombian Peso</Description>
+    </FreightRateCurrency>
+    <GatewayServiceLevel>
+      <Code></Code>
+    </GatewayServiceLevel>
+    <GreenhouseGasEmission>
+      <CO2e>0</CO2e>
+      <CO2eDescriptiveStatus>
+        <Code>NON</Code>
+        <Description>Not Calculated</Description>
+      </CO2eDescriptiveStatus>
+      <CO2eUnit>
+        <Code>KG</Code>
+        <Description>Kilograms</Description>
+      </CO2eUnit>
+    </GreenhouseGasEmission>
+    <IsCFSRegistered>false</IsCFSRegistered>
+    <IsDirectBooking>false</IsDirectBooking>
+    <IsForwardRegistered>true</IsForwardRegistered>
+    <IsHazardous>false</IsHazardous>
+    <IsNeutralMaster>false</IsNeutralMaster>
+    <LloydsIMO></LloydsIMO>
+    <ManifestedChargeable>5010.020</ManifestedChargeable>
+    <ManifestedVolume>30</ManifestedVolume>
+    <ManifestedWeight>70</ManifestedWeight>
+    <MaximumAllowablePackageHeight>0.000</MaximumAllowablePackageHeight>
+    <MaximumAllowablePackageLength>0.000</MaximumAllowablePackageLength>
+    <MaximumAllowablePackageLengthUnit>
+      <Code></Code>
+    </MaximumAllowablePackageLengthUnit>
+    <MaximumAllowablePackageWidth>0.000</MaximumAllowablePackageWidth>
+    <NoCopyBills>3</NoCopyBills>
+    <NoOriginalBills>3</NoOriginalBills>
+    <OuterPacks>1</OuterPacks>
+    <PaymentMethod>
+      <Code>PPD</Code>
+      <Description>Prepaid</Description>
+    </PaymentMethod>
+    <PlaceOfDelivery>
+      <Code>ESPCN</Code>
+      <Name>Picassent</Name>
+    </PlaceOfDelivery>
+    <PlaceOfIssue>
+      <Code></Code>
+    </PlaceOfIssue>
+    <PlaceOfReceipt>
+      <Code>XXXXX</Code>
+      <Name>Unknown UNLOCO</Name>
+    </PlaceOfReceipt>
+    <PortFirstForeign>
+      <Code></Code>
+    </PortFirstForeign>
+    <PortLastForeign>
+      <Code></Code>
+    </PortLastForeign>
+    <PortOfDischarge>
+      <Code>ESPCN</Code>
+      <Name>Picassent</Name>
+    </PortOfDischarge>
+    <PortOfFirstArrival>
+      <Code></Code>
+    </PortOfFirstArrival>
+    <PortOfLoading>
+      <Code>XXXXX</Code>
+      <Name>Unknown UNLOCO</Name>
+    </PortOfLoading>
+    <ReceivingForwarderHandlingType>
+      <Code></Code>
+    </ReceivingForwarderHandlingType>
+    <ReleaseType>
+      <Code>OBR</Code>
+      <Description>Original Bill Required at Destination</Description>
+    </ReleaseType>
+    <RequiresTemperatureControl>false</RequiresTemperatureControl>
+    <ScreeningStatus>
+      <Code>REQ</Code>
+      <Description>Requires Review</Description>
+    </ScreeningStatus>
+    <SendingForwarderHandlingType>
+      <Code></Code>
+    </SendingForwarderHandlingType>
+    <ShipmentType>
+      <Code>AGT</Code>
+      <Description>Agent</Description>
+    </ShipmentType>
+    <TotalNoOfPacks>1</TotalNoOfPacks>
+    <TotalNoOfPacksPackageType>
+      <Code>PKG</Code>
+      <Description>Package</Description>
+    </TotalNoOfPacksPackageType>
+    <TotalPreallocatedChargeable>0.000</TotalPreallocatedChargeable>
+    <TotalPreallocatedVolume>0.000</TotalPreallocatedVolume>
+    <TotalPreallocatedVolumeUnit>
+      <Code></Code>
+    </TotalPreallocatedVolumeUnit>
+    <TotalPreallocatedWeight>0.000</TotalPreallocatedWeight>
+    <TotalPreallocatedWeightUnit>
+      <Code></Code>
+    </TotalPreallocatedWeightUnit>
+    <TotalVolume>30</TotalVolume>
+    <TotalVolumeUnit>
+      <Code>M3</Code>
+      <Description>Cubic Meters</Description>
+    </TotalVolumeUnit>
+    <TotalWeight>70</TotalWeight>
+    <TotalWeightUnit>
+      <Code>KG</Code>
+      <Description>Kilograms</Description>
+    </TotalWeightUnit>
+    <TransportMode>
+      <Code>AIR</Code>
+      <Description>Air Freight</Description>
+    </TransportMode>
+    <VesselName></VesselName>
+    <VoyageFlightNo>AV46</VoyageFlightNo>
+    <WayBillNumber>729-5896364</WayBillNumber>
+    <WayBillType>
+      <Code>MWB</Code>
+      <Description>Master Waybill</Description>
+    </WayBillType>
+    <CarrierDocumentsOverride>
+      <AWBHeader>
+        <AgentAccountNo></AgentAccountNo>
+        <AgentIATACode>76-1 0132/0013</AgentIATACode>
+        <AgentName>TIBA COLOMBIA S.A.S.</AgentName>
+        <AgentPlace>BOGOTÁ</AgentPlace>
+        <AirportOfDepartureAndRequestRouteText>Bogota</AirportOfDepartureAndRequestRouteText>
+        <AirportOfDestinationCode>VLC</AirportOfDestinationCode>
+        <AirportOfDestinationText>Valencia</AirportOfDestinationText>
+        <AlsoNotify>
+          <AddressLine1></AddressLine1>
+          <AddressLine2></AddressLine2>
+          <City></City>
+          <CompanyID></CompanyID>
+          <CompanyIDCode></CompanyIDCode>
+          <ContactDetail></ContactDetail>
+          <ContactName></ContactName>
+          <ContactType>
+            <Code></Code>
+          </ContactType>
+          <Country>
+            <Code></Code>
+          </Country>
+          <IsAddressOverriddenForPaperWaybill>false</IsAddressOverriddenForPaperWaybill>
+          <Name></Name>
+          <PaperOverrideLine1></PaperOverrideLine1>
+          <PaperOverrideLine2></PaperOverrideLine2>
+          <PaperOverrideLine3></PaperOverrideLine3>
+          <PaperOverrideLine4></PaperOverrideLine4>
+          <PaperOverrideLine5></PaperOverrideLine5>
+          <PostCode></PostCode>
+          <State></State>
+        </AlsoNotify>
+        <AmountOfInsurance>0</AmountOfInsurance>
+        <AsAgreedOn1stAWBSet>false</AsAgreedOn1stAWBSet>
+        <AsAgreedOn2ndAWBSet>false</AsAgreedOn2ndAWBSet>
+        <AsAgreedTypeOn1stAWBSet>NON</AsAgreedTypeOn1stAWBSet>
+        <AsAgreedTypeOn2ndAWBSet>NON</AsAgreedTypeOn2ndAWBSet>
+        <AWBIssueDate>2025-08-04T11:29:46.877</AWBIssueDate>
+        <AWBIssuePlace>BOGOTÁ</AWBIssuePlace>
+        <AWBIssuerApprovedExporterNumber></AWBIssuerApprovedExporterNumber>
+        <AWBIssuerExtraInfo></AWBIssuerExtraInfo>
+        <AWBIssuerSignature>TIBA COLOMBIA S.A.S.</AWBIssuerSignature>
+        <AWBNumber>5896364</AWBNumber>
+        <AWBType>
+          <Code></Code>
+        </AWBType>
+        <CargoSecurityDeclaration>
+          <AdditionalScreeningMethods></AdditionalScreeningMethods>
+          <AdditionalSecurityInformation></AdditionalSecurityInformation>
+          <AdditionalSecurityInformationStatement></AdditionalSecurityInformationStatement>
+          <AgentApprovalCategory>
+            <Code>RA</Code>
+            <Description>Regulated Agent</Description>
+          </AgentApprovalCategory>
+          <AgentApprovalCountry>
+            <Code>CO</Code>
+            <Name>Colombia</Name>
+          </AgentApprovalCountry>
+          <AgentApprovalExpiryDate></AgentApprovalExpiryDate>
+          <AgentApprovalNumber></AgentApprovalNumber>
+          <SecurityStatus>
+            <Code>NSC</Code>
+            <Description>Cargo has not been secured yet for Passenger or All-Cargo Aircraft</Description>
+          </SecurityStatus>
+          <SecurityStatusIssueDate>2025-08-04T11:29:46.78</SecurityStatusIssueDate>
+          <SecurityStatusIssuedBy>Nataly Rojas Rivas</SecurityStatusIssuedBy>
+          <TSASecurityStatement></TSASecurityStatement>
+          <ScreeningMethodCollection>
+            <ScreeningMethod>
+              <Code>UNK</Code>
+              <Description></Description>
+            </ScreeningMethod>
+          </ScreeningMethodCollection>
+        </CargoSecurityDeclaration>
+        <ChargesPayment>
+          <Code>PP</Code>
+          <Description>All Charges Prepaid Cash</Description>
+        </ChargesPayment>
+        <Consignee>
+          <AccountCode></AccountCode>
+          <AddressLine1>CL P.I. LA COMA 54 SUELO PARCELA 54</AddressLine1>
+          <AddressLine2></AddressLine2>
+          <City>PICASSENT</City>
+          <CompanyID>ESB98914476</CompanyID>
+          <CompanyIDCode>EORI No.</CompanyIDCode>
+          <ContactDetail></ContactDetail>
+          <ContactName></ContactName>
+          <ContactType>
+            <Code></Code>
+          </ContactType>
+          <Country>
+            <Code>ES</Code>
+            <Name>Spain</Name>
+          </Country>
+          <IsAddressOverriddenForPaperWaybill>false</IsAddressOverriddenForPaperWaybill>
+          <Name>TIBA LOGISTICS SPAIN S.L.U.</Name>
+          <PaperOverrideLine1>TIBA LOGISTICS SPAIN S.L.U.</PaperOverrideLine1>
+          <PaperOverrideLine2>CL P.I. LA COMA 54 SUELO PARCELA 54</PaperOverrideLine2>
+          <PaperOverrideLine3></PaperOverrideLine3>
+          <PaperOverrideLine4>PICASSENT V 46220 ES</PaperOverrideLine4>
+          <PaperOverrideLine5>EORI No.: ESB98914476</PaperOverrideLine5>
+          <PostCode>46220</PostCode>
+          <State>V</State>
+        </Consignee>
+        <Currency>
+          <Code>COP</Code>
+          <Description>Colombian Peso</Description>
+        </Currency>
+        <ForwardingAgentReference>729-5896364</ForwardingAgentReference>
+        <HandlingInformation></HandlingInformation>
+        <IssuedByAddress1>AEROPUERTO INT JOSE MARIA CORDOBA</IssuedByAddress1>
+        <IssuedByAddress2>ZONA DE CARGA HANGAR TAMPA, RIONEGRO, 054047, COLO</IssuedByAddress2>
+        <IssuedByName>TAMPA CARGO S.A.S</IssuedByName>
+        <ManifestDescriptionOfGoods></ManifestDescriptionOfGoods>
+        <NetRateCode></NetRateCode>
+        <OptionalShippingInformation1></OptionalShippingInformation1>
+        <OptionalShippingInformation2></OptionalShippingInformation2>
+        <OriginCode>BOG</OriginCode>
+        <OtherChargesPayment>
+          <Code>P</Code>
+          <Description>Prepaid</Description>
+        </OtherChargesPayment>
+        <Requested1stCarrier>AV</Requested1stCarrier>
+        <Requested1stFlight>046</Requested1stFlight>
+        <Requested1stFlightDate>08</Requested1stFlightDate>
+        <Requested2ndCarrier>AV</Requested2ndCarrier>
+        <Requested2ndFlight>6068</Requested2ndFlight>
+        <Requested2ndFlightDate>09</Requested2ndFlightDate>
+        <Routing1stBy>AV</Routing1stBy>
+        <Routing1stTo>MAD</Routing1stTo>
+        <Routing2ndBy>AV</Routing2ndBy>
+        <Routing2ndTo>VLC</Routing2ndTo>
+        <Routing3rdBy></Routing3rdBy>
+        <Routing3rdTo></Routing3rdTo>
+        <Shipper>
+          <AccountCode></AccountCode>
+          <AddressLine1></AddressLine1>
+          <AddressLine2></AddressLine2>
+          <City></City>
+          <CompanyID></CompanyID>
+          <CompanyIDCode></CompanyIDCode>
+          <ContactDetail></ContactDetail>
+          <ContactName></ContactName>
+          <ContactType>
+            <Code></Code>
+          </ContactType>
+          <Country>
+            <Code></Code>
+          </Country>
+          <IsAddressOverriddenForPaperWaybill>false</IsAddressOverriddenForPaperWaybill>
+          <Name></Name>
+          <PaperOverrideLine1></PaperOverrideLine1>
+          <PaperOverrideLine2></PaperOverrideLine2>
+          <PaperOverrideLine3></PaperOverrideLine3>
+          <PaperOverrideLine4></PaperOverrideLine4>
+          <PaperOverrideLine5></PaperOverrideLine5>
+          <PostCode></PostCode>
+          <State></State>
+        </Shipper>
+        <ShipperExtraInfoLine1></ShipperExtraInfoLine1>
+        <ShipperExtraInfoLine2></ShipperExtraInfoLine2>
+        <ShippersLoadAndCount>1</ShippersLoadAndCount>
+        <ShippersSignature>Nataly Rojas Rivas</ShippersSignature>
+        <SpecialHandlingCode></SpecialHandlingCode>
+        <TotalTaxesCollect>0</TotalTaxesCollect>
+        <TotalTaxesPrepaid>0</TotalTaxesPrepaid>
+        <TotalValuationCollect>0</TotalValuationCollect>
+        <TotalValuationPrepaid>0</TotalValuationPrepaid>
+        <ValueForCarriage>0</ValueForCarriage>
+        <ValueForCustoms>0</ValueForCustoms>
+        <WeightChargesPayment>
+          <Code>P</Code>
+          <Description>Prepaid</Description>
+        </WeightChargesPayment>
+        <AccountingInfoCollection>
+          <AccountingInfo>
+            <Information>TRM:</Information>
+            <Type>
+              <Code>STL</Code>
+              <Description></Description>
+            </Type>
+          </AccountingInfo>
+          <AccountingInfo>
+            <Information>OA:</Information>
+            <Type>
+              <Code>STL</Code>
+              <Description></Description>
+            </Type>
+          </AccountingInfo>
+          <AccountingInfo>
+            <Information>HAWB: SHP040001679</Information>
+            <Type>
+              <Code>STL</Code>
+              <Description></Description>
+            </Type>
+          </AccountingInfo>
+        </AccountingInfoCollection>
+        <RateLineCollection>
+          <RateLine>
+            <ChargeableWeight>5010.5</ChargeableWeight>
+            <CommodityItem></CommodityItem>
+            <Consolidation>Consolidation as per attached list</Consolidation>
+            <GrossWeight>70</GrossWeight>
+            <LineNumber>1</LineNumber>
+            <NatureAndQtyOfGoodsType>
+              <Code>C</Code>
+              <Description>Consolidation</Description>
+            </NatureAndQtyOfGoodsType>
+            <NoOfPiecesOrRCP>1</NoOfPiecesOrRCP>
+            <RateChargeOrDiscount>0</RateChargeOrDiscount>
+            <RateClass>
+              <Code>Q</Code>
+              <Description>Quantity Rate</Description>
+            </RateClass>
+            <TotalCharge>0</TotalCharge>
+            <WeightUnit>
+              <Code>K</Code>
+              <Description>Kilograms</Description>
+            </WeightUnit>
+          </RateLine>
+          <RateLine>
+            <ChargeableWeight>0</ChargeableWeight>
+            <CommodityItem></CommodityItem>
+            <Dimensions>
+              <Count>1</Count>
+              <Height>7000</Height>
+              <Length>10000</Length>
+              <Unit>
+                <Code>CM</Code>
+                <Description>Centimeters</Description>
+              </Unit>
+              <Width>10000</Width>
+            </Dimensions>
+            <GrossWeight>0</GrossWeight>
+            <LineNumber>2</LineNumber>
+            <NatureAndQtyOfGoodsType>
+              <Code>D</Code>
+              <Description>Dimensions</Description>
+            </NatureAndQtyOfGoodsType>
+            <NoOfPiecesOrRCP>0</NoOfPiecesOrRCP>
+            <RateChargeOrDiscount>0</RateChargeOrDiscount>
+            <RateClass>
+              <Code></Code>
+            </RateClass>
+            <TotalCharge>0</TotalCharge>
+            <WeightUnit>
+              <Code></Code>
+            </WeightUnit>
+          </RateLine>
+          <RateLine>
+            <ChargeableWeight>0</ChargeableWeight>
+            <CommodityItem></CommodityItem>
+            <GrossWeight>0</GrossWeight>
+            <LineNumber>12</LineNumber>
+            <NatureAndQtyOfGoodsType>
+              <Code>S</Code>
+              <Description>Shipper's Load and Count</Description>
+            </NatureAndQtyOfGoodsType>
+            <NoOfPiecesOrRCP>0</NoOfPiecesOrRCP>
+            <RateChargeOrDiscount>0</RateChargeOrDiscount>
+            <RateClass>
+              <Code></Code>
+            </RateClass>
+            <ShippersLoadAndCount>1</ShippersLoadAndCount>
+            <TotalCharge>0</TotalCharge>
+            <WeightUnit>
+              <Code></Code>
+            </WeightUnit>
+          </RateLine>
+        </RateLineCollection>
+        <SpecialHandlingCollection>
+          <SpecialHandling>
+            <Code>NSC</Code>
+            <Description>Cargo has not been secured yet for Passenger or All-Cargo Aircraft</Description>
+          </SpecialHandling>
+        </SpecialHandlingCollection>
+      </AWBHeader>
+    </CarrierDocumentsOverride>
+    <AdditionalReferenceCollection Content="Complete">
+      <AdditionalReference>
+        <Type>
+          <Code>CON</Code>
+          <Description>Carrier Contract Number</Description>
+        </Type>
+        <ReferenceNumber>DSDSFSFS</ReferenceNumber>
+        <ContextInformation></ContextInformation>
+        <CountryOfIssue>
+          <Code>CO</Code>
+          <Name>Colombia</Name>
+        </CountryOfIssue>
+        <IssueDate></IssueDate>
+      </AdditionalReference>
+      <AdditionalReference>
+        <Type>
+          <Code>CON</Code>
+          <Description>Carrier Contract Number</Description>
+        </Type>
+        <ReferenceNumber>DSDSFSFS</ReferenceNumber>
+      </AdditionalReference>
+    </AdditionalReferenceCollection>
+    <CustomizedFieldCollection>
+      <CustomizedField>
+        <DataType>String</DataType>
+        <Key>Agent Locked</Key>
+        <Value>N</Value>
+      </CustomizedField>
+      <CustomizedField>
+        <DataType>String</DataType>
+        <Key>Apply Workflow</Key>
+        <Value>Y</Value>
+      </CustomizedField>
+      <CustomizedField>
+        <DataType>String</DataType>
+        <Key>Credit Locked</Key>
+        <Value>N</Value>
+      </CustomizedField>
+      <CustomizedField>
+        <DataType>String</DataType>
+        <Key>Mail Service</Key>
+        <Value>Y</Value>
+      </CustomizedField>
+      <CustomizedField>
+        <DataType>String</DataType>
+        <Key>ROME Integration Service</Key>
+        <Value>Y</Value>
+      </CustomizedField>
+      <CustomizedField>
+        <DataType>String</DataType>
+        <Key>Apply Workflow Name</Key>
+        <Value></Value>
+      </CustomizedField>
+    </CustomizedFieldCollection>
+    <DateCollection>
+      <Date>
+        <Type>ShippedOnBoard</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>BillIssued</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>FirstArrivalInCountry</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>FirstForeignArrival</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>LastForeignDeparture</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>CutOffDate</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>DepartureReceiptRequested</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>ArrivalReceiptRequested</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>DepartureDispatchRequested</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+      <Date>
+        <Type>ArrivalDispatchRequested</Type>
+        <IsEstimate>false</IsEstimate>
+        <Value></Value>
+      </Date>
+    </DateCollection>
+    <MessageNumberCollection>
+      <MessageNumber Type="TrackingID">664c2856-d362-4b86-b4ee-e45307c59f0c</MessageNumber>
+      <MessageNumber Type="InterchangeNumber">00000000000000262079</MessageNumber>
+      <MessageNumber Type="MessageNumber">00000000000000266771</MessageNumber>
+    </MessageNumberCollection>
+    <OrganizationAddressCollection>
+      <OrganizationAddress>
+        <AddressType>ReceivingForwarderAddress</AddressType>
+        <Address1>CL P.I. LA COMA 54 SUELO PARCELA 54</Address1>
+        <Address2></Address2>
+        <AddressOverride>false</AddressOverride>
+        <AddressShortCode>104293.104293</AddressShortCode>
+        <City>PICASSENT</City>
+        <CompanyName>TIBA LOGISTICS SPAIN S.L.U.</CompanyName>
+        <Country>
+          <Code>ES</Code>
+          <Name>Spain</Name>
+        </Country>
+        <Email></Email>
+        <Fax></Fax>
+        <GovRegNum>B98914476</GovRegNum>
+        <GovRegNumType>
+          <Code>NIF</Code>
+          <Description>VAT (NIF) Business Registration Num</Description>
+        </GovRegNumType>
+        <OrganizationCategory>BUS</OrganizationCategory>
+        <OrganizationCode>104293</OrganizationCode>
+        <Phone></Phone>
+        <Port>
+          <Code>ESTAR</Code>
+          <Name>Tarragona</Name>
+        </Port>
+        <Postcode>46220</Postcode>
+        <ScreeningStatus>
+          <Code>CLR</Code>
+          <Description>Clear</Description>
+        </ScreeningStatus>
+        <State Description="VALENCIA">V</State>
+        <RegistrationNumberCollection>
+          <RegistrationNumber>
+            <Type>
+              <Code>EOR</Code>
+              <Description>EORI code (to be sent verbatim)</Description>
+            </Type>
+            <CountryOfIssue>
+              <Code>ES</Code>
+              <Name>Spain</Name>
+            </CountryOfIssue>
+            <Value>B98914476</Value>
+          </RegistrationNumber>
+        </RegistrationNumberCollection>
+      </OrganizationAddress>
+      <OrganizationAddress>
+        <AddressType>ShippingLineAddress</AddressType>
+        <Address1>C. INSTRUCCION DE MANTENIMIENTO ZONA IND. BARAJAS</Address1>
+        <Address2></Address2>
+        <AddressOverride>false</AddressOverride>
+        <AddressShortCode>883775.883775</AddressShortCode>
+        <City>MADRID</City>
+        <CompanyName>IBERIA AIRLINES</CompanyName>
+        <Country>
+          <Code>ES</Code>
+          <Name>Spain</Name>
+        </Country>
+        <Email></Email>
+        <Fax></Fax>
+        <GovRegNum>SINNIF883775</GovRegNum>
+        <GovRegNumType>
+          <Code>NIF</Code>
+          <Description>VAT (NIF) Business Registration Num</Description>
+        </GovRegNumType>
+        <OrganizationCategory>BUS</OrganizationCategory>
+        <OrganizationCode>883775</OrganizationCode>
+        <Phone>+34679433166</Phone>
+        <Port>
+          <Code>ESMAD</Code>
+          <Name>Madrid</Name>
+        </Port>
+        <Postcode>28042</Postcode>
+        <ScreeningStatus>
+          <Code>REQ</Code>
+          <Description>Requires Review</Description>
+        </ScreeningStatus>
+        <State Description="MADRID">M</State>
+      </OrganizationAddress>
+    </OrganizationAddressCollection>
+    <SubShipmentCollection>
+      <SubShipment>
+        <DataContext>
+          <DataSourceCollection>
+            <DataSource>
+              <Type>ForwardingShipment</Type>
+              <Key>SHP040001679</Key>
+            </DataSource>
+          </DataSourceCollection>
+        </DataContext>
+        <ActualChargeable>5010.020</ActualChargeable>
+        <AdditionalTerms></AdditionalTerms>
+        <BookingConfirmationReference></BookingConfirmationReference>
+        <CartageWaybillNumber></CartageWaybillNumber>
+        <CFSReference></CFSReference>
+        <CommunityTransitStatus>
+          <Code></Code>
+        </CommunityTransitStatus>
+        <CompanyTariffLevelOverride>0</CompanyTariffLevelOverride>
+        <ContainerCount>0</ContainerCount>
+        <ContainerMode>
+          <Code>LSE</Code>
+          <Description>Loose</Description>
+        </ContainerMode>
+        <DocumentedChargeable>5010.020</DocumentedChargeable>
+        <DocumentedVolume>30.000</DocumentedVolume>
+        <DocumentedWeight>70.000</DocumentedWeight>
+        <EventBranchHomePort>
+          <Code>COBOG</Code>
+          <Name>Bogota</Name>
+        </EventBranchHomePort>
+        <FMCTariffID></FMCTariffID>
+        <FreightRate>0.0000</FreightRate>
+        <FreightRateCurrency>
+          <Code></Code>
+        </FreightRateCurrency>
+        <GoodsDescription>CAJAS</GoodsDescription>
+        <GoodsValue>0.0000</GoodsValue>
+        <GoodsValueCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </GoodsValueCurrency>
+        <GreenhouseGasEmission>
+          <CO2e>0</CO2e>
+          <CO2eDescriptiveStatus>
+            <Code>NON</Code>
+            <Description>Not Calculated</Description>
+          </CO2eDescriptiveStatus>
+          <CO2eUnit>
+            <Code>KG</Code>
+            <Description>Kilograms</Description>
+          </CO2eUnit>
+        </GreenhouseGasEmission>
+        <HBLAWBChargesDisplay>
+          <Code>ALL</Code>
+          <Description>Show Prepaid &amp; Collect Charges</Description>
+        </HBLAWBChargesDisplay>
+        <HBLContainerPackModeOverride>ARPT/ARPT</HBLContainerPackModeOverride>
+        <HouseBillOfLadingType>
+          <Code></Code>
+        </HouseBillOfLadingType>
+        <InsuranceValue>0.0000</InsuranceValue>
+        <InsuranceValueCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </InsuranceValueCurrency>
+        <InterimReceiptNumber></InterimReceiptNumber>
+        <IsBooking>true</IsBooking>
+        <IsCancelled>false</IsCancelled>
+        <IsCFSRegistered>false</IsCFSRegistered>
+        <IsDirectBooking>false</IsDirectBooking>
+        <IsForwardRegistered>true</IsForwardRegistered>
+        <IsHighRisk>false</IsHighRisk>
+        <IsNeutralMaster>false</IsNeutralMaster>
+        <IsShipping>false</IsShipping>
+        <IsSplitShipment>false</IsSplitShipment>
+        <JobCosting>
+          <AccrualNotRecognized>-13724303.0000</AccrualNotRecognized>
+          <AccrualRecognized>0.000000000</AccrualRecognized>
+          <AgentRevenue>0</AgentRevenue>
+          <Branch>
+            <Code>BOG</Code>
+            <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+          </Branch>
+          <ClientContractNumber></ClientContractNumber>
+          <Currency>
+            <Code>COP</Code>
+            <Description>Colombian Peso</Description>
+          </Currency>
+          <Department>
+            <Code>FEA</Code>
+            <Name>Forwarding Export Air</Name>
+          </Department>
+          <HomeBranch>
+            <Code>BOG</Code>
+            <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+          </HomeBranch>
+          <LocalClientRevenue>0</LocalClientRevenue>
+          <OperationsStaff>
+            <Code>AF2</Code>
+            <Name>Andres Felipe Alegria Benitez</Name>
+          </OperationsStaff>
+          <OtherDebtorRevenue>0</OtherDebtorRevenue>
+          <SalesStaff>
+            <Code>CC5</Code>
+            <Name>Carolina Carvajal Bonilla</Name>
+          </SalesStaff>
+          <TotalAccrual>-13724303.000000000</TotalAccrual>
+          <TotalCost>0.000000000</TotalCost>
+          <TotalJobProfit>1409668.900000000</TotalJobProfit>
+          <TotalRevenue>0.000000000</TotalRevenue>
+          <TotalWIP>15133971.900000000</TotalWIP>
+          <WIPNotRecognized>15133971.9000</WIPNotRecognized>
+          <WIPRecognized>0.000000000</WIPRecognized>
+          <ChargeLineCollection>
+            <ChargeLine>
+              <APCashAdvanceRequired>false</APCashAdvanceRequired>
+              <ARCashAdvanceRequired>false</ARCashAdvanceRequired>
+              <Branch>
+                <Code>BOG</Code>
+                <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+              </Branch>
+              <ChargeCode>
+                <Code>F35</Code>
+                <Description>OCEAN FREIGHT</Description>
+              </ChargeCode>
+              <ChargeCodeGroup>
+                <Code>FRT</Code>
+                <Description>Freight</Description>
+              </ChargeCodeGroup>
+              <CostExchangeRate>4169.130000000</CostExchangeRate>
+              <CostIsPosted>false</CostIsPosted>
+              <CostLocalAmount>12507390.0000</CostLocalAmount>
+              <CostOSAmount>3000.0000</CostOSAmount>
+              <CostOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </CostOSCurrency>
+              <CostOSGSTVATAmount>0</CostOSGSTVATAmount>
+              <CostRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </CostRatingBehaviour>
+              <Creditor>
+                <Type>Organization</Type>
+                <Key>210106</Key>
+              </Creditor>
+              <Debtor>
+                <Type>Organization</Type>
+                <Key>457314</Key>
+              </Debtor>
+              <Department>
+                <Code>FEA</Code>
+                <Name>Forwarding Export Air</Name>
+              </Department>
+              <Description>OCEAN FREIGHT/ FLETE</Description>
+              <DisplaySequence>1</DisplaySequence>
+              <ExternalDebtorCode>26252</ExternalDebtorCode>
+              <SellExchangeRate>4169.130000000</SellExchangeRate>
+              <SellGSTVATID>
+                <TaxCode>EXEMPT</TaxCode>
+                <Description>Exempt Rated</Description>
+              </SellGSTVATID>
+              <SellInvoiceType>CUR</SellInvoiceType>
+              <SellIsPosted>false</SellIsPosted>
+              <SellLocalAmount>13341216.0000</SellLocalAmount>
+              <SellOSAmount>3200.0000</SellOSAmount>
+              <SellOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </SellOSCurrency>
+              <SellOSGSTVATAmount>0</SellOSGSTVATAmount>
+              <SellRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </SellRatingBehaviour>
+              <SellReference>FLT</SellReference>
+              <CostRatingBasisCollection></CostRatingBasisCollection>
+              <SellRatingBasisCollection></SellRatingBasisCollection>
+            </ChargeLine>
+            <ChargeLine>
+              <APCashAdvanceRequired>false</APCashAdvanceRequired>
+              <ARCashAdvanceRequired>false</ARCashAdvanceRequired>
+              <Branch>
+                <Code>BOG</Code>
+                <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+              </Branch>
+              <ChargeCode>
+                <Code>O63</Code>
+                <Description>CARGO INSURANCE</Description>
+              </ChargeCode>
+              <ChargeCodeGroup>
+                <Code>ORG</Code>
+                <Description>Origin</Description>
+              </ChargeCodeGroup>
+              <CostExchangeRate>4169.130000000</CostExchangeRate>
+              <CostIsPosted>false</CostIsPosted>
+              <CostLocalAmount>416913.0000</CostLocalAmount>
+              <CostOSAmount>100.0000</CostOSAmount>
+              <CostOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </CostOSCurrency>
+              <CostOSGSTVATAmount>0</CostOSGSTVATAmount>
+              <CostRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </CostRatingBehaviour>
+              <Creditor>
+                <Type>Organization</Type>
+                <Key>226543</Key>
+              </Creditor>
+              <Debtor>
+                <Type>Organization</Type>
+                <Key>457314</Key>
+              </Debtor>
+              <Department>
+                <Code>FEA</Code>
+                <Name>Forwarding Export Air</Name>
+              </Department>
+              <Description>CARGO INSURANCE/ SEGURO MERCANCIA</Description>
+              <DisplaySequence>2</DisplaySequence>
+              <ExternalDebtorCode>26252</ExternalDebtorCode>
+              <SellExchangeRate>4169.130000000</SellExchangeRate>
+              <SellGSTVATID>
+                <TaxCode>IVA</TaxCode>
+                <Description>Standard Rated</Description>
+              </SellGSTVATID>
+              <SellInvoiceType>CUR</SellInvoiceType>
+              <SellIsPosted>false</SellIsPosted>
+              <SellLocalAmount>541986.9000</SellLocalAmount>
+              <SellOSAmount>130.0000</SellOSAmount>
+              <SellOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </SellOSCurrency>
+              <SellOSGSTVATAmount>24.70</SellOSGSTVATAmount>
+              <SellRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </SellRatingBehaviour>
+              <SellReference>FLT</SellReference>
+              <CostRatingBasisCollection></CostRatingBasisCollection>
+              <SellRatingBasisCollection></SellRatingBasisCollection>
+            </ChargeLine>
+            <ChargeLine>
+              <APCashAdvanceRequired>false</APCashAdvanceRequired>
+              <ARCashAdvanceRequired>false</ARCashAdvanceRequired>
+              <Branch>
+                <Code>BOG</Code>
+                <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+              </Branch>
+              <ChargeCode>
+                <Code>O130</Code>
+                <Description>LCL PICKUP</Description>
+              </ChargeCode>
+              <ChargeCodeGroup>
+                <Code>ORG</Code>
+                <Description>Origin</Description>
+              </ChargeCodeGroup>
+              <CostExchangeRate>1.000000000</CostExchangeRate>
+              <CostIsPosted>false</CostIsPosted>
+              <CostLocalAmount>800000.0000</CostLocalAmount>
+              <CostOSAmount>800000.0000</CostOSAmount>
+              <CostOSCurrency>
+                <Code>COP</Code>
+                <Description>Colombian Peso</Description>
+              </CostOSCurrency>
+              <CostOSGSTVATAmount>0</CostOSGSTVATAmount>
+              <CostRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </CostRatingBehaviour>
+              <Creditor>
+                <Type>Organization</Type>
+                <Key>210106</Key>
+              </Creditor>
+              <Debtor>
+                <Type>Organization</Type>
+                <Key>457314</Key>
+              </Debtor>
+              <Department>
+                <Code>FEA</Code>
+                <Name>Forwarding Export Air</Name>
+              </Department>
+              <Description>LCL PICKUP</Description>
+              <DisplaySequence>3</DisplaySequence>
+              <ExternalDebtorCode>26252</ExternalDebtorCode>
+              <SellExchangeRate>4169.230000000</SellExchangeRate>
+              <SellGSTVATID>
+                <TaxCode>IVA</TaxCode>
+                <Description>Standard Rated</Description>
+              </SellGSTVATID>
+              <SellInvoiceType>FIN</SellInvoiceType>
+              <SellIsPosted>false</SellIsPosted>
+              <SellLocalAmount>1250769.0000</SellLocalAmount>
+              <SellOSAmount>300.0000</SellOSAmount>
+              <SellOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </SellOSCurrency>
+              <SellOSGSTVATAmount>57</SellOSGSTVATAmount>
+              <SellRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </SellRatingBehaviour>
+              <SellReference>OTH</SellReference>
+              <CostRatingBasisCollection></CostRatingBasisCollection>
+              <SellRatingBasisCollection></SellRatingBasisCollection>
+            </ChargeLine>
+          </ChargeLineCollection>
+        </JobCosting>
+        <LloydsIMO></LloydsIMO>
+        <ManifestedChargeable>5010.020</ManifestedChargeable>
+        <ManifestedVolume>30.000</ManifestedVolume>
+        <ManifestedWeight>70.000</ManifestedWeight>
+        <NoCopyBills>3</NoCopyBills>
+        <NoOriginalBills>3</NoOriginalBills>
+        <OuterPacks>1</OuterPacks>
+        <OuterPacksPackageType>
+          <Code>PLT</Code>
+          <Description>Pallet</Description>
+        </OuterPacksPackageType>
+        <PackingOrder>0</PackingOrder>
+        <PortOfDestination>
+          <Code>ESVLC</Code>
+          <Name>Valencia</Name>
+        </PortOfDestination>
+        <PortOfDischarge>
+          <Code>ESPCN</Code>
+          <Name>Picassent</Name>
+        </PortOfDischarge>
+        <PortOfFirstArrival>
+          <Code></Code>
+        </PortOfFirstArrival>
+        <PortOfLoading>
+          <Code>XXXXX</Code>
+          <Name>Unknown UNLOCO</Name>
+        </PortOfLoading>
+        <PortOfOrigin>
+          <Code>COBOG</Code>
+          <Name>Bogota</Name>
+        </PortOfOrigin>
+        <RateCommodity>
+          <Code></Code>
+        </RateCommodity>
+        <ReleaseType>
+          <Code>OBR</Code>
+          <Description>Original Bill Required at Destination</Description>
+        </ReleaseType>
+        <ScreeningStatus>
+          <Code>REQ</Code>
+          <Description>Requires Review</Description>
+        </ScreeningStatus>
+        <ServiceLevel>
+          <Code>CRE</Code>
+          <Description>On Credit (A CRÉDITO)</Description>
+        </ServiceLevel>
+        <ShipmentIncoTerm>
+          <Code>CFR</Code>
+          <Description>Cost And Freight</Description>
+        </ShipmentIncoTerm>
+        <ShipmentType>
+          <Code>STD</Code>
+          <Description>Standard House</Description>
+        </ShipmentType>
+        <ShippedOnBoard>
+          <Code>SHP</Code>
+          <Description>Shipped</Description>
+        </ShippedOnBoard>
+        <ShipperCODAmount>0.0000</ShipperCODAmount>
+        <ShipperCODPayMethod>
+          <Code></Code>
+        </ShipperCODPayMethod>
+        <TotalNoOfPacks>1</TotalNoOfPacks>
+        <TotalNoOfPacksPackageType>
+          <Code>CTN</Code>
+          <Description>Carton</Description>
+        </TotalNoOfPacksPackageType>
+        <TotalVolume>30.000</TotalVolume>
+        <TotalVolumeUnit>
+          <Code>M3</Code>
+          <Description>Cubic Meters</Description>
+        </TotalVolumeUnit>
+        <TotalWeight>70.000</TotalWeight>
+        <TotalWeightUnit>
+          <Code>KG</Code>
+          <Description>Kilograms</Description>
+        </TotalWeightUnit>
+        <TranshipToOtherCFS>false</TranshipToOtherCFS>
+        <TransportMode>
+          <Code>AIR</Code>
+          <Description>Air Freight</Description>
+        </TransportMode>
+        <VesselName></VesselName>
+        <VoyageFlightNo>AV46</VoyageFlightNo>
+        <WarehouseLocation></WarehouseLocation>
+        <WayBillNumber>SHP040001679</WayBillNumber>
+        <WayBillType>
+          <Code>HWB</Code>
+          <Description>House Waybill</Description>
+        </WayBillType>
+        <CarrierDocumentsOverride>
+          <AWBHeader>
+            <AgentAccountNo></AgentAccountNo>
+            <AgentIATACode>76-1 0132/0013</AgentIATACode>
+            <AgentName>TIBA COLOMBIA S.A.S.</AgentName>
+            <AgentPlace>BOGOTÁ</AgentPlace>
+            <AirportOfDepartureAndRequestRouteText>Bogota</AirportOfDepartureAndRequestRouteText>
+            <AirportOfDestinationCode>VLC</AirportOfDestinationCode>
+            <AirportOfDestinationText>Valencia</AirportOfDestinationText>
+            <AlsoNotify>
+              <AddressLine1></AddressLine1>
+              <AddressLine2></AddressLine2>
+              <City></City>
+              <CompanyID></CompanyID>
+              <CompanyIDCode></CompanyIDCode>
+              <ContactDetail></ContactDetail>
+              <ContactName></ContactName>
+              <ContactType>
+                <Code></Code>
+              </ContactType>
+              <Country>
+                <Code></Code>
+              </Country>
+              <IsAddressOverriddenForPaperWaybill>false</IsAddressOverriddenForPaperWaybill>
+              <Name></Name>
+              <PaperOverrideLine1></PaperOverrideLine1>
+              <PaperOverrideLine2></PaperOverrideLine2>
+              <PaperOverrideLine3></PaperOverrideLine3>
+              <PaperOverrideLine4></PaperOverrideLine4>
+              <PaperOverrideLine5></PaperOverrideLine5>
+              <PostCode></PostCode>
+              <State></State>
+            </AlsoNotify>
+            <AmountOfInsurance>0.0000</AmountOfInsurance>
+            <AsAgreedOn1stAWBSet>true</AsAgreedOn1stAWBSet>
+            <AsAgreedOn2ndAWBSet>true</AsAgreedOn2ndAWBSet>
+            <AsAgreedTypeOn1stAWBSet>ALL</AsAgreedTypeOn1stAWBSet>
+            <AsAgreedTypeOn2ndAWBSet>ALL</AsAgreedTypeOn2ndAWBSet>
+            <AWBIssueDate>2025-08-04T11:19:00</AWBIssueDate>
+            <AWBIssuePlace>BOGOTÁ</AWBIssuePlace>
+            <AWBIssuerApprovedExporterNumber></AWBIssuerApprovedExporterNumber>
+            <AWBIssuerExtraInfo></AWBIssuerExtraInfo>
+            <AWBIssuerSignature>TIBA COLOMBIA S.A.S.</AWBIssuerSignature>
+            <AWBNumber>5896364</AWBNumber>
+            <AWBType>
+              <Code></Code>
+            </AWBType>
+            <CargoSecurityDeclaration>
+              <AdditionalScreeningMethods></AdditionalScreeningMethods>
+              <AdditionalSecurityInformation></AdditionalSecurityInformation>
+              <AdditionalSecurityInformationStatement></AdditionalSecurityInformationStatement>
+              <AgentApprovalCategory>
+                <Code></Code>
+                <Description></Description>
+              </AgentApprovalCategory>
+              <AgentApprovalCountry>
+                <Code></Code>
+              </AgentApprovalCountry>
+              <AgentApprovalExpiryDate></AgentApprovalExpiryDate>
+              <AgentApprovalNumber></AgentApprovalNumber>
+              <SecurityStatusIssueDate></SecurityStatusIssueDate>
+              <SecurityStatusIssuedBy></SecurityStatusIssuedBy>
+              <TSASecurityStatement></TSASecurityStatement>
+            </CargoSecurityDeclaration>
+            <ChargesPayment>
+              <Code>PP</Code>
+              <Description>All Charges Prepaid Cash</Description>
+            </ChargesPayment>
+            <Consignee>
+              <AccountCode>717503</AccountCode>
+              <AddressLine1>CAMINO DE LA COMA S/N APDO. CORREOS 159</AddressLine1>
+              <AddressLine2></AddressLine2>
+              <City>PICASSENT</City>
+              <CompanyID>ESA46420469</CompanyID>
+              <CompanyIDCode>EORI No.</CompanyIDCode>
+              <ContactDetail>+34961240401</ContactDetail>
+              <ContactName></ContactName>
+              <ContactType>
+                <Code>TE</Code>
+                <Description>Telephone</Description>
+              </ContactType>
+              <Country>
+                <Code>ES</Code>
+                <Name>Spain</Name>
+              </Country>
+              <IsAddressOverriddenForPaperWaybill>false</IsAddressOverriddenForPaperWaybill>
+              <Name>LABORATORIOS FORENQUI S.A.</Name>
+              <PaperOverrideLine1>LABORATORIOS FORENQUI S.A.</PaperOverrideLine1>
+              <PaperOverrideLine2>CAMINO DE LA COMA S/N APDO. CORREOS 159</PaperOverrideLine2>
+              <PaperOverrideLine3></PaperOverrideLine3>
+              <PaperOverrideLine4>PICASSENT V 46220 ES</PaperOverrideLine4>
+              <PaperOverrideLine5>TE +34961240401 EORI No.: ESA46420469</PaperOverrideLine5>
+              <PostCode>46220</PostCode>
+              <State>V</State>
+            </Consignee>
+            <Currency>
+              <Code>COP</Code>
+              <Description>Colombian Peso</Description>
+            </Currency>
+            <ForwardingAgentReference>HAWB No: SHP04000167</ForwardingAgentReference>
+            <HandlingInformation></HandlingInformation>
+            <IssuedByAddress1>TV 93 51 98 ED PRANA 26 OF 401</IssuedByAddress1>
+            <IssuedByAddress2>BOGOTA D.C., BV, 111071, COLOMBIA</IssuedByAddress2>
+            <IssuedByName>TIBA COLOMBIA S.A.S.</IssuedByName>
+            <ManifestDescriptionOfGoods>CAJAS</ManifestDescriptionOfGoods>
+            <NetRateCode></NetRateCode>
+            <OptionalShippingInformation1>TERMS: CFR</OptionalShippingInformation1>
+            <OptionalShippingInformation2></OptionalShippingInformation2>
+            <OriginCode>BOG</OriginCode>
+            <OtherChargesPayment>
+              <Code>P</Code>
+              <Description>Prepaid</Description>
+            </OtherChargesPayment>
+            <Requested1stCarrier>AV</Requested1stCarrier>
+            <Requested1stFlight>046</Requested1stFlight>
+            <Requested1stFlightDate>08</Requested1stFlightDate>
+            <Requested2ndCarrier>AV</Requested2ndCarrier>
+            <Requested2ndFlight>6068</Requested2ndFlight>
+            <Requested2ndFlightDate>09</Requested2ndFlightDate>
+            <Routing1stBy>AV</Routing1stBy>
+            <Routing1stTo>MAD</Routing1stTo>
+            <Routing2ndBy>AV</Routing2ndBy>
+            <Routing2ndTo>VLC</Routing2ndTo>
+            <Routing3rdBy></Routing3rdBy>
+            <Routing3rdTo></Routing3rdTo>
+            <Shipper>
+              <AccountCode>457314</AccountCode>
+              <AddressLine1>PAR INDUSTRIAL GRAN SABANA BG  37  VDA TIBITO</AddressLine1>
+              <AddressLine2></AddressLine2>
+              <City>TOCANCIPA</City>
+              <CompanyID>830069306-7</CompanyID>
+              <CompanyIDCode>NIT</CompanyIDCode>
+              <ContactDetail>8788611</ContactDetail>
+              <ContactName></ContactName>
+              <ContactType>
+                <Code>TE</Code>
+                <Description>Telephone</Description>
+              </ContactType>
+              <Country>
+                <Code>XX</Code>
+                <Name>Unknown Country</Name>
+              </Country>
+              <IsAddressOverriddenForPaperWaybill>false</IsAddressOverriddenForPaperWaybill>
+              <Name>FRANA INTERNATIONAL S A S</Name>
+              <PaperOverrideLine1>FRANA INTERNATIONAL S A S</PaperOverrideLine1>
+              <PaperOverrideLine2>PAR INDUSTRIAL GRAN SABANA BG  37  VDA TIBITO</PaperOverrideLine2>
+              <PaperOverrideLine3></PaperOverrideLine3>
+              <PaperOverrideLine4>TOCANCIPA  251010 XX</PaperOverrideLine4>
+              <PaperOverrideLine5>TE 8788611 NIT: 830069306-7</PaperOverrideLine5>
+              <PostCode>251010</PostCode>
+              <State></State>
+            </Shipper>
+            <ShipperExtraInfoLine1></ShipperExtraInfoLine1>
+            <ShipperExtraInfoLine2></ShipperExtraInfoLine2>
+            <ShippersLoadAndCount>1</ShippersLoadAndCount>
+            <ShippersSignature>Nataly Rojas Rivas</ShippersSignature>
+            <SpecialHandlingCode></SpecialHandlingCode>
+            <TotalTaxesCollect>0.0000</TotalTaxesCollect>
+            <TotalTaxesPrepaid>0.0000</TotalTaxesPrepaid>
+            <TotalValuationCollect>0.0000</TotalValuationCollect>
+            <TotalValuationPrepaid>0.0000</TotalValuationPrepaid>
+            <ValueForCarriage>0.0000</ValueForCarriage>
+            <ValueForCustoms>0.0000</ValueForCustoms>
+            <WeightChargesPayment>
+              <Code>P</Code>
+              <Description>Prepaid</Description>
+            </WeightChargesPayment>
+            <RateLineCollection>
+              <RateLine>
+                <ChargeableWeight>5010.500</ChargeableWeight>
+                <CommodityItem></CommodityItem>
+                <GoodsDescription>CAJAS</GoodsDescription>
+                <GrossWeight>70.000</GrossWeight>
+                <LineNumber>1</LineNumber>
+                <NatureAndQtyOfGoodsType>
+                  <Code>G</Code>
+                  <Description>Goods Description</Description>
+                </NatureAndQtyOfGoodsType>
+                <NoOfPiecesOrRCP>1</NoOfPiecesOrRCP>
+                <RateChargeOrDiscount>1.3000</RateChargeOrDiscount>
+                <RateClass>
+                  <Code>Q</Code>
+                  <Description>Quantity Rate</Description>
+                </RateClass>
+                <TotalCharge>6513.6500</TotalCharge>
+                <WeightUnit>
+                  <Code>K</Code>
+                  <Description>Kilograms</Description>
+                </WeightUnit>
+              </RateLine>
+              <RateLine>
+                <ChargeableWeight>0.000</ChargeableWeight>
+                <CommodityItem></CommodityItem>
+                <GoodsDescription>DIMS 10000x10000x7000 CM x 1</GoodsDescription>
+                <GrossWeight>0.000</GrossWeight>
+                <LineNumber>2</LineNumber>
+                <NatureAndQtyOfGoodsType>
+                  <Code>G</Code>
+                  <Description>Goods Description</Description>
+                </NatureAndQtyOfGoodsType>
+                <NoOfPiecesOrRCP>0</NoOfPiecesOrRCP>
+                <RateChargeOrDiscount>0.0000</RateChargeOrDiscount>
+                <RateClass>
+                  <Code></Code>
+                </RateClass>
+                <TotalCharge>0.0000</TotalCharge>
+                <WeightUnit>
+                  <Code></Code>
+                </WeightUnit>
+              </RateLine>
+              <RateLine>
+                <ChargeableWeight>0.000</ChargeableWeight>
+                <CommodityItem></CommodityItem>
+                <GoodsDescription>1 SLAC</GoodsDescription>
+                <GrossWeight>0.000</GrossWeight>
+                <LineNumber>12</LineNumber>
+                <NatureAndQtyOfGoodsType>
+                  <Code>G</Code>
+                  <Description>Goods Description</Description>
+                </NatureAndQtyOfGoodsType>
+                <NoOfPiecesOrRCP>0</NoOfPiecesOrRCP>
+                <RateChargeOrDiscount>0.0000</RateChargeOrDiscount>
+                <RateClass>
+                  <Code></Code>
+                </RateClass>
+                <TotalCharge>0.0000</TotalCharge>
+                <WeightUnit>
+                  <Code></Code>
+                </WeightUnit>
+              </RateLine>
+            </RateLineCollection>
+          </AWBHeader>
+        </CarrierDocumentsOverride>
+        <LocalProcessing>
+          <ArrivalCartageRef></ArrivalCartageRef>
+          <DeliveryCartageAdvised></DeliveryCartageAdvised>
+          <DeliveryCartageCompleted></DeliveryCartageCompleted>
+          <DeliveryLabourCharge>0.0000</DeliveryLabourCharge>
+          <DeliveryLabourTime></DeliveryLabourTime>
+          <DeliveryRequiredBy></DeliveryRequiredBy>
+          <DeliveryRequiredFrom></DeliveryRequiredFrom>
+          <DeliveryTruckWaitCharge>0.0000</DeliveryTruckWaitCharge>
+          <DeliveryTruckWaitTime></DeliveryTruckWaitTime>
+          <DemurrageOnDeliveryCharge>0.0000</DemurrageOnDeliveryCharge>
+          <DemurrageOnDeliveryTime></DemurrageOnDeliveryTime>
+          <DemurrageOnPickupCharge>0.0000</DemurrageOnPickupCharge>
+          <DemurrageOnPickupTime></DemurrageOnPickupTime>
+          <EstimatedDelivery></EstimatedDelivery>
+          <EstimatedPickup></EstimatedPickup>
+          <ExportStatement>
+            <Code></Code>
+          </ExportStatement>
+          <FCLAvailable></FCLAvailable>
+          <FCLDeliveryDetentionCharge>0.0000</FCLDeliveryDetentionCharge>
+          <FCLDeliveryDetentionDays>0</FCLDeliveryDetentionDays>
+          <FCLDeliveryDetentionFreeDays>0</FCLDeliveryDetentionFreeDays>
+          <FCLDeliveryEquipmentNeeded>
+            <Code>ANY</Code>
+            <Description>Any</Description>
+          </FCLDeliveryEquipmentNeeded>
+          <FCLPickupDetentionCharge>0.0000</FCLPickupDetentionCharge>
+          <FCLPickupDetentionDays>0</FCLPickupDetentionDays>
+          <FCLPickupDetentionFreeDays>0</FCLPickupDetentionFreeDays>
+          <FCLPickupEquipmentNeeded>
+            <Code>ANY</Code>
+            <Description>Any</Description>
+          </FCLPickupEquipmentNeeded>
+          <FCLStorageCommences></FCLStorageCommences>
+          <HasProhibitedPackaging>false</HasProhibitedPackaging>
+          <InsuranceRequired>true</InsuranceRequired>
+          <IsContingencyRelease>false</IsContingencyRelease>
+          <LCLAirStorageCharge>0.0000</LCLAirStorageCharge>
+          <LCLAirStorageDaysOrHours>0</LCLAirStorageDaysOrHours>
+          <LCLAvailable></LCLAvailable>
+          <LCLDatesOverrideConsol>false</LCLDatesOverrideConsol>
+          <LCLStorageCommences></LCLStorageCommences>
+          <PickupCartageAdvised></PickupCartageAdvised>
+          <PickupCartageCompleted></PickupCartageCompleted>
+          <PickupLabourCharge>0.0000</PickupLabourCharge>
+          <PickupLabourTime></PickupLabourTime>
+          <PickupRequiredBy></PickupRequiredBy>
+          <PickupRequiredFrom></PickupRequiredFrom>
+          <PickupTruckWaitCharge>0.0000</PickupTruckWaitCharge>
+          <PickupTruckWaitTime></PickupTruckWaitTime>
+          <PrintOptionForPackagesOnAWB>
+            <Code>DEF</Code>
+            <Description>Default (Dims, fallback to Vol)</Description>
+          </PrintOptionForPackagesOnAWB>
+          <AdditionalServiceCollection Content="Complete">
+            <AdditionalService>
+              <ServiceCode>
+                <Code>PIC</Code>
+                <Description>Pickup Transport</Description>
+              </ServiceCode>
+              <ServiceId>SRV00000000000000965</ServiceId>
+              <Booked></Booked>
+              <Completed></Completed>
+              <Contractor>
+                <AddressType>Contractor</AddressType>
+                <Address1>CALLE JOSE AGUIRRE 40 7</Address1>
+                <Address2></Address2>
+                <AddressOverride>false</AddressOverride>
+                <AddressShortCode>210106.210106</AddressShortCode>
+                <City>VALENCIA</City>
+                <CompanyName>CW - DUMMY SUPPLIER (QUOTATIONS)</CompanyName>
+                <Country>
+                  <Code>ES</Code>
+                  <Name>Spain</Name>
+                </Country>
+                <Email></Email>
+                <Fax></Fax>
+                <GovRegNum>SINNIF210106</GovRegNum>
+                <GovRegNumType>
+                  <Code>NIF</Code>
+                  <Description>VAT (NIF) Business Registration Num</Description>
+                </GovRegNumType>
+                <OrganizationCategory>BUS</OrganizationCategory>
+                <OrganizationCode>210106</OrganizationCode>
+                <Phone></Phone>
+                <Port>
+                  <Code>ESVLC</Code>
+                  <Name>Valencia</Name>
+                </Port>
+                <Postcode>46011</Postcode>
+                <ScreeningStatus>
+                  <Code>CLR</Code>
+                  <Description>Clear</Description>
+                </ScreeningStatus>
+                <State Description="VALENCIA">V</State>
+              </Contractor>
+              <Duration></Duration>
+              <ExternalServiceId></ExternalServiceId>
+              <MeasurementBasis></MeasurementBasis>
+              <References></References>
+              <ServiceCount>1.000</ServiceCount>
+              <ServiceNote></ServiceNote>
+              <ServiceRate>0.0000</ServiceRate>
+              <ServiceRateCurrency></ServiceRateCurrency>
+              <SubLocation>CO</SubLocation>
+            </AdditionalService>
+            <AdditionalService>
+              <ServiceCode>
+                <Code>INS</Code>
+                <Description>Cargo Insurance</Description>
+              </ServiceCode>
+              <ServiceId>SRV00000000000000966</ServiceId>
+              <Booked></Booked>
+              <Completed></Completed>
+              <Duration></Duration>
+              <ExternalServiceId></ExternalServiceId>
+              <MeasurementBasis></MeasurementBasis>
+              <References></References>
+              <ServiceCount>0.000</ServiceCount>
+              <ServiceNote></ServiceNote>
+              <ServiceRate>0.0000</ServiceRate>
+              <ServiceRateCurrency></ServiceRateCurrency>
+              <SubLocation>CO</SubLocation>
+            </AdditionalService>
+          </AdditionalServiceCollection>
+        </LocalProcessing>
+        <AdditionalReferenceCollection Content="Complete">
+          <AdditionalReference>
+            <Type>
+              <Code>CNE</Code>
+              <Description>Reference Consignee</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>CON</Code>
+              <Description>Carrier Contract Number</Description>
+            </Type>
+            <ReferenceNumber>DSDSFSFS</ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>DAR</Code>
+              <Description>Reference Destination Agent</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>LCQ</Code>
+              <Description>Quotation Local Client</Description>
+            </Type>
+            <ReferenceNumber>2345</ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>OAR</Code>
+              <Description>Reference Origin Agent</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>SPR</Code>
+              <Description>Reference Shipper</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>TBS</Code>
+              <Description>Transport Booking Support</Description>
+            </Type>
+            <ReferenceNumber>AIR,LSE</ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+        </AdditionalReferenceCollection>
+        <CustomizedFieldCollection>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Credit Locked</Key>
+            <Value>N</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Int ROME Data</Key>
+            <Value>20</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Internal Sales</Key>
+            <Value>AB4</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Job Status</Key>
+            <Value>WRK</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Phase</Key>
+            <Value>SHC</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Fields</Key>
+            <Value>INC:[Y] ETD:[Y] ETA:[Y] POL:[Y] POD:[Y] CUS:[Y] CNR:[Y] CNE:[Y] CAR:[Y] CSL:[Y] JOP:[Y]</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Services</Key>
+            <Value>PIC,INS</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Full Invoiced</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Días Libres Origen (Exp)</Key>
+            <Value>0</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Días Libres Destino (Exp/Imp)</Key>
+            <Value>0</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>CTO Cut Off</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Search Note</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Customer</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Agent</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Full Costed</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Status</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Status Reason</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>DIM Reference</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Integration Service</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Mail Service</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Apply Workflow</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Apply Workflow Name</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Support Workflow</Key>
+            <Value></Value>
+          </CustomizedField>
+        </CustomizedFieldCollection>
+        <DateCollection>
+          <Date>
+            <Type>BookingConfirmed</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value>2025-07-21T14:48:00</Value>
+          </Date>
+          <Date>
+            <Type>Received</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>Departure</Type>
+            <IsEstimate>true</IsEstimate>
+            <Value>2025-08-08T07:00:00</Value>
+          </Date>
+          <Date>
+            <Type>Arrival</Type>
+            <IsEstimate>true</IsEstimate>
+            <Value>2025-08-09T09:05:00</Value>
+          </Date>
+          <Date>
+            <Type>DeliveryDueDate</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>RevisedDeliveryDueDate</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>ShippedOnBoard</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>BillIssued</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>PickupReceiptRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>DeliveryReceiptRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>PickupDispatchRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>DeliveryDispatchRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+        </DateCollection>
+        <ExceptionCollection>
+          <Exception>
+            <Description>Open Consol</Description>
+            <ExceptionID>T02239001</ExceptionID>
+            <Actioned>true</Actioned>
+            <ActionedDate>2025-08-04T11:15:00.000-05:00</ActionedDate>
+            <Category></Category>
+            <Date>2025-08-04T11:15:15.360-05:00</Date>
+            <DurationHours>0</DurationHours>
+            <Location>
+              <Code>COBOG</Code>
+              <Name>Bogota</Name>
+            </Location>
+            <Notes></Notes>
+            <Staff>
+              <Code>AF2</Code>
+              <Name>Andres Felipe Alegria Benitez</Name>
+            </Staff>
+            <Type>EXF</Type>
+          </Exception>
+          <Exception>
+            <Description>Job Open +1D</Description>
+            <ExceptionID>T02239002</ExceptionID>
+            <Actioned>false</Actioned>
+            <Category></Category>
+            <Date>2025-08-04T11:15:15.360-05:00</Date>
+            <DurationHours>0</DurationHours>
+            <Location>
+              <Code>COBOG</Code>
+              <Name>Bogota</Name>
+            </Location>
+            <Notes></Notes>
+            <Staff>
+              <Code>AF2</Code>
+              <Name>Andres Felipe Alegria Benitez</Name>
+            </Staff>
+            <Type>EXF</Type>
+          </Exception>
+        </ExceptionCollection>
+        <MilestoneCollection>
+          <Milestone>
+            <Description>Open Shipment</Description>
+            <EventCode>JOP</EventCode>
+            <Sequence>5</Sequence>
+            <ActualDate>2025-08-04T11:15:11.857-05:00</ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate></EstimatedDate>
+          </Milestone>
+          <Milestone>
+            <Description>Departure</Description>
+            <EventCode>DEP</EventCode>
+            <Sequence>110</Sequence>
+            <ActualDate></ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate>2025-08-08T07:00:00.000-05:00</EstimatedDate>
+          </Milestone>
+          <Milestone>
+            <Description>Arrival</Description>
+            <EventCode>ARV</EventCode>
+            <Sequence>190</Sequence>
+            <ActualDate></ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate>2025-08-09T09:05:00.000+02:00</EstimatedDate>
+          </Milestone>
+          <Milestone>
+            <Description>Missing Export Documents</Description>
+            <EventCode>Z11</EventCode>
+            <Sequence>90</Sequence>
+            <ActualDate></ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate></EstimatedDate>
+          </Milestone>
+        </MilestoneCollection>
+        <NoteCollection Content="Partial">
+          <Note>
+            <Description>Quick Booking Notes</Description>
+            <IsCustomDescription>false</IsCustomDescription>
+            <NoteText>NR0 04-Aug-25 11:04: pOR FAVOR VERIFIVCAR QUE LA AEROLINEA NO COINCIDE CON LA COTIZACION
+-----------------------------------------------------------------------------------------------------------------------------
+NR0 04-Aug-25 10:57: INGRESAR CARGA EL VIERNES</NoteText>
+            <NoteContext>
+              <Code>AAA</Code>
+              <Description>Module: A - All, Direction: A - All, Freight: A - All</Description>
+            </NoteContext>
+            <Visibility>
+              <Code>INT</Code>
+              <Description>INTERNAL</Description>
+            </Visibility>
+          </Note>
+          <Note>
+            <Description>Routing Order Notes</Description>
+            <IsCustomDescription>false</IsCustomDescription>
+            <NoteText>CARGA DELICADA </NoteText>
+            <NoteContext>
+              <Code>AAA</Code>
+              <Description>Module: A - All, Direction: A - All, Freight: A - All</Description>
+            </NoteContext>
+            <Visibility>
+              <Code>AGV</Code>
+              <Description>AGENT-VISIBLE</Description>
+            </Visibility>
+          </Note>
+        </NoteCollection>
+        <OrganizationAddressCollection>
+          <OrganizationAddress>
+            <AddressType>ConsignorDocumentaryAddress</AddressType>
+            <Address1>PAR INDUSTRIAL GRAN SABANA BG  37  VDA TIBITO</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>457314.457314</AddressShortCode>
+            <City>TOCANCIPA</City>
+            <CompanyName>FRANA INTERNATIONAL S A S</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>8786113</Fax>
+            <GovRegNum>830069306-7</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>457314</OrganizationCode>
+            <Phone>8788611</Phone>
+            <Port>
+              <Code>XXXXX</Code>
+              <Name>Unknown UNLOCO</Name>
+            </Port>
+            <Postcode>251010</Postcode>
+            <ScreeningStatus>
+              <Code>REQ</Code>
+              <Description>Requires Review</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>NRC</Code>
+                  <Description>Contribuyente - Regimen Comun / Com</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>830069306-7</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EDR</Code>
+                  <Description>External Debtor Account</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>26252</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ConsignorPickupDeliveryAddress</AddressType>
+            <Address1>PAR INDUSTRIAL GRAN SABANA BG  37  VDA TIBITO</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>457314.457314</AddressShortCode>
+            <City>TOCANCIPA</City>
+            <CompanyName>FRANA INTERNATIONAL S A S</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>8786113</Fax>
+            <GovRegNum>830069306-7</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>457314</OrganizationCode>
+            <Phone>8788611</Phone>
+            <Port>
+              <Code>XXXXX</Code>
+              <Name>Unknown UNLOCO</Name>
+            </Port>
+            <Postcode>251010</Postcode>
+            <ScreeningStatus>
+              <Code>REQ</Code>
+              <Description>Requires Review</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>NRC</Code>
+                  <Description>Contribuyente - Regimen Comun / Com</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>830069306-7</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EDR</Code>
+                  <Description>External Debtor Account</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>26252</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ConsigneeDocumentaryAddress</AddressType>
+            <Address1>CAMINO DE LA COMA S/N APDO. CORREOS 159</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>717503.717503</AddressShortCode>
+            <City>PICASSENT</City>
+            <CompanyName>LABORATORIOS FORENQUI S.A.</CompanyName>
+            <Country>
+              <Code>ES</Code>
+              <Name>Spain</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>A46420469</GovRegNum>
+            <GovRegNumType>
+              <Code>NIF</Code>
+              <Description>VAT (NIF) Business Registration Num</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>717503</OrganizationCode>
+            <Phone>+34961240401</Phone>
+            <Port>
+              <Code>ESPCN</Code>
+              <Name>Picassent</Name>
+            </Port>
+            <Postcode>46220</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State Description="VALENCIA">V</State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EOR</Code>
+                  <Description>EORI code (to be sent verbatim)</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>ES</Code>
+                  <Name>Spain</Name>
+                </CountryOfIssue>
+                <Value>ESA46420469</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ConsigneePickupDeliveryAddress</AddressType>
+            <Address1>CALLE RIU PALANCIA , 2</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>717503.717503.A0059828</AddressShortCode>
+            <City>SILLA</City>
+            <CompanyName>LABORATORIOS FORENQUI S.A.</CompanyName>
+            <Country>
+              <Code>ES</Code>
+              <Name>Spain</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>A46420469</GovRegNum>
+            <GovRegNumType>
+              <Code>NIF</Code>
+              <Description>VAT (NIF) Business Registration Num</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>717503</OrganizationCode>
+            <Phone></Phone>
+            <Port>
+              <Code>ESPCN</Code>
+              <Name>Picassent</Name>
+            </Port>
+            <Postcode>46460</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State Description="VALENCIA">V</State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EOR</Code>
+                  <Description>EORI code (to be sent verbatim)</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>ES</Code>
+                  <Name>Spain</Name>
+                </CountryOfIssue>
+                <Value>ESA46420469</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>PickupAgent</AddressType>
+            <Address1>TV 93 51 98 ED PRANA 26 OF 401</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>147521.147521</AddressShortCode>
+            <City>BOGOTA D.C.</City>
+            <CompanyName>TIBA COLOMBIA S.A.S. - HEAD OFFICE</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>3202508476</Fax>
+            <GovRegNum>800248701-2</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>147521</OrganizationCode>
+            <Phone>14291800</Phone>
+            <Port>
+              <Code>COBOG</Code>
+              <Name>Bogota</Name>
+            </Port>
+            <Postcode>111071</Postcode>
+            <ScreeningStatus>
+              <Code>REQ</Code>
+              <Description>Requires Review</Description>
+            </ScreeningStatus>
+            <State Description="BV">BV</State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>VAT</Code>
+                  <Description>Vergi Kimlik Numarası / Tax &amp; Busin</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>TR</Code>
+                  <Name>Türkiye</Name>
+                </CountryOfIssue>
+                <Value>2222222222</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>PEC</Code>
+                  <Description>Borçlanan e-Fatura Posta Kutusu / D</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>TR</Code>
+                  <Name>Türkiye</Name>
+                </CountryOfIssue>
+                <Value>facturacionelectronica.col@tibagroup.com</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>AEC</Code>
+                  <Description>ACTIVIDAD ECONOMICA</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>592</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>SendersLocalClient</AddressType>
+            <Address1>PAR INDUSTRIAL GRAN SABANA BG  37  VDA TIBITO</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>457314.457314</AddressShortCode>
+            <City>TOCANCIPA</City>
+            <CompanyName>FRANA INTERNATIONAL S A S</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>8786113</Fax>
+            <GovRegNum>830069306-7</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>457314</OrganizationCode>
+            <Phone>8788611</Phone>
+            <Port>
+              <Code>XXXXX</Code>
+              <Name>Unknown UNLOCO</Name>
+            </Port>
+            <Postcode>251010</Postcode>
+            <ScreeningStatus>
+              <Code>REQ</Code>
+              <Description>Requires Review</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>NRC</Code>
+                  <Description>Contribuyente - Regimen Comun / Com</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>830069306-7</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EDR</Code>
+                  <Description>External Debtor Account</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>26252</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>SendersOverseasAgent</AddressType>
+            <Address1>CAMINO DE LA COMA S/N APDO. CORREOS 159</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>717503.717503</AddressShortCode>
+            <City>PICASSENT</City>
+            <CompanyName>LABORATORIOS FORENQUI S.A.</CompanyName>
+            <Country>
+              <Code>ES</Code>
+              <Name>Spain</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>A46420469</GovRegNum>
+            <GovRegNumType>
+              <Code>NIF</Code>
+              <Description>VAT (NIF) Business Registration Num</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>717503</OrganizationCode>
+            <Phone>+34961240401</Phone>
+            <Port>
+              <Code>ESPCN</Code>
+              <Name>Picassent</Name>
+            </Port>
+            <Postcode>46220</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State Description="VALENCIA">V</State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EOR</Code>
+                  <Description>EORI code (to be sent verbatim)</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>ES</Code>
+                  <Name>Spain</Name>
+                </CountryOfIssue>
+                <Value>ESA46420469</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ExportBroker</AddressType>
+            <Address1>AV CL 26 69 76 ED ELEMENTO TO 3 OF 1103</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>444449.444449</AddressShortCode>
+            <City>BOGOTA</City>
+            <CompanyName>AGENCIA DE ADUANAS TIBA SAS NIVEL 2</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>900191610-6</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>444449</OrganizationCode>
+            <Phone>5807880</Phone>
+            <Port>
+              <Code>COBOG</Code>
+              <Name>Bogota</Name>
+            </Port>
+            <Postcode>110001</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>NRC</Code>
+                  <Description>Contribuyente - Regimen Comun / Com</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>900191610-6</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EDR</Code>
+                  <Description>External Debtor Account</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>27899</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>DeliveryAgent</AddressType>
+            <Address1>JOSE AGUIRRE, NUM 40 - 5</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>200009.200009</AddressShortCode>
+            <City>VALENCIA</City>
+            <CompanyName>TIBA SPAIN S.A.U.(VLC)</CompanyName>
+            <Country>
+              <Code>ES</Code>
+              <Name>Spain</Name>
+            </Country>
+            <Email></Email>
+            <Fax>963674478</Fax>
+            <GovRegNum>A08536583</GovRegNum>
+            <GovRegNumType>
+              <Code>NIF</Code>
+              <Description>VAT (NIF) Business Registration Num</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>200009</OrganizationCode>
+            <Phone>+34963984111</Phone>
+            <Port>
+              <Code>ESVLC</Code>
+              <Name>Valencia</Name>
+            </Port>
+            <Postcode>46011</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State Description="VIZCAYA">BI</State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>EOR</Code>
+                  <Description>EORI code (to be sent verbatim)</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>ES</Code>
+                  <Name>Spain</Name>
+                </CountryOfIssue>
+                <Value>ESA08536583</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>LSC</Code>
+                  <Description>Legacy System Code</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CN</Code>
+                  <Name>China</Name>
+                </CountryOfIssue>
+                <Value>200009</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>LSC</Code>
+                  <Description>Legacy System Code</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>US</Code>
+                  <Name>United States</Name>
+                </CountryOfIssue>
+                <Value>200009</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>LSC</Code>
+                  <Description>Legacy System Code</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>ES</Code>
+                  <Name>Spain</Name>
+                </CountryOfIssue>
+                <Value>200009</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>VAT</Code>
+                  <Description>Vergi Kimlik Numarası / Tax &amp; Busin</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>TR</Code>
+                  <Name>Türkiye</Name>
+                </CountryOfIssue>
+                <Value>2222222222</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>PEC</Code>
+                  <Description>Borçlanan e-Fatura Posta Kutusu / D</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>TR</Code>
+                  <Name>Türkiye</Name>
+                </CountryOfIssue>
+                <Value>acollado@tibagroup.com</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>APC</Code>
+                  <Description>Accounts Payable Suppliers Referenc</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>ES</Code>
+                  <Name>Spain</Name>
+                </CountryOfIssue>
+                <Value>1234567891</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ShippingLineAddress</AddressType>
+            <Address1>C. INSTRUCCION DE MANTENIMIENTO ZONA IND. BARAJAS</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>883775.883775</AddressShortCode>
+            <City>MADRID</City>
+            <CompanyName>IBERIA AIRLINES</CompanyName>
+            <Country>
+              <Code>ES</Code>
+              <Name>Spain</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>SINNIF883775</GovRegNum>
+            <GovRegNumType>
+              <Code>NIF</Code>
+              <Description>VAT (NIF) Business Registration Num</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>883775</OrganizationCode>
+            <Phone>+34679433166</Phone>
+            <Port>
+              <Code>ESMAD</Code>
+              <Name>Madrid</Name>
+            </Port>
+            <Postcode>28042</Postcode>
+            <ScreeningStatus>
+              <Code>REQ</Code>
+              <Description>Requires Review</Description>
+            </ScreeningStatus>
+            <State Description="MADRID">M</State>
+          </OrganizationAddress>
+        </OrganizationAddressCollection>
+        <PackingLineCollection Content="Complete">
+          <PackingLine>
+            <AviationSecurityAdditionalInspectionType>
+              <Code></Code>
+            </AviationSecurityAdditionalInspectionType>
+            <AviationSecurityInspectionType>
+              <Code></Code>
+            </AviationSecurityInspectionType>
+            <Commodity>
+              <Code>GEN</Code>
+              <Description>General</Description>
+            </Commodity>
+            <ContainerNumber></ContainerNumber>
+            <ContainerPackingOrder>0</ContainerPackingOrder>
+            <CountryOfOrigin>
+              <Code></Code>
+            </CountryOfOrigin>
+            <DetailedDescription></DetailedDescription>
+            <EndItemNo>0</EndItemNo>
+            <ExportReferenceNumber></ExportReferenceNumber>
+            <GoodsDescription>CAJAS</GoodsDescription>
+            <HarmonisedCode></HarmonisedCode>
+            <Height>70.000</Height>
+            <ImportReferenceNumber></ImportReferenceNumber>
+            <IsHighRisk>false</IsHighRisk>
+            <ItemNo>0</ItemNo>
+            <LastKnownCFSStatus>
+              <Code></Code>
+            </LastKnownCFSStatus>
+            <LastKnownCFSStatusDate></LastKnownCFSStatusDate>
+            <Length>100.000</Length>
+            <LengthUnit>
+              <Code>M</Code>
+              <Description>Meters</Description>
+            </LengthUnit>
+            <LinePrice>0.0000</LinePrice>
+            <Link>1</Link>
+            <LoadingMeters>0.000</LoadingMeters>
+            <MarksAndNos></MarksAndNos>
+            <OutturnComment></OutturnComment>
+            <OutturnDamagedQty>0</OutturnDamagedQty>
+            <OutturnedHeight>0.000</OutturnedHeight>
+            <OutturnedLength>0.000</OutturnedLength>
+            <OutturnedVolume>0.000</OutturnedVolume>
+            <OutturnedWeight>0.000</OutturnedWeight>
+            <OutturnedWidth>0.000</OutturnedWidth>
+            <OutturnPillagedQty>0</OutturnPillagedQty>
+            <OutturnQty>0</OutturnQty>
+            <PackingLineID>TI2TR200008520</PackingLineID>
+            <PackQty>1</PackQty>
+            <PackType>
+              <Code>PLT</Code>
+              <Description>Pallet</Description>
+            </PackType>
+            <ReferenceNumber></ReferenceNumber>
+            <RequiresTemperatureControl>false</RequiresTemperatureControl>
+            <Volume>30.000</Volume>
+            <VolumeUnit>
+              <Code>M3</Code>
+              <Description>Cubic Meters</Description>
+            </VolumeUnit>
+            <Weight>70.000</Weight>
+            <WeightUnit>
+              <Code>KG</Code>
+              <Description>Kilograms</Description>
+            </WeightUnit>
+            <Width>100.000</Width>
+            <CustomizedFieldCollection>
+              <CustomizedField>
+                <DataType>String</DataType>
+                <Key>Flexitank Model</Key>
+                <Value></Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Net Weight</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Density</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+            </CustomizedFieldCollection>
+            <PackedItemCollection></PackedItemCollection>
+          </PackingLine>
+        </PackingLineCollection>
+        <TransportLegCollection Content="Complete">
+          <TransportLeg>
+            <PortOfDischarge>
+              <Code>ESMAD</Code>
+              <Name>Madrid</Name>
+            </PortOfDischarge>
+            <PortOfLoading>
+              <Code>COBOG</Code>
+              <Name>Bogota</Name>
+            </PortOfLoading>
+            <LegOrder>1</LegOrder>
+            <ActualArrival></ActualArrival>
+            <ActualArrivalInPortOfLoading></ActualArrivalInPortOfLoading>
+            <ActualDeparture></ActualDeparture>
+            <AircraftType>
+              <Code>788</Code>
+            </AircraftType>
+            <ArrivalBerth></ArrivalBerth>
+            <ArrivalReference></ArrivalReference>
+            <BookingStatus>
+              <Code>PLN</Code>
+              <Description>Planned</Description>
+            </BookingStatus>
+            <Carrier>
+              <AddressType>Carrier</AddressType>
+              <Address1>C. INSTRUCCION DE MANTENIMIENTO ZONA IND. BARAJAS</Address1>
+              <Address2></Address2>
+              <AddressOverride>false</AddressOverride>
+              <AddressShortCode>883775.883775</AddressShortCode>
+              <City>MADRID</City>
+              <CompanyName>IBERIA AIRLINES</CompanyName>
+              <Country>
+                <Code>ES</Code>
+                <Name>Spain</Name>
+              </Country>
+              <Email></Email>
+              <Fax></Fax>
+              <GovRegNum>SINNIF883775</GovRegNum>
+              <GovRegNumType>
+                <Code>NIF</Code>
+                <Description>VAT (NIF) Business Registration Num</Description>
+              </GovRegNumType>
+              <OrganizationCategory>BUS</OrganizationCategory>
+              <OrganizationCode>883775</OrganizationCode>
+              <Phone>+34679433166</Phone>
+              <Port>
+                <Code>ESMAD</Code>
+                <Name>Madrid</Name>
+              </Port>
+              <Postcode>28042</Postcode>
+              <ScreeningStatus>
+                <Code>REQ</Code>
+                <Description>Requires Review</Description>
+              </ScreeningStatus>
+              <State Description="MADRID">M</State>
+            </Carrier>
+            <CarrierBookingReference></CarrierBookingReference>
+            <CarrierServiceLevel>
+              <Code></Code>
+            </CarrierServiceLevel>
+            <Creditor>
+              <AddressType>Creditor</AddressType>
+              <Address1>CL 77 B 57 103 P 21 ED GREEN TOWERS</Address1>
+              <Address2></Address2>
+              <AddressOverride>false</AddressOverride>
+              <AddressShortCode>717386.717386</AddressShortCode>
+              <City>BOGOTA</City>
+              <CompanyName>AEROVIAS DEL CONTINENTE AMERICANO S.A. AVIANCA</CompanyName>
+              <Country>
+                <Code>CO</Code>
+                <Name>Colombia</Name>
+              </Country>
+              <Email></Email>
+              <Fax>5877700</Fax>
+              <GovRegNum>890100577-6</GovRegNum>
+              <GovRegNumType>
+                <Code>NIT</Code>
+                <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+              </GovRegNumType>
+              <OrganizationCategory>BUS</OrganizationCategory>
+              <OrganizationCode>717386</OrganizationCode>
+              <Phone>3534691</Phone>
+              <Port>
+                <Code>COBOG</Code>
+                <Name>Bogota</Name>
+              </Port>
+              <Postcode>110001</Postcode>
+              <ScreeningStatus>
+                <Code>REQ</Code>
+                <Description>Requires Review</Description>
+              </ScreeningStatus>
+              <State></State>
+            </Creditor>
+            <DepartureBerth></DepartureBerth>
+            <DepartureReference></DepartureReference>
+            <DocumentCutOff></DocumentCutOff>
+            <EmptyCutOff></EmptyCutOff>
+            <EmptyReceivalCommences></EmptyReceivalCommences>
+            <EstimatedArrival>2025-08-08T23:30:00</EstimatedArrival>
+            <EstimatedArrivalInPortOfLoading></EstimatedArrivalInPortOfLoading>
+            <EstimatedDeparture>2025-08-08T07:00:00</EstimatedDeparture>
+            <FCLAvailability></FCLAvailability>
+            <FCLCutOff></FCLCutOff>
+            <FCLReceivalCommences></FCLReceivalCommences>
+            <FCLStorage></FCLStorage>
+            <GreenhouseGasEmission>
+              <CO2e>0</CO2e>
+              <CO2eDescriptiveStatus>
+                <Code>NON</Code>
+                <Description>Not Calculated</Description>
+              </CO2eDescriptiveStatus>
+              <CO2eUnit>
+                <Code>KG</Code>
+                <Description>Kilograms</Description>
+              </CO2eUnit>
+            </GreenhouseGasEmission>
+            <HazzardCutOffDate></HazzardCutOffDate>
+            <HazzardReceivalCommences></HazzardReceivalCommences>
+            <IsCargoOnly>false</IsCargoOnly>
+            <LCLAvailability></LCLAvailability>
+            <LCLCutOff></LCLCutOff>
+            <LCLReceivalCommences></LCLReceivalCommences>
+            <LCLStorageDate></LCLStorageDate>
+            <LegNotes></LegNotes>
+            <LegType>Flight1</LegType>
+            <ReeferCutOff></ReeferCutOff>
+            <ReeferReceivalCommences></ReeferReceivalCommences>
+            <ScheduledArrival>2025-08-08T23:30:00</ScheduledArrival>
+            <ScheduledArrivalInPortOfLoading></ScheduledArrivalInPortOfLoading>
+            <ScheduledDeparture>2025-08-08T07:00:00</ScheduledDeparture>
+            <TransportMode>Air</TransportMode>
+            <VesselLloydsIMO></VesselLloydsIMO>
+            <VesselName></VesselName>
+            <VGMCutOff></VGMCutOff>
+            <VoyageFlightNo>AV46</VoyageFlightNo>
+          </TransportLeg>
+          <TransportLeg>
+            <PortOfDischarge>
+              <Code>ESVLC</Code>
+              <Name>Valencia</Name>
+            </PortOfDischarge>
+            <PortOfLoading>
+              <Code>ESMAD</Code>
+              <Name>Madrid</Name>
+            </PortOfLoading>
+            <LegOrder>2</LegOrder>
+            <ActualArrival></ActualArrival>
+            <ActualArrivalInPortOfLoading></ActualArrivalInPortOfLoading>
+            <ActualDeparture></ActualDeparture>
+            <AircraftType>
+              <Code>CRK</Code>
+            </AircraftType>
+            <ArrivalBerth></ArrivalBerth>
+            <ArrivalReference></ArrivalReference>
+            <BookingStatus>
+              <Code>PLN</Code>
+              <Description>Planned</Description>
+            </BookingStatus>
+            <Carrier>
+              <AddressType>Carrier</AddressType>
+              <Address1>C. INSTRUCCION DE MANTENIMIENTO ZONA IND. BARAJAS</Address1>
+              <Address2></Address2>
+              <AddressOverride>false</AddressOverride>
+              <AddressShortCode>883775.883775</AddressShortCode>
+              <City>MADRID</City>
+              <CompanyName>IBERIA AIRLINES</CompanyName>
+              <Country>
+                <Code>ES</Code>
+                <Name>Spain</Name>
+              </Country>
+              <Email></Email>
+              <Fax></Fax>
+              <GovRegNum>SINNIF883775</GovRegNum>
+              <GovRegNumType>
+                <Code>NIF</Code>
+                <Description>VAT (NIF) Business Registration Num</Description>
+              </GovRegNumType>
+              <OrganizationCategory>BUS</OrganizationCategory>
+              <OrganizationCode>883775</OrganizationCode>
+              <Phone>+34679433166</Phone>
+              <Port>
+                <Code>ESMAD</Code>
+                <Name>Madrid</Name>
+              </Port>
+              <Postcode>28042</Postcode>
+              <ScreeningStatus>
+                <Code>REQ</Code>
+                <Description>Requires Review</Description>
+              </ScreeningStatus>
+              <State Description="MADRID">M</State>
+            </Carrier>
+            <CarrierBookingReference></CarrierBookingReference>
+            <CarrierServiceLevel>
+              <Code></Code>
+            </CarrierServiceLevel>
+            <Creditor>
+              <AddressType>Creditor</AddressType>
+              <Address1>CL 77 B 57 103 P 21 ED GREEN TOWERS</Address1>
+              <Address2></Address2>
+              <AddressOverride>false</AddressOverride>
+              <AddressShortCode>717386.717386</AddressShortCode>
+              <City>BOGOTA</City>
+              <CompanyName>AEROVIAS DEL CONTINENTE AMERICANO S.A. AVIANCA</CompanyName>
+              <Country>
+                <Code>CO</Code>
+                <Name>Colombia</Name>
+              </Country>
+              <Email></Email>
+              <Fax>5877700</Fax>
+              <GovRegNum>890100577-6</GovRegNum>
+              <GovRegNumType>
+                <Code>NIT</Code>
+                <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+              </GovRegNumType>
+              <OrganizationCategory>BUS</OrganizationCategory>
+              <OrganizationCode>717386</OrganizationCode>
+              <Phone>3534691</Phone>
+              <Port>
+                <Code>COBOG</Code>
+                <Name>Bogota</Name>
+              </Port>
+              <Postcode>110001</Postcode>
+              <ScreeningStatus>
+                <Code>REQ</Code>
+                <Description>Requires Review</Description>
+              </ScreeningStatus>
+              <State></State>
+            </Creditor>
+            <DepartureBerth></DepartureBerth>
+            <DepartureReference></DepartureReference>
+            <DocumentCutOff></DocumentCutOff>
+            <EmptyCutOff></EmptyCutOff>
+            <EmptyReceivalCommences></EmptyReceivalCommences>
+            <EstimatedArrival>2025-08-09T09:05:00</EstimatedArrival>
+            <EstimatedArrivalInPortOfLoading></EstimatedArrivalInPortOfLoading>
+            <EstimatedDeparture>2025-08-09T08:00:00</EstimatedDeparture>
+            <FCLAvailability></FCLAvailability>
+            <FCLCutOff></FCLCutOff>
+            <FCLReceivalCommences></FCLReceivalCommences>
+            <FCLStorage></FCLStorage>
+            <GreenhouseGasEmission>
+              <CO2e>0</CO2e>
+              <CO2eDescriptiveStatus>
+                <Code>NON</Code>
+                <Description>Not Calculated</Description>
+              </CO2eDescriptiveStatus>
+              <CO2eUnit>
+                <Code>KG</Code>
+                <Description>Kilograms</Description>
+              </CO2eUnit>
+            </GreenhouseGasEmission>
+            <HazzardCutOffDate></HazzardCutOffDate>
+            <HazzardReceivalCommences></HazzardReceivalCommences>
+            <IsCargoOnly>false</IsCargoOnly>
+            <LCLAvailability></LCLAvailability>
+            <LCLCutOff></LCLCutOff>
+            <LCLReceivalCommences></LCLReceivalCommences>
+            <LCLStorageDate></LCLStorageDate>
+            <LegNotes></LegNotes>
+            <LegType>Flight2</LegType>
+            <ReeferCutOff></ReeferCutOff>
+            <ReeferReceivalCommences></ReeferReceivalCommences>
+            <ScheduledArrival>2025-08-09T09:05:00</ScheduledArrival>
+            <ScheduledArrivalInPortOfLoading></ScheduledArrivalInPortOfLoading>
+            <ScheduledDeparture>2025-08-09T08:00:00</ScheduledDeparture>
+            <TransportMode>Air</TransportMode>
+            <VesselLloydsIMO></VesselLloydsIMO>
+            <VesselName></VesselName>
+            <VGMCutOff></VGMCutOff>
+            <VoyageFlightNo>AV6068</VoyageFlightNo>
+          </TransportLeg>
+        </TransportLegCollection>
+      </SubShipment>
+    </SubShipmentCollection>
+    <TransportLegCollection Content="Complete">
+      <TransportLeg>
+        <PortOfDischarge>
+          <Code>ESMAD</Code>
+          <Name>Madrid</Name>
+        </PortOfDischarge>
+        <PortOfLoading>
+          <Code>COBOG</Code>
+          <Name>Bogota</Name>
+        </PortOfLoading>
+        <LegOrder>1</LegOrder>
+        <ActualArrival></ActualArrival>
+        <ActualArrivalInPortOfLoading></ActualArrivalInPortOfLoading>
+        <ActualDeparture></ActualDeparture>
+        <AircraftType>
+          <Code>788</Code>
+        </AircraftType>
+        <ArrivalBerth></ArrivalBerth>
+        <ArrivalReference></ArrivalReference>
+        <BookingStatus>
+          <Code>PLN</Code>
+          <Description>Planned</Description>
+        </BookingStatus>
+        <Carrier>
+          <AddressType>Carrier</AddressType>
+          <Address1>C. INSTRUCCION DE MANTENIMIENTO ZONA IND. BARAJAS</Address1>
+          <Address2></Address2>
+          <AddressOverride>false</AddressOverride>
+          <AddressShortCode>883775.883775</AddressShortCode>
+          <City>MADRID</City>
+          <CompanyName>IBERIA AIRLINES</CompanyName>
+          <Country>
+            <Code>ES</Code>
+            <Name>Spain</Name>
+          </Country>
+          <Email></Email>
+          <Fax></Fax>
+          <GovRegNum>SINNIF883775</GovRegNum>
+          <GovRegNumType>
+            <Code>NIF</Code>
+            <Description>VAT (NIF) Business Registration Num</Description>
+          </GovRegNumType>
+          <OrganizationCategory>BUS</OrganizationCategory>
+          <OrganizationCode>883775</OrganizationCode>
+          <Phone>+34679433166</Phone>
+          <Port>
+            <Code>ESMAD</Code>
+            <Name>Madrid</Name>
+          </Port>
+          <Postcode>28042</Postcode>
+          <ScreeningStatus>
+            <Code>REQ</Code>
+            <Description>Requires Review</Description>
+          </ScreeningStatus>
+          <State Description="MADRID">M</State>
+        </Carrier>
+        <CarrierBookingReference></CarrierBookingReference>
+        <CarrierServiceLevel>
+          <Code></Code>
+        </CarrierServiceLevel>
+        <Creditor>
+          <AddressType>Creditor</AddressType>
+          <Address1>CL 77 B 57 103 P 21 ED GREEN TOWERS</Address1>
+          <Address2></Address2>
+          <AddressOverride>false</AddressOverride>
+          <AddressShortCode>717386.717386</AddressShortCode>
+          <City>BOGOTA</City>
+          <CompanyName>AEROVIAS DEL CONTINENTE AMERICANO S.A. AVIANCA</CompanyName>
+          <Country>
+            <Code>CO</Code>
+            <Name>Colombia</Name>
+          </Country>
+          <Email></Email>
+          <Fax>5877700</Fax>
+          <GovRegNum>890100577-6</GovRegNum>
+          <GovRegNumType>
+            <Code>NIT</Code>
+            <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+          </GovRegNumType>
+          <OrganizationCategory>BUS</OrganizationCategory>
+          <OrganizationCode>717386</OrganizationCode>
+          <Phone>3534691</Phone>
+          <Port>
+            <Code>COBOG</Code>
+            <Name>Bogota</Name>
+          </Port>
+          <Postcode>110001</Postcode>
+          <ScreeningStatus>
+            <Code>REQ</Code>
+            <Description>Requires Review</Description>
+          </ScreeningStatus>
+          <State></State>
+        </Creditor>
+        <DepartureBerth></DepartureBerth>
+        <DepartureReference></DepartureReference>
+        <DocumentCutOff></DocumentCutOff>
+        <EmptyCutOff></EmptyCutOff>
+        <EmptyReceivalCommences></EmptyReceivalCommences>
+        <EstimatedArrival>2025-08-08T23:30:00</EstimatedArrival>
+        <EstimatedArrivalInPortOfLoading></EstimatedArrivalInPortOfLoading>
+        <EstimatedDeparture>2025-08-08T07:00:00</EstimatedDeparture>
+        <FCLAvailability></FCLAvailability>
+        <FCLCutOff></FCLCutOff>
+        <FCLReceivalCommences></FCLReceivalCommences>
+        <FCLStorage></FCLStorage>
+        <GreenhouseGasEmission>
+          <CO2e>0</CO2e>
+          <CO2eDescriptiveStatus>
+            <Code>NON</Code>
+            <Description>Not Calculated</Description>
+          </CO2eDescriptiveStatus>
+          <CO2eUnit>
+            <Code>KG</Code>
+            <Description>Kilograms</Description>
+          </CO2eUnit>
+        </GreenhouseGasEmission>
+        <HazzardCutOffDate></HazzardCutOffDate>
+        <HazzardReceivalCommences></HazzardReceivalCommences>
+        <IsCargoOnly>false</IsCargoOnly>
+        <LCLAvailability></LCLAvailability>
+        <LCLCutOff></LCLCutOff>
+        <LCLReceivalCommences></LCLReceivalCommences>
+        <LCLStorageDate></LCLStorageDate>
+        <LegNotes></LegNotes>
+        <LegType>Flight1</LegType>
+        <ReeferCutOff></ReeferCutOff>
+        <ReeferReceivalCommences></ReeferReceivalCommences>
+        <ScheduledArrival>2025-08-08T23:30:00</ScheduledArrival>
+        <ScheduledArrivalInPortOfLoading></ScheduledArrivalInPortOfLoading>
+        <ScheduledDeparture>2025-08-08T07:00:00</ScheduledDeparture>
+        <TransportMode>Air</TransportMode>
+        <VesselLloydsIMO></VesselLloydsIMO>
+        <VesselName></VesselName>
+        <VGMCutOff></VGMCutOff>
+        <VoyageFlightNo>AV46</VoyageFlightNo>
+      </TransportLeg>
+      <TransportLeg>
+        <PortOfDischarge>
+          <Code>ESVLC</Code>
+          <Name>Valencia</Name>
+        </PortOfDischarge>
+        <PortOfLoading>
+          <Code>ESMAD</Code>
+          <Name>Madrid</Name>
+        </PortOfLoading>
+        <LegOrder>2</LegOrder>
+        <ActualArrival></ActualArrival>
+        <ActualArrivalInPortOfLoading></ActualArrivalInPortOfLoading>
+        <ActualDeparture></ActualDeparture>
+        <AircraftType>
+          <Code>CRK</Code>
+        </AircraftType>
+        <ArrivalBerth></ArrivalBerth>
+        <ArrivalReference></ArrivalReference>
+        <BookingStatus>
+          <Code>PLN</Code>
+          <Description>Planned</Description>
+        </BookingStatus>
+        <Carrier>
+          <AddressType>Carrier</AddressType>
+          <Address1>C. INSTRUCCION DE MANTENIMIENTO ZONA IND. BARAJAS</Address1>
+          <Address2></Address2>
+          <AddressOverride>false</AddressOverride>
+          <AddressShortCode>883775.883775</AddressShortCode>
+          <City>MADRID</City>
+          <CompanyName>IBERIA AIRLINES</CompanyName>
+          <Country>
+            <Code>ES</Code>
+            <Name>Spain</Name>
+          </Country>
+          <Email></Email>
+          <Fax></Fax>
+          <GovRegNum>SINNIF883775</GovRegNum>
+          <GovRegNumType>
+            <Code>NIF</Code>
+            <Description>VAT (NIF) Business Registration Num</Description>
+          </GovRegNumType>
+          <OrganizationCategory>BUS</OrganizationCategory>
+          <OrganizationCode>883775</OrganizationCode>
+          <Phone>+34679433166</Phone>
+          <Port>
+            <Code>ESMAD</Code>
+            <Name>Madrid</Name>
+          </Port>
+          <Postcode>28042</Postcode>
+          <ScreeningStatus>
+            <Code>REQ</Code>
+            <Description>Requires Review</Description>
+          </ScreeningStatus>
+          <State Description="MADRID">M</State>
+        </Carrier>
+        <CarrierBookingReference></CarrierBookingReference>
+        <CarrierServiceLevel>
+          <Code></Code>
+        </CarrierServiceLevel>
+        <Creditor>
+          <AddressType>Creditor</AddressType>
+          <Address1>CL 77 B 57 103 P 21 ED GREEN TOWERS</Address1>
+          <Address2></Address2>
+          <AddressOverride>false</AddressOverride>
+          <AddressShortCode>717386.717386</AddressShortCode>
+          <City>BOGOTA</City>
+          <CompanyName>AEROVIAS DEL CONTINENTE AMERICANO S.A. AVIANCA</CompanyName>
+          <Country>
+            <Code>CO</Code>
+            <Name>Colombia</Name>
+          </Country>
+          <Email></Email>
+          <Fax>5877700</Fax>
+          <GovRegNum>890100577-6</GovRegNum>
+          <GovRegNumType>
+            <Code>NIT</Code>
+            <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+          </GovRegNumType>
+          <OrganizationCategory>BUS</OrganizationCategory>
+          <OrganizationCode>717386</OrganizationCode>
+          <Phone>3534691</Phone>
+          <Port>
+            <Code>COBOG</Code>
+            <Name>Bogota</Name>
+          </Port>
+          <Postcode>110001</Postcode>
+          <ScreeningStatus>
+            <Code>REQ</Code>
+            <Description>Requires Review</Description>
+          </ScreeningStatus>
+          <State></State>
+        </Creditor>
+        <DepartureBerth></DepartureBerth>
+        <DepartureReference></DepartureReference>
+        <DocumentCutOff></DocumentCutOff>
+        <EmptyCutOff></EmptyCutOff>
+        <EmptyReceivalCommences></EmptyReceivalCommences>
+        <EstimatedArrival>2025-08-09T09:05:00</EstimatedArrival>
+        <EstimatedArrivalInPortOfLoading></EstimatedArrivalInPortOfLoading>
+        <EstimatedDeparture>2025-08-09T08:00:00</EstimatedDeparture>
+        <FCLAvailability></FCLAvailability>
+        <FCLCutOff></FCLCutOff>
+        <FCLReceivalCommences></FCLReceivalCommences>
+        <FCLStorage></FCLStorage>
+        <GreenhouseGasEmission>
+          <CO2e>0</CO2e>
+          <CO2eDescriptiveStatus>
+            <Code>NON</Code>
+            <Description>Not Calculated</Description>
+          </CO2eDescriptiveStatus>
+          <CO2eUnit>
+            <Code>KG</Code>
+            <Description>Kilograms</Description>
+          </CO2eUnit>
+        </GreenhouseGasEmission>
+        <HazzardCutOffDate></HazzardCutOffDate>
+        <HazzardReceivalCommences></HazzardReceivalCommences>
+        <IsCargoOnly>false</IsCargoOnly>
+        <LCLAvailability></LCLAvailability>
+        <LCLCutOff></LCLCutOff>
+        <LCLReceivalCommences></LCLReceivalCommences>
+        <LCLStorageDate></LCLStorageDate>
+        <LegNotes></LegNotes>
+        <LegType>Flight2</LegType>
+        <ReeferCutOff></ReeferCutOff>
+        <ReeferReceivalCommences></ReeferReceivalCommences>
+        <ScheduledArrival>2025-08-09T09:05:00</ScheduledArrival>
+        <ScheduledArrivalInPortOfLoading></ScheduledArrivalInPortOfLoading>
+        <ScheduledDeparture>2025-08-09T08:00:00</ScheduledDeparture>
+        <TransportMode>Air</TransportMode>
+        <VesselLloydsIMO></VesselLloydsIMO>
+        <VesselName></VesselName>
+        <VGMCutOff></VGMCutOff>
+        <VoyageFlightNo>AV6068</VoyageFlightNo>
+      </TransportLeg>
+    </TransportLegCollection>
+  </Shipment>
+</UniversalShipment>

@@ -1,0 +1,2282 @@
+<UniversalTransaction xmlns="http://www.cargowise.com/Schemas/Universal/2011/11" version="1.1">
+  <TransactionInfo>
+    <DataContext>
+      <DataSourceCollection>
+        <DataSource>
+          <Type>AccountingInvoice</Type>
+          <Key>AR INV FCOF00000206</Key>
+        </DataSource>
+      </DataSourceCollection>
+      <ActionPurpose>
+        <Code>INV</Code>
+        <Description>ROME Invoice</Description>
+      </ActionPurpose>
+      <Company>
+        <Code>TBC</Code>
+        <Country>
+          <Code>CO</Code>
+          <Name>Colombia</Name>
+        </Country>
+        <Name>TIBA COLOMBIA S.A.S.</Name>
+      </Company>
+      <DataProvider>TI2TR2TBC</DataProvider>
+      <EnterpriseID>TI2</EnterpriseID>
+      <EventBranch>
+        <Code>BOG</Code>
+        <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+      </EventBranch>
+      <EventDepartment>
+        <Code>OPS</Code>
+        <Name>Operations (SEA)</Name>
+      </EventDepartment>
+      <EventReference>AR|INV|Posted</EventReference>
+      <EventType>
+        <Code>ADD</Code>
+        <Description>Added a record to the system</Description>
+      </EventType>
+      <EventUser>
+        <Code>PJ0</Code>
+        <Name>Pablo José Teheran Cantillo</Name>
+      </EventUser>
+      <ServerID>TR2</ServerID>
+      <Timestamp>1754753264</Timestamp>
+      <TriggerCount>1</TriggerCount>
+      <TriggerDate>2025-08-09T10:27:26.383-05:00</TriggerDate>
+      <TriggerDescription>Integration ROME Invoice Transaction</TriggerDescription>
+      <TriggerType>Trigger</TriggerType>
+      <RecipientRoleCollection>
+        <RecipientRole>
+          <Code>ORP</Code>
+          <Description>Organization Proxy</Description>
+        </RecipientRole>
+      </RecipientRoleCollection>
+    </DataContext>
+    <AgreedPaymentMethod>TR</AgreedPaymentMethod>
+    <APAccountGroup>
+      <Code>TPY</Code>
+      <Description>THIRD PARTY COMPANY</Description>
+    </APAccountGroup>
+    <ARAccountGroup>
+      <Code>TPY</Code>
+      <Description>THIRD PARTY COMPANY</Description>
+    </ARAccountGroup>
+    <Branch>
+      <Code>BOG</Code>
+      <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+    </Branch>
+    <BranchAddress>
+      <AddressType>OFC</AddressType>
+      <Address1>TV 93 51 98 ED PRANA 26 OF 401</Address1>
+      <Address2></Address2>
+      <AddressOverride>false</AddressOverride>
+      <AddressShortCode>147521.147521</AddressShortCode>
+      <City>BOGOTA D.C.</City>
+      <CompanyName>TIBA COLOMBIA S.A.S. - HEAD OFFICE</CompanyName>
+      <Contact>Edwin Rodriguez Muñoz</Contact>
+      <Country>
+        <Code>CO</Code>
+        <Name>Colombia</Name>
+      </Country>
+      <Email>asesorclien.bog1@bemel.com.co</Email>
+      <Fax></Fax>
+      <OrganizationCode>147521</OrganizationCode>
+      <Phone></Phone>
+      <Port>
+        <Code>COBOG</Code>
+        <Name>Bogota</Name>
+      </Port>
+      <Postcode>111071</Postcode>
+      <ScreeningStatus>
+        <Code>REQ</Code>
+        <Description>Requires Review</Description>
+      </ScreeningStatus>
+      <State>BV</State>
+      <RegistrationNumberCollection>
+        <RegistrationNumber>
+          <Type>
+            <Code>NIT</Code>
+          </Type>
+          <CountryOfIssue>
+            <Code>CO</Code>
+            <Name>Colombia</Name>
+          </CountryOfIssue>
+          <Value>800248701-2</Value>
+        </RegistrationNumber>
+        <RegistrationNumber>
+          <Type>
+            <Code>VAT</Code>
+          </Type>
+          <CountryOfIssue>
+            <Code>TR</Code>
+            <Name>Türkiye</Name>
+          </CountryOfIssue>
+          <Value>2222222222</Value>
+        </RegistrationNumber>
+        <RegistrationNumber>
+          <Type>
+            <Code>PEC</Code>
+          </Type>
+          <CountryOfIssue>
+            <Code>TR</Code>
+            <Name>Türkiye</Name>
+          </CountryOfIssue>
+          <Value>facturacionelectronica.col@tibagroup.com</Value>
+        </RegistrationNumber>
+        <RegistrationNumber>
+          <Type>
+            <Code>AEC</Code>
+          </Type>
+          <CountryOfIssue>
+            <Code>CO</Code>
+            <Name>Colombia</Name>
+          </CountryOfIssue>
+          <Value>592</Value>
+        </RegistrationNumber>
+      </RegistrationNumberCollection>
+    </BranchAddress>
+    <Category>CUR</Category>
+    <CheckDrawer></CheckDrawer>
+    <CheckNumberOrPaymentRef></CheckNumberOrPaymentRef>
+    <ComplianceSubType>TXI</ComplianceSubType>
+    <CreateTime>2025-08-09T15:27:00</CreateTime>
+    <CreateUser>PJ0</CreateUser>
+    <Department>
+      <Code>FIS</Code>
+      <Name>Forwarding Import Sea</Name>
+    </Department>
+    <Description>SHP040002084</Description>
+    <DrawerBank></DrawerBank>
+    <DrawerBranch></DrawerBranch>
+    <DueDate>2025-09-08T10:27:00</DueDate>
+    <ExchangeRate>4169.130000</ExchangeRate>
+    <InvoiceTerm>INV</InvoiceTerm>
+    <InvoiceTermDays>30</InvoiceTermDays>
+    <IsCancelled>false</IsCancelled>
+    <IsCreatedByMatchingProcess>false</IsCreatedByMatchingProcess>
+    <IsPrinted>false</IsPrinted>
+    <Job>
+      <Type>Job</Type>
+      <Key>SHP040002084</Key>
+    </Job>
+    <JobInvoiceNumber>SHP040002084</JobInvoiceNumber>
+    <Ledger>AR</Ledger>
+    <LocalCurrency>
+      <Code>COP</Code>
+      <Description>Colombian Peso</Description>
+    </LocalCurrency>
+    <LocalExVATAmount>34937267.7100</LocalExVATAmount>
+    <LocalTaxTransactionsAmount>0.0000</LocalTaxTransactionsAmount>
+    <LocalTotal>35238278.9000</LocalTotal>
+    <LocalVATAmount>301011.1900</LocalVATAmount>
+    <Number>FCOF00000206</Number>
+    <NumberOfSupportingDocuments>1</NumberOfSupportingDocuments>
+    <OrganizationAddress>
+      <AddressType>OFC</AddressType>
+      <Address1>BRR MANGA TERMINAL MARITIMO</Address1>
+      <Address2></Address2>
+      <AddressOverride>false</AddressOverride>
+      <AddressShortCode>455586.455586</AddressShortCode>
+      <City>CARTAGENA</City>
+      <CompanyName>SOCIEDAD PORTUARIA REGIONAL DE CARTAGENA S.A.</CompanyName>
+      <Contact>contabilidad</Contact>
+      <Country>
+        <Code>CO</Code>
+        <Name>Colombia</Name>
+      </Country>
+      <Email>abastecimiento.log@sprc.com.co</Email>
+      <Fax></Fax>
+      <OrganizationCode>455586</OrganizationCode>
+      <Phone></Phone>
+      <Port>
+        <Code>COCTG</Code>
+        <Name>Cartagena</Name>
+      </Port>
+      <Postcode>130002</Postcode>
+      <ScreeningStatus>
+        <Code>CLR</Code>
+        <Description>Clear</Description>
+      </ScreeningStatus>
+      <State></State>
+      <RegistrationNumberCollection>
+        <RegistrationNumber>
+          <Type>
+            <Code>NIT</Code>
+          </Type>
+          <CountryOfIssue>
+            <Code>CO</Code>
+            <Name>Colombia</Name>
+          </CountryOfIssue>
+          <Value>800200969-1</Value>
+        </RegistrationNumber>
+        <RegistrationNumber>
+          <Type>
+            <Code>CMP</Code>
+          </Type>
+          <CountryOfIssue>
+            <Code>CO</Code>
+            <Name>Colombia</Name>
+          </CountryOfIssue>
+          <Value>2261</Value>
+        </RegistrationNumber>
+      </RegistrationNumberCollection>
+    </OrganizationAddress>
+    <OSCurrency>
+      <Code>USD</Code>
+      <Description>United States Dollar</Description>
+    </OSCurrency>
+    <OSExGSTVATAmount>8379.9900</OSExGSTVATAmount>
+    <OSGSTVATAmount>72.20</OSGSTVATAmount>
+    <OSTaxTransactionsAmount>0.0000</OSTaxTransactionsAmount>
+    <OSTotal>8452.1900</OSTotal>
+    <OutstandingAmount>35238278.9000</OutstandingAmount>
+    <PlaceOfIssue>BOGOTÁ</PlaceOfIssue>
+    <PostDate>2025-08-09T10:27:00</PostDate>
+    <ReceiptOrDirectDebitNumber></ReceiptOrDirectDebitNumber>
+    <RequisitionStatus></RequisitionStatus>
+    <TransactionDate>2025-08-09T10:27:00</TransactionDate>
+    <TransactionReference>BOG0220129</TransactionReference>
+    <TransactionType>INV</TransactionType>
+    <PostingJournalCollection>
+      <PostingJournal>
+        <Branch>
+          <Code>BOG</Code>
+          <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+        </Branch>
+        <ChargeCode>
+          <Code>F35</Code>
+          <ChargeType>
+            <Code>MRG</Code>
+            <Description>Margin</Description>
+          </ChargeType>
+          <Class>
+            <Code>SRV</Code>
+            <Description>Service</Description>
+          </Class>
+          <Description>OCEAN FREIGHT</Description>
+        </ChargeCode>
+        <ChargeCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </ChargeCurrency>
+        <ChargeExchangeRate>4169.130000000</ChargeExchangeRate>
+        <ChargeTotalAmount>7999.9900</ChargeTotalAmount>
+        <ChargeTotalExVATAmount>7999.9900</ChargeTotalExVATAmount>
+        <Department>
+          <Code>FIS</Code>
+          <Name>Forwarding Import Sea</Name>
+        </Department>
+        <Description>OCEAN FREIGHT/ FLETE</Description>
+        <GLAccount>
+          <AccountCode>1010.10.10</AccountCode>
+          <Description>FREIGHT REVENUE ACTUAL</Description>
+        </GLAccount>
+        <GLPostDate>2025-08-09T10:27:00</GLPostDate>
+        <IsFinalCharge>false</IsFinalCharge>
+        <Job>
+          <Type>Job</Type>
+          <Key>SHP040002084</Key>
+        </Job>
+        <JobRecognitionDate>2025-08-09T10:27:00</JobRecognitionDate>
+        <LocalAmount>33352998.3100</LocalAmount>
+        <LocalCurrency>
+          <Code>COP</Code>
+          <Description>Colombian Peso</Description>
+        </LocalCurrency>
+        <LocalGSTVATAmount>0.0000</LocalGSTVATAmount>
+        <LocalTotalAmount>33352998.3100</LocalTotalAmount>
+        <Organization>
+          <Type>Organization</Type>
+          <Key>455586</Key>
+        </Organization>
+        <OSAmount>7999.9900</OSAmount>
+        <OSCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </OSCurrency>
+        <OSGSTVATAmount>0.0000</OSGSTVATAmount>
+        <OSTotalAmount>7999.9900</OSTotalAmount>
+        <RevenueRecognitionType>FAR</RevenueRecognitionType>
+        <Sequence>1</Sequence>
+        <TaxDate>2025-08-09</TaxDate>
+        <TaxMessageID>
+          <TaxMessageCode>3RDP</TaxMessageCode>
+          <Description>NON TAXABLE THIRD PARTY</Description>
+          <EnglishTaxMessage>NON TAXABLE THIRD PARTY</EnglishTaxMessage>
+          <VATGSTExemptionDocumentType>
+            <Code>EXV</Code>
+            <Description>VAT/GST Exporter Exemption (AR and AP Invoicing)</Description>
+          </VATGSTExemptionDocumentType>
+        </TaxMessageID>
+        <TransactionCategory>CUR</TransactionCategory>
+        <TransactionType>REV</TransactionType>
+        <VATTaxID>
+          <TaxCode>EXCLUDE</TaxCode>
+          <Description>Excluded from Tax Base</Description>
+          <TaxRate>0</TaxRate>
+          <TaxType>
+            <Code>EXL</Code>
+          </TaxType>
+        </VATTaxID>
+        <PostingJournalDetailCollection>
+          <PostingJournalDetail>
+            <CreditGLAccount>
+              <AccountCode>8420.40.00</AccountCode>
+              <Description>REVENUE SUSPENSE</Description>
+            </CreditGLAccount>
+            <DebitGLAccount>
+              <AccountCode>6210.00.00</AccountCode>
+              <Description>TRADE DEBTORS CONTROL</Description>
+            </DebitGLAccount>
+            <PostingAmount>33352998.3100</PostingAmount>
+            <PostingCurrency>
+              <Code>COP</Code>
+              <Description>Colombian Peso</Description>
+            </PostingCurrency>
+            <PostingDate>2025-08-09T10:27:00</PostingDate>
+            <PostingPeriod>202508</PostingPeriod>
+          </PostingJournalDetail>
+          <PostingJournalDetail>
+            <CreditGLAccount>
+              <AccountCode>1010.10.10</AccountCode>
+              <Description>FREIGHT REVENUE ACTUAL</Description>
+            </CreditGLAccount>
+            <DebitGLAccount>
+              <AccountCode>8420.40.00</AccountCode>
+              <Description>REVENUE SUSPENSE</Description>
+            </DebitGLAccount>
+            <PostingAmount>33352998.3100</PostingAmount>
+            <PostingCurrency>
+              <Code>COP</Code>
+              <Description>Colombian Peso</Description>
+            </PostingCurrency>
+            <PostingDate>2025-08-09T10:27:00</PostingDate>
+            <PostingPeriod>202508</PostingPeriod>
+          </PostingJournalDetail>
+        </PostingJournalDetailCollection>
+        <RatingBasisCollection></RatingBasisCollection>
+      </PostingJournal>
+      <PostingJournal>
+        <Branch>
+          <Code>BOG</Code>
+          <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+        </Branch>
+        <ChargeCode>
+          <Code>D63</Code>
+          <ChargeType>
+            <Code>MRG</Code>
+            <Description>Margin</Description>
+          </ChargeType>
+          <Class>
+            <Code>SRV</Code>
+            <Description>Service</Description>
+          </Class>
+          <Description>CARGO INSURANCE</Description>
+        </ChargeCode>
+        <ChargeCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </ChargeCurrency>
+        <ChargeExchangeRate>4169.130000000</ChargeExchangeRate>
+        <ChargeTotalAmount>452.2000</ChargeTotalAmount>
+        <ChargeTotalExVATAmount>380.0000</ChargeTotalExVATAmount>
+        <Department>
+          <Code>FIS</Code>
+          <Name>Forwarding Import Sea</Name>
+        </Department>
+        <Description>CARGO INSURANCE/ SEGURO MERCANCIA</Description>
+        <GLAccount>
+          <AccountCode>1010.10.10</AccountCode>
+          <Description>FREIGHT REVENUE ACTUAL</Description>
+        </GLAccount>
+        <GLPostDate>2025-08-09T10:27:00</GLPostDate>
+        <IsFinalCharge>false</IsFinalCharge>
+        <Job>
+          <Type>Job</Type>
+          <Key>SHP040002084</Key>
+        </Job>
+        <JobRecognitionDate>2025-08-09T10:27:00</JobRecognitionDate>
+        <LocalAmount>1584269.4000</LocalAmount>
+        <LocalCurrency>
+          <Code>COP</Code>
+          <Description>Colombian Peso</Description>
+        </LocalCurrency>
+        <LocalGSTVATAmount>301011.1900</LocalGSTVATAmount>
+        <LocalTotalAmount>1885280.5900</LocalTotalAmount>
+        <Organization>
+          <Type>Organization</Type>
+          <Key>455586</Key>
+        </Organization>
+        <OSAmount>380</OSAmount>
+        <OSCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </OSCurrency>
+        <OSGSTVATAmount>72.2000</OSGSTVATAmount>
+        <OSTotalAmount>452.2000</OSTotalAmount>
+        <RevenueRecognitionType>FAR</RevenueRecognitionType>
+        <Sequence>2</Sequence>
+        <TaxDate>2025-08-09</TaxDate>
+        <TransactionCategory>CUR</TransactionCategory>
+        <TransactionType>REV</TransactionType>
+        <VATTaxID>
+          <TaxCode>IVA</TaxCode>
+          <Description>Standard Rated</Description>
+          <TaxRate>19</TaxRate>
+          <TaxType>
+            <Code>RAT</Code>
+          </TaxType>
+        </VATTaxID>
+        <PostingJournalDetailCollection>
+          <PostingJournalDetail>
+            <CreditGLAccount>
+              <AccountCode>8420.40.00</AccountCode>
+              <Description>REVENUE SUSPENSE</Description>
+            </CreditGLAccount>
+            <DebitGLAccount>
+              <AccountCode>6210.00.00</AccountCode>
+              <Description>TRADE DEBTORS CONTROL</Description>
+            </DebitGLAccount>
+            <PostingAmount>1584269.4000</PostingAmount>
+            <PostingCurrency>
+              <Code>COP</Code>
+              <Description>Colombian Peso</Description>
+            </PostingCurrency>
+            <PostingDate>2025-08-09T10:27:00</PostingDate>
+            <PostingPeriod>202508</PostingPeriod>
+          </PostingJournalDetail>
+          <PostingJournalDetail>
+            <CreditGLAccount>
+              <AccountCode>8310.00.00</AccountCode>
+              <Description>OUTPUT TAX PAYABLE </Description>
+            </CreditGLAccount>
+            <DebitGLAccount>
+              <AccountCode>6210.00.00</AccountCode>
+              <Description>TRADE DEBTORS CONTROL</Description>
+            </DebitGLAccount>
+            <PostingAmount>301011.1900</PostingAmount>
+            <PostingCurrency>
+              <Code>COP</Code>
+              <Description>Colombian Peso</Description>
+            </PostingCurrency>
+            <PostingDate>2025-08-09T10:27:00</PostingDate>
+            <PostingPeriod>202508</PostingPeriod>
+          </PostingJournalDetail>
+          <PostingJournalDetail>
+            <CreditGLAccount>
+              <AccountCode>1010.10.10</AccountCode>
+              <Description>FREIGHT REVENUE ACTUAL</Description>
+            </CreditGLAccount>
+            <DebitGLAccount>
+              <AccountCode>8420.40.00</AccountCode>
+              <Description>REVENUE SUSPENSE</Description>
+            </DebitGLAccount>
+            <PostingAmount>1584269.4000</PostingAmount>
+            <PostingCurrency>
+              <Code>COP</Code>
+              <Description>Colombian Peso</Description>
+            </PostingCurrency>
+            <PostingDate>2025-08-09T10:27:00</PostingDate>
+            <PostingPeriod>202508</PostingPeriod>
+          </PostingJournalDetail>
+        </PostingJournalDetailCollection>
+        <RatingBasisCollection>
+          <RatingBasis>
+            <OriginType>Booking</OriginType>
+            <Currency>
+              <Code>USD</Code>
+              <Description>United States Dollar</Description>
+            </Currency>
+            <FlatRate>0.0000</FlatRate>
+            <MaximumRate>0.0000</MaximumRate>
+            <MinimumRate>0.0000</MinimumRate>
+            <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+            <OriginKey>SHP040002084</OriginKey>
+            <OriginQuantity>1.0000</OriginQuantity>
+            <OriginQuantityUnit>
+              <Code>40HC</Code>
+            </OriginQuantityUnit>
+            <PerUnitRate>100.0000</PerUnitRate>
+            <RateReference></RateReference>
+            <RateUnit>
+              <Code>CN</Code>
+            </RateUnit>
+          </RatingBasis>
+          <RatingBasis>
+            <OriginType>Booking</OriginType>
+            <Currency>
+              <Code>USD</Code>
+              <Description>United States Dollar</Description>
+            </Currency>
+            <FlatRate>0.0000</FlatRate>
+            <MaximumRate>0.0000</MaximumRate>
+            <MinimumRate>0.0000</MinimumRate>
+            <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+            <OriginKey>SHP040002084</OriginKey>
+            <OriginQuantity>2.0000</OriginQuantity>
+            <OriginQuantityUnit>
+              <Code>40FR</Code>
+            </OriginQuantityUnit>
+            <PerUnitRate>140.0000</PerUnitRate>
+            <RateReference></RateReference>
+            <RateUnit>
+              <Code>CN</Code>
+            </RateUnit>
+          </RatingBasis>
+        </RatingBasisCollection>
+      </PostingJournal>
+    </PostingJournalCollection>
+    <MessageNumberCollection>
+      <MessageNumber Type="TrackingID">0c7af10c-bce6-4da5-a473-4a712f8ddbf7</MessageNumber>
+      <MessageNumber Type="InterchangeNumber">00000000000000268629</MessageNumber>
+      <MessageNumber Type="MessageNumber">00000000000000273357</MessageNumber>
+    </MessageNumberCollection>
+    <SellersBankAccountCollection>
+      <SellersBankAccount>
+        <AccountName>TIBA COLOMBIA S.A.S.</AccountName>
+        <AccountNumber>30412916531</AccountNumber>
+        <BankAccountCode>6531C</BankAccountCode>
+        <BankAccountDescription>BANCOLOMBIA 6531</BankAccountDescription>
+        <BankAddress>AC. 100 #9A - 45 LOCAL 3 Y 4</BankAddress>
+        <BankBranch></BankBranch>
+        <BankName>BANCOLOMBIA</BankName>
+        <BankSwift>COLOCOBM</BankSwift>
+        <BankUniqueAccNo></BankUniqueAccNo>
+        <Country>
+          <Code>CO</Code>
+          <Name>Colombia</Name>
+        </Country>
+        <Currency>COP</Currency>
+        <IBANNumber></IBANNumber>
+      </SellersBankAccount>
+    </SellersBankAccountCollection>
+    <ShipmentCollection>
+      <Shipment>
+        <DataContext>
+          <DataSourceCollection>
+            <DataSource>
+              <Type>ForwardingShipment</Type>
+              <Key>SHP040002084</Key>
+            </DataSource>
+          </DataSourceCollection>
+        </DataContext>
+        <ActualChargeable>224.260</ActualChargeable>
+        <AdditionalTerms></AdditionalTerms>
+        <BookingConfirmationReference>KALMAR-2025</BookingConfirmationReference>
+        <CartageWaybillNumber></CartageWaybillNumber>
+        <CFSReference></CFSReference>
+        <CommunityTransitStatus>
+          <Code></Code>
+        </CommunityTransitStatus>
+        <CompanyTariffLevelOverride>0</CompanyTariffLevelOverride>
+        <ContainerCount>0</ContainerCount>
+        <ContainerMode>
+          <Code>FCL</Code>
+          <Description>Full Container Load</Description>
+        </ContainerMode>
+        <DocumentedChargeable>224.260</DocumentedChargeable>
+        <DocumentedVolume>224.260</DocumentedVolume>
+        <DocumentedWeight>70280.000</DocumentedWeight>
+        <EventBranchHomePort>
+          <Code>COBOG</Code>
+          <Name>Bogota</Name>
+        </EventBranchHomePort>
+        <FMCTariffID></FMCTariffID>
+        <FreightRate>0.0000</FreightRate>
+        <FreightRateCurrency>
+          <Code></Code>
+        </FreightRateCurrency>
+        <GoodsDescription>STC: 5 PACKAGES CONTENIENDO ONE (1)</GoodsDescription>
+        <GoodsValue>0.0000</GoodsValue>
+        <GoodsValueCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </GoodsValueCurrency>
+        <GreenhouseGasEmission>
+          <CO2e>0</CO2e>
+          <CO2eDescriptiveStatus>
+            <Code>NON</Code>
+            <Description>Not Calculated</Description>
+          </CO2eDescriptiveStatus>
+          <CO2eUnit>
+            <Code>KG</Code>
+            <Description>Kilograms</Description>
+          </CO2eUnit>
+        </GreenhouseGasEmission>
+        <HBLAWBChargesDisplay>
+          <Code>NON</Code>
+          <Description>No Charges showing</Description>
+        </HBLAWBChargesDisplay>
+        <HBLContainerPackModeOverride>CY/CY</HBLContainerPackModeOverride>
+        <HouseBillOfLadingType>
+          <Code>CCM</Code>
+          <Description>Containers with Letterhead</Description>
+        </HouseBillOfLadingType>
+        <InsuranceValue>0.0000</InsuranceValue>
+        <InsuranceValueCurrency>
+          <Code>USD</Code>
+          <Description>United States Dollar</Description>
+        </InsuranceValueCurrency>
+        <InterimReceiptNumber></InterimReceiptNumber>
+        <IsBooking>true</IsBooking>
+        <IsCancelled>false</IsCancelled>
+        <IsCFSRegistered>false</IsCFSRegistered>
+        <IsDirectBooking>false</IsDirectBooking>
+        <IsForwardRegistered>true</IsForwardRegistered>
+        <IsHighRisk>false</IsHighRisk>
+        <IsNeutralMaster>false</IsNeutralMaster>
+        <IsShipping>false</IsShipping>
+        <IsSplitShipment>false</IsSplitShipment>
+        <JobCosting>
+          <AccrualNotRecognized>0.0000</AccrualNotRecognized>
+          <AccrualRecognized>-17468654.700000000</AccrualRecognized>
+          <AgentRevenue>0</AgentRevenue>
+          <Branch>
+            <Code>BOG</Code>
+            <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+          </Branch>
+          <ClientContractNumber></ClientContractNumber>
+          <Currency>
+            <Code>COP</Code>
+            <Description>Colombian Peso</Description>
+          </Currency>
+          <Department>
+            <Code>FIS</Code>
+            <Name>Forwarding Import Sea</Name>
+          </Department>
+          <HomeBranch>
+            <Code>MDE</Code>
+            <Name>TIBA COLOMBIA S.A.S. (MEDELLIN)</Name>
+          </HomeBranch>
+          <LocalClientRevenue>34937267.7100</LocalClientRevenue>
+          <OperationsStaff>
+            <Code>PA2</Code>
+            <Name>Paula Andrea Márquez Henao</Name>
+          </OperationsStaff>
+          <OtherDebtorRevenue>0</OtherDebtorRevenue>
+          <SalesStaff>
+            <Code>YR0</Code>
+            <Name>Yennyfer Real Florez</Name>
+          </SalesStaff>
+          <TotalAccrual>-17468654.700000000</TotalAccrual>
+          <TotalCost>0.000000000</TotalCost>
+          <TotalJobProfit>17468613.010000000</TotalJobProfit>
+          <TotalRevenue>34937267.710000000</TotalRevenue>
+          <TotalWIP>0.000000000</TotalWIP>
+          <WIPNotRecognized>0.0000</WIPNotRecognized>
+          <WIPRecognized>0.000000000</WIPRecognized>
+          <ChargeLineCollection>
+            <ChargeLine>
+              <APCashAdvanceRequired>false</APCashAdvanceRequired>
+              <ARCashAdvanceRequired>false</ARCashAdvanceRequired>
+              <Branch>
+                <Code>BOG</Code>
+                <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+              </Branch>
+              <ChargeCode>
+                <Code>F35</Code>
+                <Description>OCEAN FREIGHT</Description>
+              </ChargeCode>
+              <ChargeCodeGroup>
+                <Code>FRT</Code>
+                <Description>Freight</Description>
+              </ChargeCodeGroup>
+              <CostExchangeRate>4169.130000000</CostExchangeRate>
+              <CostIsPosted>false</CostIsPosted>
+              <CostLocalAmount>16676520.0000</CostLocalAmount>
+              <CostOSAmount>4000.0000</CostOSAmount>
+              <CostOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </CostOSCurrency>
+              <CostOSGSTVATAmount>0</CostOSGSTVATAmount>
+              <CostRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </CostRatingBehaviour>
+              <Creditor>
+                <Type>Organization</Type>
+                <Key>455526</Key>
+              </Creditor>
+              <Debtor>
+                <Type>Organization</Type>
+                <Key>455586</Key>
+              </Debtor>
+              <Department>
+                <Code>FIS</Code>
+                <Name>Forwarding Import Sea</Name>
+              </Department>
+              <Description>OCEAN FREIGHT/ FLETE</Description>
+              <DisplaySequence>1</DisplaySequence>
+              <SellExchangeRate>4169.130000000</SellExchangeRate>
+              <SellGSTVATID>
+                <TaxCode>EXCLUDE</TaxCode>
+                <Description>Excluded from Tax Base</Description>
+              </SellGSTVATID>
+              <SellInvoiceType>CUR</SellInvoiceType>
+              <SellIsPosted>true</SellIsPosted>
+              <SellLocalAmount>33352998.3100</SellLocalAmount>
+              <SellOSAmount>7999.9900</SellOSAmount>
+              <SellOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </SellOSCurrency>
+              <SellOSGSTVATAmount>0</SellOSGSTVATAmount>
+              <SellPostedTransaction>
+                <DueDate>2025-09-08T10:27:00</DueDate>
+                <FullyPaidDate></FullyPaidDate>
+                <Number>FCOF00000206</Number>
+                <OutstandingAmount>35238278.9000</OutstandingAmount>
+                <TransactionDate>2025-08-09T10:27:00</TransactionDate>
+                <TransactionType>INV</TransactionType>
+              </SellPostedTransaction>
+              <SellPostedTransactionNumber>FCOF00000206</SellPostedTransactionNumber>
+              <SellPostedTransactionType>INV</SellPostedTransactionType>
+              <SellRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </SellRatingBehaviour>
+              <CostRatingBasisCollection>
+                <CostRatingBasis>
+                  <OriginType>Booking</OriginType>
+                  <Currency>
+                    <Code>USD</Code>
+                    <Description>United States Dollar</Description>
+                  </Currency>
+                  <FlatRate>0.0000</FlatRate>
+                  <MaximumRate>0.0000</MaximumRate>
+                  <MinimumRate>0.0000</MinimumRate>
+                  <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+                  <OriginKey>SHP040002084</OriginKey>
+                  <OriginQuantity>1.0000</OriginQuantity>
+                  <OriginQuantityUnit>
+                    <Code>40HC</Code>
+                  </OriginQuantityUnit>
+                  <PerUnitRate>1000.0000</PerUnitRate>
+                  <RateReference>UNT</RateReference>
+                  <RateUnit>
+                    <Code>CN</Code>
+                  </RateUnit>
+                </CostRatingBasis>
+                <CostRatingBasis>
+                  <OriginType>Booking</OriginType>
+                  <Currency>
+                    <Code>USD</Code>
+                    <Description>United States Dollar</Description>
+                  </Currency>
+                  <FlatRate>0.0000</FlatRate>
+                  <MaximumRate>0.0000</MaximumRate>
+                  <MinimumRate>0.0000</MinimumRate>
+                  <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+                  <OriginKey>SHP040002084</OriginKey>
+                  <OriginQuantity>2.0000</OriginQuantity>
+                  <OriginQuantityUnit>
+                    <Code>40FR</Code>
+                  </OriginQuantityUnit>
+                  <PerUnitRate>1500.0000</PerUnitRate>
+                  <RateReference>UNT</RateReference>
+                  <RateUnit>
+                    <Code>CN</Code>
+                  </RateUnit>
+                </CostRatingBasis>
+              </CostRatingBasisCollection>
+              <SellRatingBasisCollection></SellRatingBasisCollection>
+            </ChargeLine>
+            <ChargeLine>
+              <APCashAdvanceRequired>false</APCashAdvanceRequired>
+              <ARCashAdvanceRequired>false</ARCashAdvanceRequired>
+              <Branch>
+                <Code>BOG</Code>
+                <Name>TIBA COLOMBIA S.A.S. (BOGOTÁ)</Name>
+              </Branch>
+              <ChargeCode>
+                <Code>D63</Code>
+                <Description>CARGO INSURANCE</Description>
+              </ChargeCode>
+              <ChargeCodeGroup>
+                <Code>DST</Code>
+                <Description>Destination</Description>
+              </ChargeCodeGroup>
+              <CostExchangeRate>4169.130000000</CostExchangeRate>
+              <CostIsPosted>false</CostIsPosted>
+              <CostLocalAmount>792134.7000</CostLocalAmount>
+              <CostOSAmount>190.0000</CostOSAmount>
+              <CostOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </CostOSCurrency>
+              <CostOSGSTVATAmount>0</CostOSGSTVATAmount>
+              <CostRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </CostRatingBehaviour>
+              <Creditor>
+                <Type>Organization</Type>
+                <Key>226543</Key>
+              </Creditor>
+              <Debtor>
+                <Type>Organization</Type>
+                <Key>455586</Key>
+              </Debtor>
+              <Department>
+                <Code>FIS</Code>
+                <Name>Forwarding Import Sea</Name>
+              </Department>
+              <Description>CARGO INSURANCE/ SEGURO MERCANCIA</Description>
+              <DisplaySequence>2</DisplaySequence>
+              <SellExchangeRate>4169.130000000</SellExchangeRate>
+              <SellGSTVATID>
+                <TaxCode>IVA</TaxCode>
+                <Description>Standard Rated</Description>
+              </SellGSTVATID>
+              <SellInvoiceType>CUR</SellInvoiceType>
+              <SellIsPosted>true</SellIsPosted>
+              <SellLocalAmount>1584269.4000</SellLocalAmount>
+              <SellOSAmount>380.0000</SellOSAmount>
+              <SellOSCurrency>
+                <Code>USD</Code>
+                <Description>United States Dollar</Description>
+              </SellOSCurrency>
+              <SellOSGSTVATAmount>72.2000</SellOSGSTVATAmount>
+              <SellPostedTransaction>
+                <DueDate>2025-09-08T10:27:00</DueDate>
+                <FullyPaidDate></FullyPaidDate>
+                <Number>FCOF00000206</Number>
+                <OutstandingAmount>35238278.9000</OutstandingAmount>
+                <TransactionDate>2025-08-09T10:27:00</TransactionDate>
+                <TransactionType>INV</TransactionType>
+              </SellPostedTransaction>
+              <SellPostedTransactionNumber>FCOF00000206</SellPostedTransactionNumber>
+              <SellPostedTransactionType>INV</SellPostedTransactionType>
+              <SellRatingBehaviour>
+                <Code>NEW</Code>
+                <Description>Create new Charge during AutoRating</Description>
+              </SellRatingBehaviour>
+              <CostRatingBasisCollection>
+                <CostRatingBasis>
+                  <OriginType>Booking</OriginType>
+                  <Currency>
+                    <Code>USD</Code>
+                    <Description>United States Dollar</Description>
+                  </Currency>
+                  <FlatRate>0.0000</FlatRate>
+                  <MaximumRate>0.0000</MaximumRate>
+                  <MinimumRate>0.0000</MinimumRate>
+                  <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+                  <OriginKey>SHP040002084</OriginKey>
+                  <OriginQuantity>1.0000</OriginQuantity>
+                  <OriginQuantityUnit>
+                    <Code>40HC</Code>
+                  </OriginQuantityUnit>
+                  <PerUnitRate>50.0000</PerUnitRate>
+                  <RateReference>UNT</RateReference>
+                  <RateUnit>
+                    <Code>CN</Code>
+                  </RateUnit>
+                </CostRatingBasis>
+                <CostRatingBasis>
+                  <OriginType>Booking</OriginType>
+                  <Currency>
+                    <Code>USD</Code>
+                    <Description>United States Dollar</Description>
+                  </Currency>
+                  <FlatRate>0.0000</FlatRate>
+                  <MaximumRate>0.0000</MaximumRate>
+                  <MinimumRate>0.0000</MinimumRate>
+                  <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+                  <OriginKey>SHP040002084</OriginKey>
+                  <OriginQuantity>2.0000</OriginQuantity>
+                  <OriginQuantityUnit>
+                    <Code>40FR</Code>
+                  </OriginQuantityUnit>
+                  <PerUnitRate>70.0000</PerUnitRate>
+                  <RateReference>UNT</RateReference>
+                  <RateUnit>
+                    <Code>CN</Code>
+                  </RateUnit>
+                </CostRatingBasis>
+              </CostRatingBasisCollection>
+              <SellRatingBasisCollection>
+                <SellRatingBasis>
+                  <OriginType>Booking</OriginType>
+                  <Currency>
+                    <Code>USD</Code>
+                    <Description>United States Dollar</Description>
+                  </Currency>
+                  <FlatRate>0.0000</FlatRate>
+                  <MaximumRate>0.0000</MaximumRate>
+                  <MinimumRate>0.0000</MinimumRate>
+                  <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+                  <OriginKey>SHP040002084</OriginKey>
+                  <OriginQuantity>1.0000</OriginQuantity>
+                  <OriginQuantityUnit>
+                    <Code>40HC</Code>
+                  </OriginQuantityUnit>
+                  <PerUnitRate>100.0000</PerUnitRate>
+                  <RateReference>UNT</RateReference>
+                  <RateUnit>
+                    <Code>CN</Code>
+                  </RateUnit>
+                </SellRatingBasis>
+                <SellRatingBasis>
+                  <OriginType>Booking</OriginType>
+                  <Currency>
+                    <Code>USD</Code>
+                    <Description>United States Dollar</Description>
+                  </Currency>
+                  <FlatRate>0.0000</FlatRate>
+                  <MaximumRate>0.0000</MaximumRate>
+                  <MinimumRate>0.0000</MinimumRate>
+                  <OriginAdditionalReference>&lt;blank&gt;</OriginAdditionalReference>
+                  <OriginKey>SHP040002084</OriginKey>
+                  <OriginQuantity>2.0000</OriginQuantity>
+                  <OriginQuantityUnit>
+                    <Code>40FR</Code>
+                  </OriginQuantityUnit>
+                  <PerUnitRate>140.0000</PerUnitRate>
+                  <RateReference>UNT</RateReference>
+                  <RateUnit>
+                    <Code>CN</Code>
+                  </RateUnit>
+                </SellRatingBasis>
+              </SellRatingBasisCollection>
+            </ChargeLine>
+          </ChargeLineCollection>
+        </JobCosting>
+        <ManifestedChargeable>224.260</ManifestedChargeable>
+        <ManifestedVolume>224.260</ManifestedVolume>
+        <ManifestedWeight>70280.000</ManifestedWeight>
+        <NoCopyBills>3</NoCopyBills>
+        <NoOriginalBills>3</NoOriginalBills>
+        <OuterPacks>5</OuterPacks>
+        <OuterPacksPackageType>
+          <Code>PKG</Code>
+          <Description>Package</Description>
+        </OuterPacksPackageType>
+        <PackingOrder>0</PackingOrder>
+        <PortOfDestination>
+          <Code>COCTG</Code>
+          <Name>Cartagena</Name>
+        </PortOfDestination>
+        <PortOfDischarge>
+          <Code>COCTG</Code>
+          <Name>Cartagena</Name>
+        </PortOfDischarge>
+        <PortOfLoading>
+          <Code>CNSGH</Code>
+          <Name>Shanghai</Name>
+        </PortOfLoading>
+        <PortOfOrigin>
+          <Code>CNSGH</Code>
+          <Name>Shanghai</Name>
+        </PortOfOrigin>
+        <RateCommodity>
+          <Code></Code>
+        </RateCommodity>
+        <ReleaseType>
+          <Code>OBR</Code>
+          <Description>Original Bill Required at Destination</Description>
+        </ReleaseType>
+        <ScreeningStatus>
+          <Code>REQ</Code>
+          <Description>Requires Review</Description>
+        </ScreeningStatus>
+        <ServiceLevel>
+          <Code>CRE</Code>
+          <Description>On Credit (A CRÉDITO)</Description>
+        </ServiceLevel>
+        <ShipmentIncoTerm>
+          <Code>CIF</Code>
+          <Description>Cost, Insurance And Freight</Description>
+        </ShipmentIncoTerm>
+        <ShipmentType>
+          <Code>STD</Code>
+          <Description>Standard House</Description>
+        </ShipmentType>
+        <ShippedOnBoard>
+          <Code>SHP</Code>
+          <Description>Shipped</Description>
+        </ShippedOnBoard>
+        <ShipperCODAmount>0.0000</ShipperCODAmount>
+        <ShipperCODPayMethod>
+          <Code></Code>
+        </ShipperCODPayMethod>
+        <TotalNoOfPacks>0</TotalNoOfPacks>
+        <TotalNoOfPacksPackageType>
+          <Code>CTN</Code>
+          <Description>Carton</Description>
+        </TotalNoOfPacksPackageType>
+        <TotalVolume>224.260</TotalVolume>
+        <TotalVolumeUnit>
+          <Code>M3</Code>
+          <Description>Cubic Meters</Description>
+        </TotalVolumeUnit>
+        <TotalWeight>70280.000</TotalWeight>
+        <TotalWeightUnit>
+          <Code>KG</Code>
+          <Description>Kilograms</Description>
+        </TotalWeightUnit>
+        <TranshipToOtherCFS>false</TranshipToOtherCFS>
+        <TransportMode>
+          <Code>SEA</Code>
+          <Description>Sea Freight</Description>
+        </TransportMode>
+        <WarehouseLocation></WarehouseLocation>
+        <WayBillNumber>SHASE2506125</WayBillNumber>
+        <WayBillType>
+          <Code>HWB</Code>
+          <Description>House Waybill</Description>
+        </WayBillType>
+        <LocalProcessing>
+          <ArrivalCartageRef></ArrivalCartageRef>
+          <DeliveryCartageAdvised></DeliveryCartageAdvised>
+          <DeliveryCartageCompleted></DeliveryCartageCompleted>
+          <DeliveryLabourCharge>0.0000</DeliveryLabourCharge>
+          <DeliveryLabourTime></DeliveryLabourTime>
+          <DeliveryRequiredBy></DeliveryRequiredBy>
+          <DeliveryRequiredFrom></DeliveryRequiredFrom>
+          <DeliveryTruckWaitCharge>0.0000</DeliveryTruckWaitCharge>
+          <DeliveryTruckWaitTime></DeliveryTruckWaitTime>
+          <DemurrageOnDeliveryCharge>0.0000</DemurrageOnDeliveryCharge>
+          <DemurrageOnDeliveryTime></DemurrageOnDeliveryTime>
+          <DemurrageOnPickupCharge>0.0000</DemurrageOnPickupCharge>
+          <DemurrageOnPickupTime></DemurrageOnPickupTime>
+          <EstimatedDelivery></EstimatedDelivery>
+          <EstimatedPickup></EstimatedPickup>
+          <ExportStatement>
+            <Code></Code>
+          </ExportStatement>
+          <FCLAvailable></FCLAvailable>
+          <FCLDeliveryDetentionCharge>0.0000</FCLDeliveryDetentionCharge>
+          <FCLDeliveryDetentionDays>0</FCLDeliveryDetentionDays>
+          <FCLDeliveryDetentionFreeDays>0</FCLDeliveryDetentionFreeDays>
+          <FCLDeliveryEquipmentNeeded>
+            <Code>ANY</Code>
+            <Description>Any</Description>
+          </FCLDeliveryEquipmentNeeded>
+          <FCLPickupDetentionCharge>0.0000</FCLPickupDetentionCharge>
+          <FCLPickupDetentionDays>0</FCLPickupDetentionDays>
+          <FCLPickupDetentionFreeDays>0</FCLPickupDetentionFreeDays>
+          <FCLPickupEquipmentNeeded>
+            <Code>ANY</Code>
+            <Description>Any</Description>
+          </FCLPickupEquipmentNeeded>
+          <FCLStorageCommences></FCLStorageCommences>
+          <HasProhibitedPackaging>false</HasProhibitedPackaging>
+          <InsuranceRequired>true</InsuranceRequired>
+          <IsContingencyRelease>false</IsContingencyRelease>
+          <LCLAirStorageCharge>0.0000</LCLAirStorageCharge>
+          <LCLAirStorageDaysOrHours>0</LCLAirStorageDaysOrHours>
+          <LCLAvailable></LCLAvailable>
+          <LCLDatesOverrideConsol>false</LCLDatesOverrideConsol>
+          <LCLStorageCommences></LCLStorageCommences>
+          <PickupCartageAdvised></PickupCartageAdvised>
+          <PickupCartageCompleted></PickupCartageCompleted>
+          <PickupLabourCharge>0.0000</PickupLabourCharge>
+          <PickupLabourTime></PickupLabourTime>
+          <PickupRequiredBy></PickupRequiredBy>
+          <PickupRequiredFrom></PickupRequiredFrom>
+          <PickupTruckWaitCharge>0.0000</PickupTruckWaitCharge>
+          <PickupTruckWaitTime></PickupTruckWaitTime>
+          <PrintOptionForPackagesOnAWB>
+            <Code>DEF</Code>
+            <Description>Default (Dims, fallback to Vol)</Description>
+          </PrintOptionForPackagesOnAWB>
+          <AdditionalServiceCollection Content="Complete">
+            <AdditionalService>
+              <ServiceCode>
+                <Code>INS</Code>
+                <Description>Cargo Insurance</Description>
+              </ServiceCode>
+              <ServiceId>SRV00000000000001379</ServiceId>
+              <Booked></Booked>
+              <Completed></Completed>
+              <Duration></Duration>
+              <ExternalServiceId></ExternalServiceId>
+              <MeasurementBasis></MeasurementBasis>
+              <References></References>
+              <ServiceCount>1.000</ServiceCount>
+              <ServiceNote></ServiceNote>
+              <ServiceRate>0.0000</ServiceRate>
+              <ServiceRateCurrency></ServiceRateCurrency>
+              <SubLocation>CO</SubLocation>
+            </AdditionalService>
+          </AdditionalServiceCollection>
+          <OrderNumberCollection>
+            <OrderNumber>
+              <OrderReference>SPC-RS1-2025</OrderReference>
+              <Sequence>1</Sequence>
+            </OrderNumber>
+          </OrderNumberCollection>
+        </LocalProcessing>
+        <AdditionalReferenceCollection Content="Complete">
+          <AdditionalReference>
+            <Type>
+              <Code>CNE</Code>
+              <Description>Reference Consignee</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>CON</Code>
+              <Description>Carrier Contract Number</Description>
+            </Type>
+            <ReferenceNumber>MSK1234567</ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>DAR</Code>
+              <Description>Reference Destination Agent</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>LCQ</Code>
+              <Description>Quotation Local Client</Description>
+            </Type>
+            <ReferenceNumber>TIBACO1234</ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>OAR</Code>
+              <Description>Reference Origin Agent</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>SPR</Code>
+              <Description>Reference Shipper</Description>
+            </Type>
+            <ReferenceNumber></ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+          <AdditionalReference>
+            <Type>
+              <Code>TBS</Code>
+              <Description>Transport Booking Support</Description>
+            </Type>
+            <ReferenceNumber>SEA,FCL</ReferenceNumber>
+            <ContextInformation></ContextInformation>
+            <CountryOfIssue>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </CountryOfIssue>
+            <IssueDate></IssueDate>
+          </AdditionalReference>
+        </AdditionalReferenceCollection>
+        <CustomizedFieldCollection>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Container Count</Key>
+            <Value>3</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Credit Locked</Key>
+            <Value>N</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Días Libres Destino (Exp/Imp)</Key>
+            <Value>10</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Días Libres Origen (Exp)</Key>
+            <Value>10</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Disposicion Carga</Key>
+            <Value>11</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Handover Fields (1)</Key>
+            <Value>CUS:[Y],SEC:[Y],CRE:[Y],CNR:[Y],CNE:[Y],INC:[Y],DES:[Y],COM:[Y],ORG:[Y],DST:[Y],POL:[Y],POD:[Y]</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Handover Fields (2)</Key>
+            <Value>CAR:[Y],CSQ:[Y],OAG:[Y],DAG:[Y],INT:[Y],SAL:[Y],OPS:[Y],CTN:[Y],VOL:[Y]</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Handover Fields (3)</Key>
+            <Value>HSC:[Y],DET:[Y],BIL:[Y],LCQ:[Y],SER:[Y],QUO:[Y]</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Internal Sales</Key>
+            <Value>CV1</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Job Status</Key>
+            <Value>INV</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Phase</Key>
+            <Value>INV</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Responsabilidad Transport MUISCA</Key>
+            <Value>Y</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Fields</Key>
+            <Value>INC:[Y] ETD:[N] ETA:[N] POL:[N] POD:[N] CUS:[Y] CNR:[Y] CNE:[Y] CAR:[N] CSL:[N] JOP:[Y]</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Selectividad DIAN</Key>
+            <Value>AUT</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Services</Key>
+            <Value>INS</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Full Invoiced</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Documentos Liberados a</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Novedades Liberación</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Manifiesto Carga</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Finalización Naviera</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Finalización Muisca</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Boolean</DataType>
+            <Key>No/ACI</Key>
+            <Value>false</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Decimal</DataType>
+            <Key>FOB Value USD</Key>
+            <Value>0</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Presentación OTM DIAN</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Tramites Portuarios</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Documentos al Transportador</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Novedades OTM</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Programación Vaciado</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Confirmación Vaciado</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Search Note</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Container Count Packed</Key>
+            <Value>0</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Customer</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Agent</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>DateTime</DataType>
+            <Key>Full Costed</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>Integer</DataType>
+            <Key>Int ROME Data</Key>
+            <Value>0</Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Status</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Status Reason</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>DIM Reference</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>ROME Integration Service</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Mail Service</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Apply Workflow</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Apply Workflow Name</Key>
+            <Value></Value>
+          </CustomizedField>
+          <CustomizedField>
+            <DataType>String</DataType>
+            <Key>Support Workflow</Key>
+            <Value></Value>
+          </CustomizedField>
+        </CustomizedFieldCollection>
+        <DateCollection>
+          <Date>
+            <Type>BookingConfirmed</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value>2025-08-09T09:32:00</Value>
+          </Date>
+          <Date>
+            <Type>Received</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>Departure</Type>
+            <IsEstimate>true</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>Arrival</Type>
+            <IsEstimate>true</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>DeliveryDueDate</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>RevisedDeliveryDueDate</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>ShippedOnBoard</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value>2025-06-26T00:00:00</Value>
+          </Date>
+          <Date>
+            <Type>BillIssued</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value>2025-06-26T00:00:00</Value>
+          </Date>
+          <Date>
+            <Type>PickupReceiptRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>DeliveryReceiptRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>PickupDispatchRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+          <Date>
+            <Type>DeliveryDispatchRequested</Type>
+            <IsEstimate>false</IsEstimate>
+            <Value></Value>
+          </Date>
+        </DateCollection>
+        <MilestoneCollection>
+          <Milestone>
+            <Description>Gate In CYD</Description>
+            <EventCode>GIN</EventCode>
+            <Sequence>200</Sequence>
+            <ActualDate></ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate></EstimatedDate>
+          </Milestone>
+          <Milestone>
+            <Description>Open Shipment</Description>
+            <EventCode>JOP</EventCode>
+            <Sequence>5</Sequence>
+            <ActualDate>2025-08-09T10:17:08.880-05:00</ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate></EstimatedDate>
+          </Milestone>
+          <Milestone>
+            <Description>Departure</Description>
+            <EventCode>DEP</EventCode>
+            <Sequence>110</Sequence>
+            <ActualDate></ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate></EstimatedDate>
+          </Milestone>
+          <Milestone>
+            <Description>Arrival</Description>
+            <EventCode>ARV</EventCode>
+            <Sequence>190</Sequence>
+            <ActualDate></ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate></EstimatedDate>
+          </Milestone>
+          <Milestone>
+            <Description>Missing Export Documents</Description>
+            <EventCode>Z11</EventCode>
+            <Sequence>90</Sequence>
+            <ActualDate></ActualDate>
+            <ConditionReference></ConditionReference>
+            <ConditionType></ConditionType>
+            <EstimatedDate></EstimatedDate>
+          </Milestone>
+        </MilestoneCollection>
+        <NoteCollection Content="Partial">
+          <Note>
+            <Description>Detailed Goods Description</Description>
+            <IsCustomDescription>false</IsCustomDescription>
+            <NoteText>STC: 5 PACKAGES CONTENIENDO ONE (1)UNIT OF KALMAR REACH STACKER MODELO: DRG450-65S5E</NoteText>
+            <NoteContext>
+              <Code>AAA</Code>
+              <Description>Module: A - All, Direction: A - All, Freight: A - All</Description>
+            </NoteContext>
+            <Visibility>
+              <Code>PUB</Code>
+              <Description>CLIENT-VISIBLE</Description>
+            </Visibility>
+          </Note>
+        </NoteCollection>
+        <OrganizationAddressCollection>
+          <OrganizationAddress>
+            <AddressType>ConsignorDocumentaryAddress</AddressType>
+            <Address1>CHANGSHA</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>405990.405990</AddressShortCode>
+            <City>CHANGSHA,HUNAN PROV.TIANXIN DISTRIC</City>
+            <CompanyName>LILING KALRING TRADING CO.,LTD.</CompanyName>
+            <Country>
+              <Code>CN</Code>
+              <Name>China</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>91430281779026094M</GovRegNum>
+            <GovRegNumType>
+              <Code>VAT</Code>
+              <Description>VAT Registration Code</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>405990</OrganizationCode>
+            <Phone>+8618673341231</Phone>
+            <Port>
+              <Code>CNCHA</Code>
+              <Name>Changle</Name>
+            </Port>
+            <Postcode>410004</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <LocalAddressCollection>
+              <LocalAddress>
+                <Address1>差地址</Address1>
+                <Address2></Address2>
+                <City>CHANGSHA,HUNAN PROV.TIANXIN DISTRIC</City>
+                <CompanyName>醴陵佳盈贸易有限公司</CompanyName>
+                <Language>
+                  <Code>ZH-CN</Code>
+                  <Description>Chinese - Simplified</Description>
+                </Language>
+                <Postcode>410004</Postcode>
+                <State>CN</State>
+              </LocalAddress>
+            </LocalAddressCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ConsignorPickupDeliveryAddress</AddressType>
+            <Address1>CHANGSHA</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>405990.405990</AddressShortCode>
+            <City>CHANGSHA,HUNAN PROV.TIANXIN DISTRIC</City>
+            <CompanyName>LILING KALRING TRADING CO.,LTD.</CompanyName>
+            <Country>
+              <Code>CN</Code>
+              <Name>China</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>91430281779026094M</GovRegNum>
+            <GovRegNumType>
+              <Code>VAT</Code>
+              <Description>VAT Registration Code</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>405990</OrganizationCode>
+            <Phone>+8618673341231</Phone>
+            <Port>
+              <Code>CNCHA</Code>
+              <Name>Changle</Name>
+            </Port>
+            <Postcode>410004</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <LocalAddressCollection>
+              <LocalAddress>
+                <Address1>差地址</Address1>
+                <Address2></Address2>
+                <City>CHANGSHA,HUNAN PROV.TIANXIN DISTRIC</City>
+                <CompanyName>醴陵佳盈贸易有限公司</CompanyName>
+                <Language>
+                  <Code>ZH-CN</Code>
+                  <Description>Chinese - Simplified</Description>
+                </Language>
+                <Postcode>410004</Postcode>
+                <State>CN</State>
+              </LocalAddress>
+            </LocalAddressCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ConsigneeDocumentaryAddress</AddressType>
+            <Address1>BRR MANGA TERMINAL MARITIMO</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>455586.455586</AddressShortCode>
+            <City>CARTAGENA</City>
+            <CompanyName>SOCIEDAD PORTUARIA REGIONAL DE CARTAGENA S.A.</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>6607943</Fax>
+            <GovRegNum>800200969-1</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>455586</OrganizationCode>
+            <Phone>6607781</Phone>
+            <Port>
+              <Code>COCTG</Code>
+              <Name>Cartagena</Name>
+            </Port>
+            <Postcode>130002</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>CMP</Code>
+                  <Description>Customs Manifest Provider Code</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>2261</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ConsigneePickupDeliveryAddress</AddressType>
+            <Address1>BRR MANGA TERMINAL MARITIMO</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>455586.455586</AddressShortCode>
+            <City>CARTAGENA</City>
+            <CompanyName>SOCIEDAD PORTUARIA REGIONAL DE CARTAGENA S.A.</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>6607943</Fax>
+            <GovRegNum>800200969-1</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>455586</OrganizationCode>
+            <Phone>6607781</Phone>
+            <Port>
+              <Code>COCTG</Code>
+              <Name>Cartagena</Name>
+            </Port>
+            <Postcode>130002</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>CMP</Code>
+                  <Description>Customs Manifest Provider Code</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>2261</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>PickupAgent</AddressType>
+            <Address1>ROOM 1613 &amp; 1614,TOWER 2, NO. 118 FEI HONG ROAD, H</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>200383.200383</AddressShortCode>
+            <City>SHANGHAI</City>
+            <CompanyName>FREJA TRANSPORT &amp; LOGISTICS (SHANGHAI) CO LTD.</CompanyName>
+            <Country>
+              <Code>CN</Code>
+              <Name>China</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>91310000MA1FL1Q483</GovRegNum>
+            <GovRegNumType>
+              <Code>VAT</Code>
+              <Description>VAT Registration Code</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>200383</OrganizationCode>
+            <Phone>+862165906995</Phone>
+            <Port>
+              <Code>CNSGH</Code>
+              <Name>Shanghai</Name>
+            </Port>
+            <Postcode>200000</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State Description="NA">NA</State>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>SendersLocalClient</AddressType>
+            <Address1>BRR MANGA TERMINAL MARITIMO</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>455586.455586</AddressShortCode>
+            <City>CARTAGENA</City>
+            <CompanyName>SOCIEDAD PORTUARIA REGIONAL DE CARTAGENA S.A.</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>6607943</Fax>
+            <GovRegNum>800200969-1</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>455586</OrganizationCode>
+            <Phone>6607781</Phone>
+            <Port>
+              <Code>COCTG</Code>
+              <Name>Cartagena</Name>
+            </Port>
+            <Postcode>130002</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>CMP</Code>
+                  <Description>Customs Manifest Provider Code</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>2261</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>SendersOverseasAgent</AddressType>
+            <Address1>ROOM 1613 &amp; 1614,TOWER 2, NO. 118 FEI HONG ROAD, H</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>200383.200383</AddressShortCode>
+            <City>SHANGHAI</City>
+            <CompanyName>FREJA TRANSPORT &amp; LOGISTICS (SHANGHAI) CO LTD.</CompanyName>
+            <Country>
+              <Code>CN</Code>
+              <Name>China</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>91310000MA1FL1Q483</GovRegNum>
+            <GovRegNumType>
+              <Code>VAT</Code>
+              <Description>VAT Registration Code</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>200383</OrganizationCode>
+            <Phone>+862165906995</Phone>
+            <Port>
+              <Code>CNSGH</Code>
+              <Name>Shanghai</Name>
+            </Port>
+            <Postcode>200000</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State Description="NA">NA</State>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>DeliveryAgent</AddressType>
+            <Address1>TV 93 51 98 ED PRANA 26 OF 401</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>147521.147521</AddressShortCode>
+            <City>BOGOTA D.C.</City>
+            <CompanyName>TIBA COLOMBIA S.A.S. - HEAD OFFICE</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>3202508476</Fax>
+            <GovRegNum>800248701-2</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>147521</OrganizationCode>
+            <Phone>14291800</Phone>
+            <Port>
+              <Code>COBOG</Code>
+              <Name>Bogota</Name>
+            </Port>
+            <Postcode>111071</Postcode>
+            <ScreeningStatus>
+              <Code>REQ</Code>
+              <Description>Requires Review</Description>
+            </ScreeningStatus>
+            <State Description="BV">BV</State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>VAT</Code>
+                  <Description>Vergi Kimlik Numarası / Tax &amp; Busin</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>TR</Code>
+                  <Name>Türkiye</Name>
+                </CountryOfIssue>
+                <Value>2222222222</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>PEC</Code>
+                  <Description>Borçlanan e-Fatura Posta Kutusu / D</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>TR</Code>
+                  <Name>Türkiye</Name>
+                </CountryOfIssue>
+                <Value>facturacionelectronica.col@tibagroup.com</Value>
+              </RegistrationNumber>
+              <RegistrationNumber>
+                <Type>
+                  <Code>AEC</Code>
+                  <Description>ACTIVIDAD ECONOMICA</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>592</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ShippingLineAddress</AddressType>
+            <Address1>ESPLANADEN 50</Address1>
+            <Address2>INDRE BY</Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>772172.772172</AddressShortCode>
+            <City>COPENHAGEN</City>
+            <CompanyName>MAERSK LINE</CompanyName>
+            <Country>
+              <Code>DK</Code>
+              <Name>Denmark</Name>
+            </Country>
+            <Email></Email>
+            <Fax></Fax>
+            <GovRegNum>DK53139655</GovRegNum>
+            <GovRegNumType>
+              <Code>VAT</Code>
+              <Description>VAT (Moms) Business Registration Nu</Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>772172</OrganizationCode>
+            <Phone></Phone>
+            <Port>
+              <Code>DKCPH</Code>
+              <Name>Kobenhavn</Name>
+            </Port>
+            <Postcode>1263</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>CCC</Code>
+                  <Description>Standard Carrier Alpha Code (Sea)</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>US</Code>
+                  <Name>United States</Name>
+                </CountryOfIssue>
+                <Value>MAEU</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>Creditor</AddressType>
+            <Address1>CL 127 A 53 A 45 TO 2 OF 401 C 401 D ED CENTRO EMP</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>455526.455526</AddressShortCode>
+            <City>BOGOTA D.C.</City>
+            <CompanyName>MAERSK COLOMBIA S.A.S</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>7940390</Fax>
+            <GovRegNum>800235053-1</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>455526</OrganizationCode>
+            <Phone>7940389</Phone>
+            <Port>
+              <Code>COBOG</Code>
+              <Name>Bogota</Name>
+            </Port>
+            <Postcode>111111</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+          </OrganizationAddress>
+          <OrganizationAddress>
+            <AddressType>ArrivalCFSAddress</AddressType>
+            <Address1>BRR MANGA TERMINAL MARITIMO</Address1>
+            <Address2></Address2>
+            <AddressOverride>false</AddressOverride>
+            <AddressShortCode>455586.455586</AddressShortCode>
+            <City>CARTAGENA</City>
+            <CompanyName>SOCIEDAD PORTUARIA REGIONAL DE CARTAGENA S.A.</CompanyName>
+            <Country>
+              <Code>CO</Code>
+              <Name>Colombia</Name>
+            </Country>
+            <Email></Email>
+            <Fax>6607943</Fax>
+            <GovRegNum>800200969-1</GovRegNum>
+            <GovRegNumType>
+              <Code>NIT</Code>
+              <Description>NIT/ Tax and VAT(IVA) Registration </Description>
+            </GovRegNumType>
+            <OrganizationCategory>BUS</OrganizationCategory>
+            <OrganizationCode>455586</OrganizationCode>
+            <Phone>6607781</Phone>
+            <Port>
+              <Code>COCTG</Code>
+              <Name>Cartagena</Name>
+            </Port>
+            <Postcode>130002</Postcode>
+            <ScreeningStatus>
+              <Code>CLR</Code>
+              <Description>Clear</Description>
+            </ScreeningStatus>
+            <State></State>
+            <RegistrationNumberCollection>
+              <RegistrationNumber>
+                <Type>
+                  <Code>CMP</Code>
+                  <Description>Customs Manifest Provider Code</Description>
+                </Type>
+                <CountryOfIssue>
+                  <Code>CO</Code>
+                  <Name>Colombia</Name>
+                </CountryOfIssue>
+                <Value>2261</Value>
+              </RegistrationNumber>
+            </RegistrationNumberCollection>
+          </OrganizationAddress>
+        </OrganizationAddressCollection>
+        <PackingLineCollection Content="Complete">
+          <PackingLine>
+            <Commodity>
+              <Code>GEN</Code>
+              <Description>General</Description>
+            </Commodity>
+            <ContainerPackingOrder>0</ContainerPackingOrder>
+            <CountryOfOrigin>
+              <Code></Code>
+            </CountryOfOrigin>
+            <DetailedDescription></DetailedDescription>
+            <EndItemNo>0</EndItemNo>
+            <ExportReferenceNumber></ExportReferenceNumber>
+            <GoodsDescription>STC: 5 PACKAGES CONTENIENDO ONE (1)UNIT OF KALMAR REACH STACKER MODELO: DRG450-65S5E</GoodsDescription>
+            <HarmonisedCode></HarmonisedCode>
+            <Height>0.000</Height>
+            <ImportReferenceNumber></ImportReferenceNumber>
+            <ItemNo>0</ItemNo>
+            <LastKnownCFSStatus>
+              <Code></Code>
+            </LastKnownCFSStatus>
+            <LastKnownCFSStatusDate></LastKnownCFSStatusDate>
+            <Length>0.000</Length>
+            <LengthUnit>
+              <Code>M</Code>
+              <Description>Meters</Description>
+            </LengthUnit>
+            <LinePrice>0.0000</LinePrice>
+            <Link>1</Link>
+            <LoadingMeters>0.000</LoadingMeters>
+            <MarksAndNos></MarksAndNos>
+            <OutturnComment></OutturnComment>
+            <OutturnDamagedQty>0</OutturnDamagedQty>
+            <OutturnedHeight>0.000</OutturnedHeight>
+            <OutturnedLength>0.000</OutturnedLength>
+            <OutturnedVolume>0.000</OutturnedVolume>
+            <OutturnedWeight>0.000</OutturnedWeight>
+            <OutturnedWidth>0.000</OutturnedWidth>
+            <OutturnPillagedQty>0</OutturnPillagedQty>
+            <OutturnQty>0</OutturnQty>
+            <PackingLineID>TI2TR200008977</PackingLineID>
+            <PackQty>1</PackQty>
+            <PackType>
+              <Code>PKG</Code>
+              <Description>Package</Description>
+            </PackType>
+            <ReferenceNumber></ReferenceNumber>
+            <RequiresTemperatureControl>false</RequiresTemperatureControl>
+            <Volume>44.730</Volume>
+            <VolumeUnit>
+              <Code>M3</Code>
+              <Description>Cubic Meters</Description>
+            </VolumeUnit>
+            <Weight>15200.000</Weight>
+            <WeightUnit>
+              <Code>KG</Code>
+              <Description>Kilograms</Description>
+            </WeightUnit>
+            <Width>0.000</Width>
+            <CustomizedFieldCollection>
+              <CustomizedField>
+                <DataType>String</DataType>
+                <Key>Flexitank Model</Key>
+                <Value></Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Net Weight</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Density</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+            </CustomizedFieldCollection>
+            <PackedItemCollection></PackedItemCollection>
+          </PackingLine>
+          <PackingLine>
+            <Commodity>
+              <Code>GEN</Code>
+              <Description>General</Description>
+            </Commodity>
+            <ContainerPackingOrder>0</ContainerPackingOrder>
+            <CountryOfOrigin>
+              <Code></Code>
+            </CountryOfOrigin>
+            <DetailedDescription></DetailedDescription>
+            <EndItemNo>0</EndItemNo>
+            <ExportReferenceNumber></ExportReferenceNumber>
+            <GoodsDescription>STC: 5 PACKAGES CONTENIENDO ONE (1)UNIT OF KALMAR REACH STACKER MODELO: DRG450-65S5E</GoodsDescription>
+            <HarmonisedCode></HarmonisedCode>
+            <Height>0.000</Height>
+            <ImportReferenceNumber></ImportReferenceNumber>
+            <ItemNo>0</ItemNo>
+            <LastKnownCFSStatus>
+              <Code></Code>
+            </LastKnownCFSStatus>
+            <LastKnownCFSStatusDate></LastKnownCFSStatusDate>
+            <Length>0.000</Length>
+            <LengthUnit>
+              <Code>M</Code>
+              <Description>Meters</Description>
+            </LengthUnit>
+            <LinePrice>0.0000</LinePrice>
+            <Link>2</Link>
+            <LoadingMeters>0.000</LoadingMeters>
+            <MarksAndNos></MarksAndNos>
+            <OutturnComment></OutturnComment>
+            <OutturnDamagedQty>0</OutturnDamagedQty>
+            <OutturnedHeight>0.000</OutturnedHeight>
+            <OutturnedLength>0.000</OutturnedLength>
+            <OutturnedVolume>0.000</OutturnedVolume>
+            <OutturnedWeight>0.000</OutturnedWeight>
+            <OutturnedWidth>0.000</OutturnedWidth>
+            <OutturnPillagedQty>0</OutturnPillagedQty>
+            <OutturnQty>0</OutturnQty>
+            <PackingLineID>TI2TR200008978</PackingLineID>
+            <PackQty>1</PackQty>
+            <PackType>
+              <Code>PKG</Code>
+              <Description>Package</Description>
+            </PackType>
+            <ReferenceNumber></ReferenceNumber>
+            <RequiresTemperatureControl>false</RequiresTemperatureControl>
+            <Volume>143.830</Volume>
+            <VolumeUnit>
+              <Code>M3</Code>
+              <Description>Cubic Meters</Description>
+            </VolumeUnit>
+            <Weight>32280.000</Weight>
+            <WeightUnit>
+              <Code>KG</Code>
+              <Description>Kilograms</Description>
+            </WeightUnit>
+            <Width>0.000</Width>
+            <CustomizedFieldCollection>
+              <CustomizedField>
+                <DataType>String</DataType>
+                <Key>Flexitank Model</Key>
+                <Value></Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Net Weight</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Density</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+            </CustomizedFieldCollection>
+            <PackedItemCollection></PackedItemCollection>
+          </PackingLine>
+          <PackingLine>
+            <Commodity>
+              <Code>GEN</Code>
+              <Description>General</Description>
+            </Commodity>
+            <ContainerPackingOrder>0</ContainerPackingOrder>
+            <CountryOfOrigin>
+              <Code></Code>
+            </CountryOfOrigin>
+            <DetailedDescription></DetailedDescription>
+            <EndItemNo>0</EndItemNo>
+            <ExportReferenceNumber></ExportReferenceNumber>
+            <GoodsDescription>STC: 5 PACKAGES CONTENIENDO ONE (1)UNIT OF KALMAR REACH STACKER MODELO: DRG450-65S5E</GoodsDescription>
+            <HarmonisedCode></HarmonisedCode>
+            <Height>0.000</Height>
+            <ImportReferenceNumber></ImportReferenceNumber>
+            <ItemNo>0</ItemNo>
+            <LastKnownCFSStatus>
+              <Code></Code>
+            </LastKnownCFSStatus>
+            <LastKnownCFSStatusDate></LastKnownCFSStatusDate>
+            <Length>0.000</Length>
+            <LengthUnit>
+              <Code>M</Code>
+              <Description>Meters</Description>
+            </LengthUnit>
+            <LinePrice>0.0000</LinePrice>
+            <Link>3</Link>
+            <LoadingMeters>0.000</LoadingMeters>
+            <MarksAndNos></MarksAndNos>
+            <OutturnComment></OutturnComment>
+            <OutturnDamagedQty>0</OutturnDamagedQty>
+            <OutturnedHeight>0.000</OutturnedHeight>
+            <OutturnedLength>0.000</OutturnedLength>
+            <OutturnedVolume>0.000</OutturnedVolume>
+            <OutturnedWeight>0.000</OutturnedWeight>
+            <OutturnedWidth>0.000</OutturnedWidth>
+            <OutturnPillagedQty>0</OutturnPillagedQty>
+            <OutturnQty>0</OutturnQty>
+            <PackingLineID>TI2TR200008979</PackingLineID>
+            <PackQty>3</PackQty>
+            <PackType>
+              <Code>PKG</Code>
+              <Description>Package</Description>
+            </PackType>
+            <ReferenceNumber></ReferenceNumber>
+            <RequiresTemperatureControl>false</RequiresTemperatureControl>
+            <Volume>35.700</Volume>
+            <VolumeUnit>
+              <Code>M3</Code>
+              <Description>Cubic Meters</Description>
+            </VolumeUnit>
+            <Weight>22800.000</Weight>
+            <WeightUnit>
+              <Code>KG</Code>
+              <Description>Kilograms</Description>
+            </WeightUnit>
+            <Width>0.000</Width>
+            <CustomizedFieldCollection>
+              <CustomizedField>
+                <DataType>String</DataType>
+                <Key>Flexitank Model</Key>
+                <Value></Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Net Weight</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+              <CustomizedField>
+                <DataType>Decimal</DataType>
+                <Key>Density</Key>
+                <Value>0.000</Value>
+              </CustomizedField>
+            </CustomizedFieldCollection>
+            <PackedItemCollection></PackedItemCollection>
+          </PackingLine>
+        </PackingLineCollection>
+      </Shipment>
+    </ShipmentCollection>
+    <TransactionHeaderReferenceCollection>
+      <TransactionHeaderReference>
+        <Type>ITR</Type>
+        <Reference>00001227</Reference>
+        <ReferenceDescription></ReferenceDescription>
+        <TypeDescription></TypeDescription>
+      </TransactionHeaderReference>
+    </TransactionHeaderReferenceCollection>
+  </TransactionInfo>
+</UniversalTransaction>
