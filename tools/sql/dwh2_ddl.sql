@@ -6,6 +6,30 @@ IF NOT EXISTS (SELECT 1 FROM sys.schemas WHERE name = 'Dwh2')
     EXEC('CREATE SCHEMA Dwh2');
 GO
 
+/*
+  Reset: remove ALL existing tables in schema Dwh2 so only the model remains.
+  - First drop all foreign keys within Dwh2
+  - Then drop all tables in Dwh2
+  This is destructive. Ensure backups as needed before running in production.
+*/
+DECLARE @sql NVARCHAR(MAX);
+-- Drop FKs in Dwh2
+SET @sql = N'';
+SELECT @sql = @sql + N'ALTER TABLE ' + QUOTENAME(SCHEMA_NAME(t.schema_id)) + N'.' + QUOTENAME(t.name)
+             + N' DROP CONSTRAINT ' + QUOTENAME(fk.name) + N';' + NCHAR(10)
+FROM sys.foreign_keys fk
+JOIN sys.tables t ON fk.parent_object_id = t.object_id
+WHERE SCHEMA_NAME(t.schema_id) = 'Dwh2';
+IF LEN(@sql) > 0 EXEC sp_executesql @sql;
+
+-- Drop tables in Dwh2
+SET @sql = N'';
+SELECT @sql = @sql + N'DROP TABLE ' + QUOTENAME(SCHEMA_NAME(t.schema_id)) + N'.' + QUOTENAME(t.name) + N';' + NCHAR(10)
+FROM sys.tables t
+WHERE SCHEMA_NAME(t.schema_id) = 'Dwh2';
+IF LEN(@sql) > 0 EXEC sp_executesql @sql;
+GO
+
 /* Dimensions */
 
 -- Date dimension (surrogate DateKey and calendar attributes)
@@ -179,6 +203,9 @@ CREATE TABLE Dwh2.DimOrganization (
   OrganizationKey INT IDENTITY(1,1) PRIMARY KEY,
   OrganizationCode NVARCHAR(50) NOT NULL UNIQUE,
   CompanyName    NVARCHAR(200) NULL,
+  GovRegNum      NVARCHAR(100) NULL,
+  GovRegNumTypeCode NVARCHAR(50) NULL,
+  GovRegNumTypeDescription NVARCHAR(200) NULL,
   AddressType    NVARCHAR(50)  NULL,
   Address1       NVARCHAR(200) NULL,
   Address2       NVARCHAR(200) NULL,
@@ -196,6 +223,28 @@ CREATE TABLE Dwh2.DimOrganization (
   CONSTRAINT FK_DimOrganization_DimCountry FOREIGN KEY (CountryKey) REFERENCES Dwh2.DimCountry (CountryKey),
   CONSTRAINT FK_DimOrganization_DimPort FOREIGN KEY (PortKey) REFERENCES Dwh2.DimPort (PortKey)
 );
+GO
+
+/* Organization Registration Numbers (multiple per organization/address type) */
+IF NOT EXISTS (
+  SELECT 1 FROM sys.objects o JOIN sys.schemas s ON o.schema_id = s.schema_id
+  WHERE o.name = 'OrganizationRegistrationNumber' AND s.name = 'Dwh2' AND o.type = 'U'
+)
+BEGIN
+  CREATE TABLE Dwh2.OrganizationRegistrationNumber (
+    OrganizationRegistrationNumberKey INT IDENTITY(1,1) PRIMARY KEY,
+    OrganizationKey INT NOT NULL,
+    AddressType NVARCHAR(50) NULL,
+    TypeCode NVARCHAR(50) NULL,
+    TypeDescription NVARCHAR(200) NULL,
+    CountryOfIssueCode NVARCHAR(10) NULL,
+    CountryOfIssueName NVARCHAR(200) NULL,
+    [Value] NVARCHAR(300) NOT NULL,
+    UpdatedAt DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT FK_OrgRegNum_Organization FOREIGN KEY (OrganizationKey) REFERENCES Dwh2.DimOrganization (OrganizationKey)
+  );
+  CREATE INDEX IX_OrgRegNum_Org ON Dwh2.OrganizationRegistrationNumber (OrganizationKey);
+END
 GO
 
 CREATE TABLE Dwh2.DimJob (
@@ -268,6 +317,8 @@ CREATE TABLE Dwh2.FactAccountsReceivableTransaction (
   JobDimKey          INT NULL,
 
   -- Business identifiers / attributes
+  DataSourceType           NVARCHAR(50)  NULL,
+  DataSourceKey            NVARCHAR(100) NULL,
   [Number]                 NVARCHAR(50) NOT NULL,
   Ledger                   NVARCHAR(50) NULL,
   [Category]               NVARCHAR(100) NULL,
@@ -282,6 +333,16 @@ CREATE TABLE Dwh2.FactAccountsReceivableTransaction (
   RequisitionStatus        NVARCHAR(100) NULL,
   TransactionReference     NVARCHAR(200) NULL,
   TransactionType          NVARCHAR(100) NULL,
+  AgreedPaymentMethod      NVARCHAR(100) NULL,
+  ComplianceSubType        NVARCHAR(100) NULL,
+  CreateTime               NVARCHAR(50)  NULL,
+  CreateUser               NVARCHAR(100) NULL,
+  EventReference           NVARCHAR(200) NULL,
+  [Timestamp]              NVARCHAR(50)  NULL,
+  TriggerCount             INT           NULL,
+  TriggerDescription       NVARCHAR(200) NULL,
+  TriggerType              NVARCHAR(100) NULL,
+  NumberOfSupportingDocuments INT       NULL,
 
   -- Measures
   LocalExVATAmount         DECIMAL(18,4) NULL,
@@ -293,11 +354,15 @@ CREATE TABLE Dwh2.FactAccountsReceivableTransaction (
   OSTaxTransactionsAmount  DECIMAL(18,4) NULL,
   OSTotal                  DECIMAL(18,4) NULL,
   OutstandingAmount        DECIMAL(18,4) NULL,
+  ExchangeRate             DECIMAL(18,6) NULL,
 
   -- Flags
   IsCancelled              BIT NULL,
   IsCreatedByMatchingProcess BIT NULL,
   IsPrinted                BIT NULL,
+
+  -- Text attributes where coded dims may not be available
+  PlaceOfIssueText         NVARCHAR(200) NULL,
 
   UpdatedAt                DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
 
@@ -456,8 +521,187 @@ CREATE INDEX IX_FactAR_Number ON Dwh2.FactAccountsReceivableTransaction ([Number
 CREATE INDEX IX_FactAR_Dates ON Dwh2.FactAccountsReceivableTransaction (TransactionDateKey, PostDateKey, DueDateKey);
 GO
 
+/* AR Posting Journals (header-level journal per charge) */
+IF NOT EXISTS (
+  SELECT 1 FROM sys.objects o JOIN sys.schemas s ON o.schema_id = s.schema_id
+  WHERE o.name = 'FactARPostingJournal' AND s.name = 'Dwh2' AND o.type = 'U'
+)
+BEGIN
+  CREATE TABLE Dwh2.FactARPostingJournal (
+    FactARPostingJournalKey INT IDENTITY(1,1) PRIMARY KEY,
+    FactAccountsReceivableTransactionKey INT NOT NULL,
+    -- Context
+    BranchKey INT NULL,
+    BranchCode NVARCHAR(50) NULL,
+    BranchName NVARCHAR(200) NULL,
+    DepartmentKey INT NULL,
+    DepartmentCode NVARCHAR(50) NULL,
+    DepartmentName NVARCHAR(200) NULL,
+    -- Charge
+    ChargeCode NVARCHAR(50) NULL,
+    ChargeDescription NVARCHAR(200) NULL,
+    ChargeTypeCode NVARCHAR(50) NULL,
+    ChargeTypeDescription NVARCHAR(200) NULL,
+    ClassCode NVARCHAR(50) NULL,
+    ClassDescription NVARCHAR(200) NULL,
+    Description NVARCHAR(400) NULL,
+    ChargeCurrencyKey INT NULL,
+    ChargeCurrencyCode NVARCHAR(10) NULL,
+    ChargeCurrencyDescription NVARCHAR(200) NULL,
+    ChargeExchangeRate DECIMAL(18,6) NULL,
+    ChargeTotalAmount DECIMAL(18,4) NULL,
+    ChargeTotalExVATAmount DECIMAL(18,4) NULL,
+    -- GL / Job
+    GLPostDate NVARCHAR(50) NULL,
+    IsFinalCharge BIT NULL,
+    JobDimKey INT NULL,
+    JobType NVARCHAR(50) NULL,
+    JobKey NVARCHAR(100) NULL,
+    JobRecognitionDate NVARCHAR(50) NULL,
+    -- Local amounts
+    LocalAmount DECIMAL(18,4) NULL,
+    LocalCurrencyKey INT NULL,
+    LocalCurrencyCode NVARCHAR(10) NULL,
+    LocalCurrencyDescription NVARCHAR(200) NULL,
+    LocalGSTVATAmount DECIMAL(18,4) NULL,
+    LocalTotalAmount DECIMAL(18,4) NULL,
+    -- Organization ref (as provided in journal)
+    OrganizationType NVARCHAR(50) NULL,
+    OrganizationKeyText NVARCHAR(100) NULL,
+    -- OS amounts
+    OSAmount DECIMAL(18,4) NULL,
+    OSCurrencyKey INT NULL,
+    OSCurrencyCode NVARCHAR(10) NULL,
+    OSCurrencyDescription NVARCHAR(200) NULL,
+    OSGSTVATAmount DECIMAL(18,4) NULL,
+    OSTotalAmount DECIMAL(18,4) NULL,
+    -- Other attributes
+    RevenueRecognitionType NVARCHAR(100) NULL,
+    [Sequence] INT NULL,
+    TaxDate NVARCHAR(50) NULL,
+    TransactionCategory NVARCHAR(100) NULL,
+    TransactionType NVARCHAR(100) NULL,
+    -- VAT/GST
+    VATTaxCode NVARCHAR(50) NULL,
+    VATTaxDescription NVARCHAR(200) NULL,
+    VATTaxRate DECIMAL(9,4) NULL,
+    VATTaxTypeCode NVARCHAR(50) NULL,
+    -- Withholding
+    LocalWHTAmount DECIMAL(18,4) NULL,
+    OSWHTAmount DECIMAL(18,4) NULL,
+    UpdatedAt DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT FK_FactARPostingJournal_FactAR FOREIGN KEY (FactAccountsReceivableTransactionKey) REFERENCES Dwh2.FactAccountsReceivableTransaction (FactAccountsReceivableTransactionKey),
+    CONSTRAINT FK_FactARPostingJournal_Branch FOREIGN KEY (BranchKey) REFERENCES Dwh2.DimBranch (BranchKey),
+    CONSTRAINT FK_FactARPostingJournal_Department FOREIGN KEY (DepartmentKey) REFERENCES Dwh2.DimDepartment (DepartmentKey),
+    CONSTRAINT FK_FactARPostingJournal_ChargeCurrency FOREIGN KEY (ChargeCurrencyKey) REFERENCES Dwh2.DimCurrency (CurrencyKey),
+    CONSTRAINT FK_FactARPostingJournal_LocalCurrency FOREIGN KEY (LocalCurrencyKey) REFERENCES Dwh2.DimCurrency (CurrencyKey),
+    CONSTRAINT FK_FactARPostingJournal_OSCurrency FOREIGN KEY (OSCurrencyKey) REFERENCES Dwh2.DimCurrency (CurrencyKey),
+    CONSTRAINT FK_FactARPostingJournal_Job FOREIGN KEY (JobDimKey) REFERENCES Dwh2.DimJob (JobDimKey)
+  );
+END
+GO
+
+/* AR Posting Journal Details (credit/debit lines) */
+IF NOT EXISTS (
+  SELECT 1 FROM sys.objects o JOIN sys.schemas s ON o.schema_id = s.schema_id
+  WHERE o.name = 'FactARPostingJournalDetail' AND s.name = 'Dwh2' AND o.type = 'U'
+)
+BEGIN
+  CREATE TABLE Dwh2.FactARPostingJournalDetail (
+    FactARPostingJournalDetailKey INT IDENTITY(1,1) PRIMARY KEY,
+    FactARPostingJournalKey INT NOT NULL,
+    CreditGLAccountCode NVARCHAR(50) NULL,
+    CreditGLAccountDescription NVARCHAR(200) NULL,
+    DebitGLAccountCode NVARCHAR(50) NULL,
+    DebitGLAccountDescription NVARCHAR(200) NULL,
+    PostingAmount DECIMAL(18,4) NULL,
+    PostingCurrencyKey INT NULL,
+    PostingCurrencyCode NVARCHAR(10) NULL,
+    PostingCurrencyDescription NVARCHAR(200) NULL,
+    PostingDate NVARCHAR(50) NULL,
+    PostingPeriod NVARCHAR(20) NULL,
+    UpdatedAt DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT FK_FactARPostingJournalDetail_Header FOREIGN KEY (FactARPostingJournalKey) REFERENCES Dwh2.FactARPostingJournal (FactARPostingJournalKey),
+    CONSTRAINT FK_FactARPostingJournalDetail_Currency FOREIGN KEY (PostingCurrencyKey) REFERENCES Dwh2.DimCurrency (CurrencyKey)
+  );
+END
+GO
+
+/* AR Posting Journal Rating Basis (optional multiple per journal) */
+IF NOT EXISTS (
+  SELECT 1 FROM sys.objects o JOIN sys.schemas s ON o.schema_id = s.schema_id
+  WHERE o.name = 'FactARRatingBasis' AND s.name = 'Dwh2' AND o.type = 'U'
+)
+BEGIN
+  CREATE TABLE Dwh2.FactARRatingBasis (
+    FactARRatingBasisKey INT IDENTITY(1,1) PRIMARY KEY,
+    FactARPostingJournalKey INT NOT NULL,
+    OriginType NVARCHAR(50) NULL,
+    CurrencyKey INT NULL,
+    CurrencyCode NVARCHAR(10) NULL,
+    CurrencyDescription NVARCHAR(200) NULL,
+    FlatRate DECIMAL(18,4) NULL,
+    MaximumRate DECIMAL(18,4) NULL,
+    MinimumRate DECIMAL(18,4) NULL,
+    OriginAdditionalReference NVARCHAR(200) NULL,
+    OriginKey NVARCHAR(100) NULL,
+    OriginQuantity DECIMAL(18,6) NULL,
+    OriginQuantityUnitCode NVARCHAR(20) NULL,
+    PerUnitRate DECIMAL(18,6) NULL,
+    RateReference NVARCHAR(200) NULL,
+    RateUnitCode NVARCHAR(20) NULL,
+    UpdatedAt DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT FK_FactARRatingBasis_Header FOREIGN KEY (FactARPostingJournalKey) REFERENCES Dwh2.FactARPostingJournal (FactARPostingJournalKey),
+    CONSTRAINT FK_FactARRatingBasis_Currency FOREIGN KEY (CurrencyKey) REFERENCES Dwh2.DimCurrency (CurrencyKey)
+  );
+END
+GO
+
+/* Bridge for Recipient Roles per AR */
+IF NOT EXISTS (
+  SELECT 1 FROM sys.objects o JOIN sys.schemas s ON o.schema_id = s.schema_id
+  WHERE o.name = 'BridgeFactARRecipientRole' AND s.name = 'Dwh2' AND o.type = 'U'
+)
+BEGIN
+  CREATE TABLE Dwh2.BridgeFactARRecipientRole (
+    FactAccountsReceivableTransactionKey INT NOT NULL,
+    RecipientRoleKey INT NOT NULL,
+    UpdatedAt DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT PK_BridgeFactARRecipientRole PRIMARY KEY (FactAccountsReceivableTransactionKey, RecipientRoleKey),
+    CONSTRAINT FK_BridgeFactARRecipientRole_Fact FOREIGN KEY (FactAccountsReceivableTransactionKey) REFERENCES Dwh2.FactAccountsReceivableTransaction (FactAccountsReceivableTransactionKey),
+    CONSTRAINT FK_BridgeFactARRecipientRole_Role FOREIGN KEY (RecipientRoleKey) REFERENCES Dwh2.DimRecipientRole (RecipientRoleKey)
+  );
+END
+GO
+
+/* Message numbers attached to AR */
+IF NOT EXISTS (
+  SELECT 1 FROM sys.objects o JOIN sys.schemas s ON o.schema_id = s.schema_id
+  WHERE o.name = 'FactARMessageNumber' AND s.name = 'Dwh2' AND o.type = 'U'
+)
+BEGIN
+  CREATE TABLE Dwh2.FactARMessageNumber (
+    FactARMessageNumberKey INT IDENTITY(1,1) PRIMARY KEY,
+    FactAccountsReceivableTransactionKey INT NOT NULL,
+    [Value] NVARCHAR(200) NOT NULL,
+    [Type] NVARCHAR(50) NULL,
+    UpdatedAt DATETIME2(3) NOT NULL DEFAULT SYSUTCDATETIME(),
+    CONSTRAINT FK_FactARMessageNumber_Fact FOREIGN KEY (FactAccountsReceivableTransactionKey) REFERENCES Dwh2.FactAccountsReceivableTransaction (FactAccountsReceivableTransactionKey)
+  );
+END
+GO
+
 CREATE INDEX IX_FactShipment_Ports ON Dwh2.FactShipment (PortOfLoadingKey, PortOfDischargeKey, PlaceOfReceiptKey, PlaceOfDeliveryKey);
 CREATE INDEX IX_FactShipment_Service ON Dwh2.FactShipment (AWBServiceLevelKey, GatewayServiceLevelKey, ShipmentTypeKey);
+GO
+
+-- Ensure no duplicates per ShipmentJobKey
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'UX_FactShipment_ShipmentJobKey' AND object_id = OBJECT_ID('Dwh2.FactShipment')
+)
+CREATE UNIQUE INDEX UX_FactShipment_ShipmentJobKey
+  ON Dwh2.FactShipment (ShipmentJobKey)
+  WHERE ShipmentJobKey IS NOT NULL;
 GO
 
 /* Bridges: link multiple organizations to a fact (AR and Shipment) */
@@ -494,3 +738,86 @@ BEGIN
   );
 END
 GO
+
+-- Additional integrity and performance indexes
+
+-- OrganizationRegistrationNumber uniqueness: per Organization + AddressType + Value
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'UX_OrgRegNum_OrgAddrVal' AND object_id = OBJECT_ID('Dwh2.OrganizationRegistrationNumber')
+)
+CREATE UNIQUE INDEX UX_OrgRegNum_OrgAddrVal
+  ON Dwh2.OrganizationRegistrationNumber (OrganizationKey, AddressType, [Value])
+  WHERE AddressType IS NOT NULL;
+GO
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'UX_OrgRegNum_OrgVal_NullAddr' AND object_id = OBJECT_ID('Dwh2.OrganizationRegistrationNumber')
+)
+CREATE UNIQUE INDEX UX_OrgRegNum_OrgVal_NullAddr
+  ON Dwh2.OrganizationRegistrationNumber (OrganizationKey, [Value])
+  WHERE AddressType IS NULL;
+GO
+
+-- FactARMessageNumber: avoid duplicate message numbers per Fact + Type
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'UX_FactARMessageNumber_FactTypeValue' AND object_id = OBJECT_ID('Dwh2.FactARMessageNumber')
+)
+CREATE UNIQUE INDEX UX_FactARMessageNumber_FactTypeValue
+  ON Dwh2.FactARMessageNumber (FactAccountsReceivableTransactionKey, [Type], [Value])
+  WHERE [Type] IS NOT NULL;
+GO
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'UX_FactARMessageNumber_FactValue_NullType' AND object_id = OBJECT_ID('Dwh2.FactARMessageNumber')
+)
+CREATE UNIQUE INDEX UX_FactARMessageNumber_FactValue_NullType
+  ON Dwh2.FactARMessageNumber (FactAccountsReceivableTransactionKey, [Value])
+  WHERE [Type] IS NULL;
+GO
+
+-- BridgeFactARRecipientRole indexes
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_BridgeFactARRecipientRole_Fact' AND object_id = OBJECT_ID('Dwh2.BridgeFactARRecipientRole')
+)
+CREATE INDEX IX_BridgeFactARRecipientRole_Fact ON Dwh2.BridgeFactARRecipientRole (FactAccountsReceivableTransactionKey, RecipientRoleKey);
+GO
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_BridgeFactARRecipientRole_Role' AND object_id = OBJECT_ID('Dwh2.BridgeFactARRecipientRole')
+)
+CREATE INDEX IX_BridgeFactARRecipientRole_Role ON Dwh2.BridgeFactARRecipientRole (RecipientRoleKey);
+GO
+
+-- BridgeFactAROrganization indexes
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_BridgeFactAROrganization_Fact' AND object_id = OBJECT_ID('Dwh2.BridgeFactAROrganization')
+)
+CREATE INDEX IX_BridgeFactAROrganization_Fact ON Dwh2.BridgeFactAROrganization (FactAccountsReceivableTransactionKey, AddressType, OrganizationKey);
+GO
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_BridgeFactAROrganization_Org' AND object_id = OBJECT_ID('Dwh2.BridgeFactAROrganization')
+)
+CREATE INDEX IX_BridgeFactAROrganization_Org ON Dwh2.BridgeFactAROrganization (OrganizationKey);
+GO
+
+-- BridgeFactShipmentOrganization indexes
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_BridgeFactShipmentOrganization_Fact' AND object_id = OBJECT_ID('Dwh2.BridgeFactShipmentOrganization')
+)
+CREATE INDEX IX_BridgeFactShipmentOrganization_Fact ON Dwh2.BridgeFactShipmentOrganization (FactShipmentKey, AddressType, OrganizationKey);
+GO
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_BridgeFactShipmentOrganization_Org' AND object_id = OBJECT_ID('Dwh2.BridgeFactShipmentOrganization')
+)
+CREATE INDEX IX_BridgeFactShipmentOrganization_Org ON Dwh2.BridgeFactShipmentOrganization (OrganizationKey);
+GO
+
+-- Posting journal child fact indexes
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_FactARPostingJournal_Fact' AND object_id = OBJECT_ID('Dwh2.FactARPostingJournal')
+)
+CREATE INDEX IX_FactARPostingJournal_Fact ON Dwh2.FactARPostingJournal (FactAccountsReceivableTransactionKey);
+GO
+IF NOT EXISTS (
+  SELECT 1 FROM sys.indexes WHERE name = 'IX_FactARPostingJournalDetail_Header' AND object_id = OBJECT_ID('Dwh2.FactARPostingJournalDetail')
+)
+CREATE INDEX IX_FactARPostingJournalDetail_Header ON Dwh2.FactARPostingJournalDetail (FactARPostingJournalKey);
+GO
+ 

@@ -17,6 +17,8 @@ import os
 import re
 import sys
 from glob import glob
+from datetime import datetime, timedelta
+import time
 from typing import Dict, Optional, Tuple
 
 import pyodbc
@@ -342,9 +344,50 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
     usr_code = text(usr.find("u:Code", NS)) if usr is not None else ""
     usr_name = text(usr.find("u:Name", NS)) if usr is not None else ""
 
+    # Event Branch (for FactShipment.BranchKey)
+    evb = dc.find("u:EventBranch", NS) if dc is not None else None
+    evb_code = text(evb.find("u:Code", NS)) if evb is not None else ""
+    evb_name = text(evb.find("u:Name", NS)) if evb is not None else ""
+
+    # Event Branch (for FactShipment.BranchKey)
+    evb = dc.find("u:EventBranch", NS) if dc is not None else None
+    evb_code = text(evb.find("u:Code", NS)) if evb is not None else ""
+    evb_name = text(evb.find("u:Name", NS)) if evb is not None else ""
+
+    # Event Branch (for FactShipment.BranchKey)
+    evb = dc.find("u:EventBranch", NS) if dc is not None else None
+    evb_code = text(evb.find("u:Code", NS)) if evb is not None else ""
+    evb_name = text(evb.find("u:Name", NS)) if evb is not None else ""
+
     ent_id = text(dc.find("u:EnterpriseID", NS)) if dc is not None else ""
     srv_id = text(dc.find("u:ServerID", NS)) if dc is not None else ""
     provider = text(dc.find("u:DataProvider", NS)) if dc is not None else ""
+
+    # DataSource (AccountingInvoice)
+    ds_type = None
+    ds_key = None
+    dsc = dc.find("u:DataSourceCollection", NS) if dc is not None else None
+    if dsc is not None:
+        for ds in dsc.findall("u:DataSource", NS):
+            t = text(ds.find("u:Type", NS))
+            k = text(ds.find("u:Key", NS))
+            if t:
+                ds_type = t
+                ds_key = k
+                break
+
+    # Trigger / event context
+    event_reference = text(dc.find("u:EventReference", NS)) if dc is not None else ""
+    timestamp = text(dc.find("u:Timestamp", NS)) if dc is not None else ""
+    trigger_count = text(dc.find("u:TriggerCount", NS)) if dc is not None else ""
+    trigger_desc = text(dc.find("u:TriggerDescription", NS)) if dc is not None else ""
+    trigger_type = text(dc.find("u:TriggerType", NS)) if dc is not None else ""
+    # Recipient roles
+    recipient_roles = []
+    rrc = dc.find("u:RecipientRoleCollection", NS) if dc is not None else None
+    if rrc is not None:
+        for rr in rrc.findall("u:RecipientRole", NS):
+            recipient_roles.append((text(rr.find("u:Code", NS)), text(rr.find("u:Description", NS))))
 
     trigger_date = text(dc.find("u:TriggerDate", NS)) if dc is not None else ""
     trigger_datekey = parse_datekey(trigger_date)
@@ -355,6 +398,27 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
     local_currency = root.find(".//u:LocalCurrency", NS)
     lc_code = text(local_currency.find("u:Code", NS)) if local_currency is not None else ""
     lc_desc = text(local_currency.find("u:Description", NS)) if local_currency is not None else ""
+
+    # Other header attributes
+    category = text(root.find(".//u:Category", NS))
+    agreed_payment_method = text(root.find(".//u:AgreedPaymentMethod", NS))
+    compliance_subtype = text(root.find(".//u:ComplianceSubType", NS))
+    create_time = text(root.find(".//u:CreateTime", NS))
+    create_user = text(root.find(".//u:CreateUser", NS))
+    exchange_rate = text(root.find(".//u:ExchangeRate", NS)) or None
+    invoice_term = text(root.find(".//u:InvoiceTerm", NS))
+    invoice_term_days = text(root.find(".//u:InvoiceTermDays", NS))
+    job_invoice_number = text(root.find(".//u:JobInvoiceNumber", NS))
+    check_drawer = text(root.find(".//u:CheckDrawer", NS))
+    check_ref = text(root.find(".//u:CheckNumberOrPaymentRef", NS))
+    drawer_bank = text(root.find(".//u:DrawerBank", NS))
+    drawer_branch = text(root.find(".//u:DrawerBranch", NS))
+    receipt_or_dd = text(root.find(".//u:ReceiptOrDirectDebitNumber", NS))
+    requisition_status = text(root.find(".//u:RequisitionStatus", NS))
+    transaction_reference = text(root.find(".//u:TransactionReference", NS))
+    transaction_type = text(root.find(".//u:TransactionType", NS))
+    number_of_supporting_docs = text(root.find(".//u:NumberOfSupportingDocuments", NS))
+    outstanding_amount = text(root.find(".//u:OutstandingAmount", NS)) or None
 
     account_group = root.find(".//u:ARAccountGroup", NS)
     ag_code = text(account_group.find("u:Code", NS)) if account_group is not None else ""
@@ -375,6 +439,33 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
     amt_local_vat = dec("LocalVATAmount")
     amt_local_tax = dec("LocalTaxTransactionsAmount")
     amt_local_total = dec("LocalTotal")
+
+    # OS currency and measures
+    os_currency = root.find(".//u:OSCurrency", NS)
+    os_code = text(os_currency.find("u:Code", NS)) if os_currency is not None else ""
+    os_desc = text(os_currency.find("u:Description", NS)) if os_currency is not None else ""
+    amt_os_ex_vat = dec("OSExGSTVATAmount")
+    amt_os_vat = dec("OSGSTVATAmount")
+    amt_os_tax = dec("OSTaxTransactionsAmount")
+    amt_os_total = dec("OSTotal")
+
+    # PlaceOfIssue free text
+    place_of_issue_text = text(root.find(".//u:PlaceOfIssue", NS))
+
+    # Message numbers
+    message_numbers = []
+    mnc = root.find(".//u:MessageNumberCollection", NS)
+    if mnc is not None:
+        for mn in mnc.findall("u:MessageNumber", NS):
+            mtype = mn.get("Type") or ""
+            mval = (mn.text or "").strip()
+            if mval:
+                message_numbers.append((mtype, mval))
+
+    # Job (header)
+    job = root.find(".//u:Job", NS)
+    job_type = text(job.find("u:Type", NS)) if job is not None else ""
+    job_key = text(job.find("u:Key", NS)) if job is not None else ""
 
     def bit(node_name: str) -> Optional[int]:
         v = text(root.find(f".//u:{node_name}", NS)).lower()
@@ -454,6 +545,31 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
         op = org.find("u:Port", NS)
         org_port_code = text(op.find("u:Code", NS)) if op is not None else ""
         org_port_name = text(op.find("u:Name", NS)) if op is not None else ""
+        # Gov reg num
+        grn = text(org.find("u:GovRegNum", NS))
+        grt = org.find("u:GovRegNumType", NS)
+        grt_code = text(grt.find("u:Code", NS)) if grt is not None else ""
+        grt_desc = text(grt.find("u:Description", NS)) if grt is not None else ""
+        # RegistrationNumberCollection
+        regnums = []
+        rnc = org.find("u:RegistrationNumberCollection", NS)
+        if rnc is not None:
+            for rn in rnc.findall("u:RegistrationNumber", NS):
+                t = rn.find("u:Type", NS)
+                t_code = text(t.find("u:Code", NS)) if t is not None else ""
+                t_desc = text(t.find("u:Description", NS)) if t is not None else ""
+                coi = rn.find("u:CountryOfIssue", NS)
+                coi_code = text(coi.find("u:Code", NS)) if coi is not None else ""
+                coi_name = text(coi.find("u:Name", NS)) if coi is not None else ""
+                val = text(rn.find("u:Value", NS))
+                if val:
+                    regnums.append({
+                        "TypeCode": t_code,
+                        "TypeDescription": t_desc,
+                        "CountryOfIssueCode": coi_code,
+                        "CountryOfIssueName": coi_name,
+                        "Value": val,
+                    })
         org_list.append({
             "OrganizationCode": org_code,
             "CompanyName": org_company,
@@ -470,13 +586,16 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
             "Phone": phone,
             "Country": (org_country_code, org_country_name),
             "Port": (org_port_code, org_port_name),
+            "GovRegNum": grn,
+            "GovRegNumType": (grt_code, grt_desc),
+            "RegistrationNumbers": regnums,
         })
 
     dims = {
         "Country": (comp_country_code, comp_country_name),
         "Company": (company_code, company_name, comp_country_code),
-    "Branch": (branch_code, branch_name),
-    "BranchAddress": branch_address,
+        "Branch": (branch_code, branch_name),
+        "BranchAddress": branch_address,
         "Department": (dept_code, dept_name),
         "EventType": (et_code, et_desc),
         "ActionPurpose": (ap_code, ap_desc),
@@ -485,8 +604,8 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
         "Server": (srv_id,),
         "DataProvider": (provider,),
         "Currency": (lc_code, lc_desc),
-    "AccountGroup": (ag_code, ag_desc, "AR"),
-    "Organizations": org_list,
+        "AccountGroup": (ag_code, ag_desc, "AR"),
+        "Organizations": org_list,
     }
     fact = {
         "Number": number,
@@ -495,13 +614,54 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
         "PostDateKey": pk,
         "DueDateKey": dk,
         "TriggerDateKey": trigger_datekey,
+        # DataSource & event context
+        "DataSource": (ds_type, ds_key),
+        "EventReference": event_reference,
+        "Timestamp": timestamp,
+        "TriggerCount": int(trigger_count) if trigger_count.isdigit() else None,
+        "TriggerDescription": trigger_desc,
+        "TriggerType": trigger_type,
+        # Header attributes
+        "AgreedPaymentMethod": agreed_payment_method,
+        "Category": category,
+        "ComplianceSubType": compliance_subtype,
+        "CreateTime": create_time,
+        "CreateUser": create_user,
+        "ExchangeRate": exchange_rate,
+        "InvoiceTerm": invoice_term,
+        "InvoiceTermDays": int(invoice_term_days) if invoice_term_days.isdigit() else None,
+        "JobInvoiceNumber": job_invoice_number,
+        "CheckDrawer": check_drawer,
+        "CheckNumberOrPaymentRef": check_ref,
+        "DrawerBank": drawer_bank,
+        "DrawerBranch": drawer_branch,
+        "ReceiptOrDirectDebitNumber": receipt_or_dd,
+        "RequisitionStatus": requisition_status,
+        "TransactionReference": transaction_reference,
+        "TransactionType": transaction_type,
+        "NumberOfSupportingDocuments": int(number_of_supporting_docs) if number_of_supporting_docs.isdigit() else None,
+        # Local amounts
         "LocalExVATAmount": amt_local_ex_vat,
         "LocalVATAmount": amt_local_vat,
         "LocalTaxTransactionsAmount": amt_local_tax,
         "LocalTotal": amt_local_total,
+        # OS amounts & currency
+        "OSCurrency": (os_code, os_desc),
+        "OSExGSTVATAmount": amt_os_ex_vat,
+        "OSGSTVATAmount": amt_os_vat,
+        "OSTaxTransactionsAmount": amt_os_tax,
+        "OSTotal": amt_os_total,
+        "OutstandingAmount": outstanding_amount,
+        # Place of issue
+        "PlaceOfIssueText": place_of_issue_text,
+        # Flags
         "IsCancelled": is_cancelled,
         "IsCreatedByMatchingProcess": is_created_by_matching,
         "IsPrinted": is_printed,
+        # Job & collections
+        "Job": (job_type, job_key),
+        "MessageNumbers": message_numbers,
+        "RecipientRoles": recipient_roles,
     }
     return dims, fact
 
@@ -519,6 +679,10 @@ def upsert_ar(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
     # Currency
     (cur_code, cur_desc) = dims["Currency"]
     currency_key = ensure_currency(cur, cur_code, cur_desc)
+    # OS Currency (optional)
+    os_currency = fact.get("OSCurrency") or ("", "")
+    os_cur_code, os_cur_desc = os_currency
+    os_currency_key = ensure_currency(cur, os_cur_code, os_cur_desc) if os_cur_code else None
     # Account Group
     (ag_code, ag_desc, ag_type) = dims["AccountGroup"]
     account_group_key = ensure_account_group(cur, ag_code, ag_desc, ag_type)
@@ -584,58 +748,87 @@ def upsert_ar(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
             extra["CountryKey"] = ckey
         if pkey is not None:
             extra["PortKey"] = pkey
+        # Gov reg
+        gov_reg = _clean_str(org.get("GovRegNum")) or None
+        grt_code, grt_desc = org.get("GovRegNumType", ("", ""))
+        if gov_reg or grt_code or grt_desc:
+            extra["GovRegNum"] = gov_reg
+            extra["GovRegNumTypeCode"] = grt_code or None
+            extra["GovRegNumTypeDescription"] = grt_desc or None
         org_key = None
+        code = _clean_str(org.get("OrganizationCode") or "")
+        name = _clean_str(org.get("CompanyName") or code)
         try:
             org_key = _upsert_scalar_dim(
                 cur,
                 "Dwh2.DimOrganization",
                 "OrganizationCode",
-                org.get("OrganizationCode") or "",
+                code,
                 "CompanyName",
-                org.get("CompanyName"),
+                name,
                 extra_cols=extra,
                 key_col="OrganizationKey",
             )
         except Exception:
-            code = org.get("OrganizationCode") or ""
-            name = org.get("CompanyName") or code
+            # Dynamic fallback supporting optional columns in DimOrganization
+            cols = ["[OrganizationCode]", "[CompanyName]"]
+            vals: list[object] = [code, name]
+            set_cols = ["[CompanyName]=?"]
+            set_vals: list[object] = [name]
+            for k, v in (extra or {}).items():
+                cols.append(f"[{k}]")
+                vals.append(v)
+                set_cols.append(f"[{k}]=?")
+                set_vals.append(v)
+            insert_cols = ",".join(cols)
+            insert_placeholders = ",".join(["?"] * len(vals))
+            set_clause = ",".join(set_cols) + ", UpdatedAt=SYSUTCDATETIME()"
             cur.execute(
-                "IF NOT EXISTS (SELECT 1 FROM [Dwh2].[DimOrganization] WHERE [OrganizationCode]=?) "
-                "INSERT INTO [Dwh2].[DimOrganization] ([OrganizationCode],[CompanyName],[AddressType],[Address1],[Address2],[AddressOverride],[AddressShortCode],[City],[State],[Postcode],[Email],[Fax],[Phone],[CountryKey],[PortKey]) "
-                "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?); "
-                "ELSE UPDATE [Dwh2].[DimOrganization] SET [CompanyName]=?,[AddressType]=?,[Address1]=?,[Address2]=?,[AddressOverride]=?,[AddressShortCode]=?,[City]=?,[State]=?,[Postcode]=?,[Email]=?,[Fax]=?,[Phone]=?,[CountryKey]=?,[PortKey]=?, UpdatedAt=SYSUTCDATETIME() WHERE [OrganizationCode]=?;",
-                code,
-                code, name, extra.get("AddressType"), extra.get("Address1"), extra.get("Address2"), extra.get("AddressOverride"), extra.get("AddressShortCode"), extra.get("City"), extra.get("State"), extra.get("Postcode"), extra.get("Email"), extra.get("Fax"), extra.get("Phone"), extra.get("CountryKey"), extra.get("PortKey"),
-                name, extra.get("AddressType"), extra.get("Address1"), extra.get("Address2"), extra.get("AddressOverride"), extra.get("AddressShortCode"), extra.get("City"), extra.get("State"), extra.get("Postcode"), extra.get("Email"), extra.get("Fax"), extra.get("Phone"), extra.get("CountryKey"), extra.get("PortKey"),
-                code
+                f"IF NOT EXISTS (SELECT 1 FROM [Dwh2].[DimOrganization] WHERE [OrganizationCode]=?) "
+                f"INSERT INTO [Dwh2].[DimOrganization] ({insert_cols}) VALUES ({insert_placeholders}); "
+                f"ELSE UPDATE [Dwh2].[DimOrganization] SET {set_clause} WHERE [OrganizationCode]=?;",
+                code, *vals, *set_vals, code
             )
             cur.execute("SELECT [OrganizationKey] FROM [Dwh2].[DimOrganization] WHERE [OrganizationCode]=?", code)
             r = cur.fetchone()
             org_key = int(r[0]) if r else None
+        # Track primary org and collect for bridge
         if org_key is not None:
-            upserted_orgs.append((org_key, org.get("AddressType") or ""))
             if organization_key is None:
                 organization_key = org_key
+            upserted_orgs.append((org_key, org.get("AddressType") or ""))
+            # Persist registration numbers for this org/address if any
+            regs = org.get("RegistrationNumbers") or []
+            for rn in regs:
+                t_code = _clean_str(rn.get("TypeCode"))
+                t_desc = _clean_str(rn.get("TypeDescription"))
+                coi_code = _clean_str(rn.get("CountryOfIssueCode"))
+                coi_name = _clean_str(rn.get("CountryOfIssueName"))
+                val = _clean_str(rn.get("Value"))
+                if not val:
+                    continue
+                addr_type = _clean_str(org.get("AddressType")) or None
+                try:
+                    # NULL-safe existence check for AddressType
+                    cur.execute(
+                        "IF NOT EXISTS (SELECT 1 FROM Dwh2.OrganizationRegistrationNumber WHERE OrganizationKey=? AND ((AddressType IS NULL AND ? IS NULL) OR AddressType=?) AND [Value]=?) "
+                        "INSERT INTO Dwh2.OrganizationRegistrationNumber (OrganizationKey, AddressType, TypeCode, TypeDescription, CountryOfIssueCode, CountryOfIssueName, [Value]) VALUES (?,?,?,?,?,?,?);",
+                        org_key, addr_type, addr_type, val, org_key, addr_type, t_code, t_desc, coi_code, coi_name, val
+                    )
+                except Exception:
+                    # ignore unique conflicts or minor issues
+                    pass
 
-    # Upsert fact by Number (unique)
-    number = fact["Number"]
-    cur.execute("SELECT FactAccountsReceivableTransactionKey FROM Dwh2.FactAccountsReceivableTransaction WHERE [Number] = ?", number)
-    exists = cur.fetchone()
+    # Job linkage
+    job_type, job_key_text = fact.get("Job", (None, None))
+    job_dim_key = ensure_job(cur, job_type, job_key_text) if job_type and job_key_text else None
+
+    # Compose and upsert Fact AR by Number (business key)
+    number = fact.get("Number")
+    # Prepare column list and values
     cols = [
-        ("Ledger", fact.get("Ledger")),
-        ("TransactionDateKey", fact.get("TransactionDateKey")),
-        ("PostDateKey", fact.get("PostDateKey")),
-        ("DueDateKey", fact.get("DueDateKey")),
-        ("TriggerDateKey", fact.get("TriggerDateKey")),
-        ("LocalExVATAmount", fact.get("LocalExVATAmount")),
-        ("LocalVATAmount", fact.get("LocalVATAmount")),
-        ("LocalTaxTransactionsAmount", fact.get("LocalTaxTransactionsAmount")),
-        ("LocalTotal", fact.get("LocalTotal")),
-        ("IsCancelled", fact.get("IsCancelled")),
-        ("IsCreatedByMatchingProcess", fact.get("IsCreatedByMatchingProcess")),
-        ("IsPrinted", fact.get("IsPrinted")),
         ("CompanyKey", company_key),
-    ("BranchKey", branch_key),
+        ("BranchKey", branch_key),
         ("DepartmentKey", simple_keys.get("DepartmentKey")),
         ("EventTypeKey", simple_keys.get("EventTypeKey")),
         ("ActionPurposeKey", simple_keys.get("ActionPurposeKey")),
@@ -643,39 +836,120 @@ def upsert_ar(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
         ("EnterpriseKey", simple_keys.get("EnterpriseKey")),
         ("ServerKey", simple_keys.get("ServerKey")),
         ("DataProviderKey", simple_keys.get("DataProviderKey")),
-        ("LocalCurrencyKey", currency_key),
+        ("TransactionDateKey", fact.get("TransactionDateKey")),
+        ("PostDateKey", fact.get("PostDateKey")),
+        ("DueDateKey", fact.get("DueDateKey")),
+        ("TriggerDateKey", fact.get("TriggerDateKey")),
         ("AccountGroupKey", account_group_key),
+        ("LocalCurrencyKey", currency_key),
+        ("OSCurrencyKey", os_currency_key),
         ("OrganizationKey", organization_key),
+        ("JobDimKey", job_dim_key),
+        # identifiers/context
+        ("DataSourceType", (fact.get("DataSource") or (None, None))[0]),
+        ("DataSourceKey", (fact.get("DataSource") or (None, None))[1]),
+        ("Ledger", fact.get("Ledger")),
+        ("Category", fact.get("Category")),
+        ("InvoiceTerm", fact.get("InvoiceTerm")),
+        ("InvoiceTermDays", fact.get("InvoiceTermDays")),
+        ("JobInvoiceNumber", fact.get("JobInvoiceNumber")),
+        ("CheckDrawer", fact.get("CheckDrawer")),
+        ("CheckNumberOrPaymentRef", fact.get("CheckNumberOrPaymentRef")),
+        ("DrawerBank", fact.get("DrawerBank")),
+        ("DrawerBranch", fact.get("DrawerBranch")),
+        ("ReceiptOrDirectDebitNumber", fact.get("ReceiptOrDirectDebitNumber")),
+        ("RequisitionStatus", fact.get("RequisitionStatus")),
+        ("TransactionReference", fact.get("TransactionReference")),
+        ("TransactionType", fact.get("TransactionType")),
+        ("AgreedPaymentMethod", fact.get("AgreedPaymentMethod")),
+        ("ComplianceSubType", fact.get("ComplianceSubType")),
+        ("CreateTime", fact.get("CreateTime")),
+        ("CreateUser", fact.get("CreateUser")),
+        ("EventReference", fact.get("EventReference")),
+        ("Timestamp", fact.get("Timestamp")),
+        ("TriggerCount", fact.get("TriggerCount")),
+        ("TriggerDescription", fact.get("TriggerDescription")),
+        ("TriggerType", fact.get("TriggerType")),
+        ("NumberOfSupportingDocuments", fact.get("NumberOfSupportingDocuments")),
+        ("LocalExVATAmount", fact.get("LocalExVATAmount")),
+        ("LocalVATAmount", fact.get("LocalVATAmount")),
+        ("LocalTaxTransactionsAmount", fact.get("LocalTaxTransactionsAmount")),
+        ("LocalTotal", fact.get("LocalTotal")),
+        ("OSExGSTVATAmount", fact.get("OSExGSTVATAmount")),
+        ("OSGSTVATAmount", fact.get("OSGSTVATAmount")),
+        ("OSTaxTransactionsAmount", fact.get("OSTaxTransactionsAmount")),
+        ("OSTotal", fact.get("OSTotal")),
+        ("OutstandingAmount", fact.get("OutstandingAmount")),
+        ("ExchangeRate", fact.get("ExchangeRate")),
+        ("IsCancelled", fact.get("IsCancelled")),
+        ("IsCreatedByMatchingProcess", fact.get("IsCreatedByMatchingProcess")),
+        ("IsPrinted", fact.get("IsPrinted")),
+        ("PlaceOfIssueText", fact.get("PlaceOfIssueText")),
     ]
-    if exists:
+    # Update or insert
+    cur.execute("SELECT FactAccountsReceivableTransactionKey FROM Dwh2.FactAccountsReceivableTransaction WHERE [Number] = ?", number)
+    row = cur.fetchone()
+    if row:
+        fact_key = int(row[0]) if row else None
         set_clause = ", ".join([f"[{c}] = ?" for c, _ in cols] + ["UpdatedAt = SYSUTCDATETIME()"])
-        params = [v for _, v in cols]
-        params.append(number)
+        params = [v for _, v in cols] + [number]
         cur.execute(f"UPDATE Dwh2.FactAccountsReceivableTransaction SET {set_clause} WHERE [Number] = ?", *params)
-        cur.execute("SELECT FactAccountsReceivableTransactionKey FROM Dwh2.FactAccountsReceivableTransaction WHERE [Number] = ?", number)
-        fk_row = cur.fetchone()
-        fact_key = int(fk_row[0]) if fk_row else None
     else:
         col_names = ["Number"] + [c for c, _ in cols]
         placeholders = ",".join(["?"] * len(col_names))
         params = [number] + [v for _, v in cols]
         cur.execute("INSERT INTO Dwh2.FactAccountsReceivableTransaction ([" + "],[".join(col_names) + "]) VALUES (" + placeholders + ")", *params)
         cur.execute("SELECT FactAccountsReceivableTransactionKey FROM Dwh2.FactAccountsReceivableTransaction WHERE [Number] = ?", number)
-        fk_row = cur.fetchone()
-        fact_key = int(fk_row[0]) if fk_row else None
+        r2 = cur.fetchone()
+        fact_key = int(r2[0]) if r2 else None
 
     # Bridge rows for all organizations
     if upserted_orgs and fact_key:
-        for org_key, addr_type in upserted_orgs:
+        for org_key2, addr_type in upserted_orgs:
             try:
                 cur.execute(
                     "IF NOT EXISTS (SELECT 1 FROM Dwh2.BridgeFactAROrganization WHERE FactAccountsReceivableTransactionKey=? AND OrganizationKey=? AND AddressType=?) "
                     "INSERT INTO Dwh2.BridgeFactAROrganization (FactAccountsReceivableTransactionKey, OrganizationKey, AddressType) VALUES (?,?,?);",
-                    fact_key, org_key, addr_type, fact_key, org_key, addr_type
+                    fact_key, org_key2, addr_type, fact_key, org_key2, addr_type
                 )
             except Exception:
                 # ignore unique conflicts on re-run
                 pass
+
+    # Message numbers
+    if fact_key and fact.get("MessageNumbers"):
+        for mtype, mval in fact.get("MessageNumbers"):
+            try:
+                cur.execute(
+                    "IF NOT EXISTS (SELECT 1 FROM Dwh2.FactARMessageNumber WHERE FactAccountsReceivableTransactionKey=? AND [Type]=? AND [Value]=?) "
+                    "INSERT INTO Dwh2.FactARMessageNumber (FactAccountsReceivableTransactionKey, [Type], [Value]) VALUES (?,?,?);",
+                    fact_key, mtype, mval, fact_key, mtype, mval
+                )
+            except Exception:
+                pass
+
+    # Recipient roles
+    if fact_key and fact.get("RecipientRoles"):
+        for code, desc in fact.get("RecipientRoles"):
+            try:
+                rr_key = _upsert_scalar_dim(cur, "Dwh2.DimRecipientRole", "Code", code or "", "Description", desc or (code or ""), key_col="RecipientRoleKey")
+            except Exception:
+                cur.execute(
+                    "IF NOT EXISTS (SELECT 1 FROM Dwh2.DimRecipientRole WHERE [Code]=?) INSERT INTO Dwh2.DimRecipientRole ([Code],[Description]) VALUES (?,?); ELSE UPDATE Dwh2.DimRecipientRole SET [Description]=?, UpdatedAt=SYSUTCDATETIME() WHERE [Code]=?;",
+                    code or "", code or "", desc or (code or ""), desc or (code or ""), code or ""
+                )
+                cur.execute("SELECT RecipientRoleKey FROM Dwh2.DimRecipientRole WHERE [Code]=?", code or "")
+                r = cur.fetchone()
+                rr_key = int(r[0]) if r else None
+            if rr_key is not None:
+                try:
+                    cur.execute(
+                        "IF NOT EXISTS (SELECT 1 FROM Dwh2.BridgeFactARRecipientRole WHERE FactAccountsReceivableTransactionKey=? AND RecipientRoleKey=?) "
+                        "INSERT INTO Dwh2.BridgeFactARRecipientRole (FactAccountsReceivableTransactionKey, RecipientRoleKey) VALUES (?,?);",
+                        fact_key, rr_key, fact_key, rr_key
+                    )
+                except Exception:
+                    pass
 
 
 # ---------- CSL (UniversalShipment) minimal ----------
@@ -683,14 +957,28 @@ def upsert_ar(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
 def ensure_port(cur: pyodbc.Cursor, code: str, name: str) -> Optional[int]:
     code = _clean_str(code) or ""
     name = _clean_str(name) or code
+
+    def _country_key_for_port_code(c: str) -> Optional[int]:
+        if not c or len(c) < 2:
+            return None
+        cc = (c[:2] or "").upper()
+        if not cc:
+            return None
+        cur.execute("SELECT CountryKey FROM Dwh2.DimCountry WHERE Code = ?", cc)
+        rr = cur.fetchone()
+        return int(rr[0]) if rr else None
+
+    ckey = _country_key_for_port_code(code)
     try:
-        return _upsert_scalar_dim(cur, "Dwh2.DimPort", "Code", code, "Name", name, key_col="PortKey")
+        extra = {"CountryKey": ckey} if ckey is not None else None
+        return _upsert_scalar_dim(cur, "Dwh2.DimPort", "Code", code, "Name", name, extra_cols=extra, key_col="PortKey")
     except Exception:
+        # Fallback: upsert with CountryKey if available
         cur.execute(
             "IF NOT EXISTS (SELECT 1 FROM [Dwh2].[DimPort] WHERE [Code]=?) "
-            "INSERT INTO [Dwh2].[DimPort] ([Code],[Name]) VALUES (?,?); "
-            "ELSE UPDATE [Dwh2].[DimPort] SET [Name]=?, UpdatedAt=SYSUTCDATETIME() WHERE [Code]=?;",
-            code, code, name, name, code,
+            "INSERT INTO [Dwh2].[DimPort] ([Code],[Name],[CountryKey]) VALUES (?,?,?); "
+            "ELSE UPDATE [Dwh2].[DimPort] SET [Name]=?, [CountryKey]=?, UpdatedAt=SYSUTCDATETIME() WHERE [Code]=?;",
+            code, code, name, ckey, name, ckey, code,
         )
         cur.execute("SELECT [PortKey] FROM [Dwh2].[DimPort] WHERE [Code]=?", code)
         r = cur.fetchone()
@@ -878,6 +1166,11 @@ def parse_csl(path: str) -> Tuple[Dict, Dict]:
     usr_code = text(usr.find("u:Code", NS)) if usr is not None else ""
     usr_name = text(usr.find("u:Name", NS)) if usr is not None else ""
 
+    # Event Branch
+    evb = dc.find("u:EventBranch", NS) if dc is not None else None
+    evb_code = text(evb.find("u:Code", NS)) if evb is not None else ""
+    evb_name = text(evb.find("u:Name", NS)) if evb is not None else ""
+
     ent_id = text(dc.find("u:EnterpriseID", NS)) if dc is not None else ""
     srv_id = text(dc.find("u:ServerID", NS)) if dc is not None else ""
     provider = text(dc.find("u:DataProvider", NS)) if dc is not None else ""
@@ -1005,6 +1298,7 @@ def parse_csl(path: str) -> Tuple[Dict, Dict]:
     dims = {
         "Country": (comp_country_code, comp_country_name),
         "Company": (company_code, company_name, comp_country_code),
+        "Branch": (evb_code, evb_name),
         "Department": (dept_code, dept_name),
         "EventType": (et_code, et_desc),
         "ActionPurpose": (ap_code, ap_desc),
@@ -1045,6 +1339,10 @@ def upsert_csl(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
         ensure_country(cur, country_code, country_name)
     (company_code, company_name, comp_country_code) = dims["Company"]
     company_key = ensure_company(cur, company_code, company_name, comp_country_code)
+
+    # Branch
+    b_code, b_name = dims.get("Branch", ("", ""))
+    branch_key = ensure_branch(cur, b_code, b_name)
 
     # Simple dims
     simple_keys = ensure_simple_dims(cur, dims)
@@ -1093,12 +1391,12 @@ def upsert_csl(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
     total_weight_unit_key = ensure_unit(cur, twu_code, twu_desc, "Weight")
     packs_unit_key = ensure_unit(cur, pu_code, pu_desc, "Packs")
 
-    # Compose insert; use ShipmentJobKey as business key for upsert if available
-    where_clause = "ShipmentJobKey IS NOT NULL AND ShipmentJobKey = ?" if shipment_job_key else None
+    # Compose insert/update; use ShipmentJobKey as business key for upsert if available
     measures = fact["Measures"]
     flags = fact["Flags"]
     cols = {
         "CompanyKey": company_key,
+    "BranchKey": branch_key,
         "DepartmentKey": simple_keys.get("DepartmentKey"),
         "EventTypeKey": simple_keys.get("EventTypeKey"),
         "ActionPurposeKey": simple_keys.get("ActionPurposeKey"),
@@ -1163,23 +1461,30 @@ def upsert_csl(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
         "RequiresTemperatureControl": flags.get("RequiresTemperatureControl"),
     }
 
-    if where_clause:
-        set_clause = ", ".join([f"[{k}] = ?" for k in cols.keys()] + ["UpdatedAt = SYSUTCDATETIME()"])
-        params = list(cols.values()) + [shipment_job_key]
-        cur.execute(f"UPDATE Dwh2.FactShipment SET {set_clause} WHERE {where_clause}", *params)
-        if cur.rowcount and cur.rowcount > 0:
-            # fetch fact key for bridge
-            cur.execute("SELECT FactShipmentKey FROM Dwh2.FactShipment WHERE ShipmentJobKey = ?", shipment_job_key)
+    fact_ship_key = None
+    if shipment_job_key:
+        # Try find existing row to update
+        cur.execute("SELECT FactShipmentKey FROM Dwh2.FactShipment WHERE ShipmentJobKey = ?", shipment_job_key)
+        r = cur.fetchone()
+        if r:
+            fact_ship_key = int(r[0])
+            set_clause = ", ".join([f"[{k}] = ?" for k in cols.keys()] + ["UpdatedAt = SYSUTCDATETIME()"])
+            params = list(cols.values()) + [fact_ship_key]
+            cur.execute(f"UPDATE Dwh2.FactShipment SET {set_clause} WHERE FactShipmentKey = ?", *params)
+        else:
+            # Insert new
+            col_names = list(cols.keys())
+            placeholders = ",".join(["?"] * len(col_names))
+            cur.execute("INSERT INTO Dwh2.FactShipment ([" + "],[".join(col_names) + "]) VALUES (" + placeholders + ")", *list(cols.values()))
+            cur.execute("SELECT TOP 1 FactShipmentKey FROM Dwh2.FactShipment WHERE ShipmentJobKey IS NOT NULL AND ShipmentJobKey = ? ORDER BY FactShipmentKey DESC", shipment_job_key)
             r = cur.fetchone()
             fact_ship_key = int(r[0]) if r else None
-        else:
-            fact_ship_key = None
-    # Insert
-    col_names = list(cols.keys())
-    placeholders = ",".join(["?"] * len(col_names))
-    if not (where_clause and cur.rowcount and cur.rowcount > 0):
+    else:
+        # No business key => always insert
+        col_names = list(cols.keys())
+        placeholders = ",".join(["?"] * len(col_names))
         cur.execute("INSERT INTO Dwh2.FactShipment ([" + "],[".join(col_names) + "]) VALUES (" + placeholders + ")", *list(cols.values()))
-        cur.execute("SELECT TOP 1 FactShipmentKey FROM Dwh2.FactShipment WHERE ShipmentJobKey IS NOT NULL AND ShipmentJobKey = ? ORDER BY FactShipmentKey DESC", shipment_job_key)
+        cur.execute("SELECT TOP 1 FactShipmentKey FROM Dwh2.FactShipment ORDER BY FactShipmentKey DESC")
         r = cur.fetchone()
         fact_ship_key = int(r[0]) if r else None
 
@@ -1240,6 +1545,8 @@ def upsert_csl(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
 
 
 def main(argv):
+    start_dt = datetime.now()
+    start_perf = time.perf_counter()
     ap = argparse.ArgumentParser()
     ap.add_argument("--date", required=True, help="Fecha en formato YYYYMMDD (carpeta bajo XMLS_COL)")
     ap.add_argument("--only", choices=["AR", "CSL"], help="Procesar solo AR o CSL")
@@ -1253,6 +1560,13 @@ def main(argv):
     date_folder = os.path.join(XML_ROOT, args.date)
     if not os.path.isdir(date_folder):
         print(f"No existe la carpeta de fecha: {date_folder}")
+        # Resumen de tiempos (ejecución corta)
+        end_dt = datetime.now()
+        elapsed = time.perf_counter() - start_perf
+        duration = timedelta(seconds=elapsed)
+        print(f"Inicio: {start_dt:%Y-%m-%d %H:%M:%S}")
+        print(f"Fin: {end_dt:%Y-%m-%d %H:%M:%S}")
+        print(f"Duración: {duration}")
         return 1
 
     ar_files = [] if args.only == "CSL" else sorted(glob(os.path.join(date_folder, "AR_*.xml")))
@@ -1262,9 +1576,9 @@ def main(argv):
         csl_files = csl_files[: max(0, args.limit - len(ar_files))]
 
     cnxn = connect()
+    processed = 0
     try:
         cur = cnxn.cursor()
-        processed = 0
         # AR
         for p in ar_files:
             dims, fact = parse_ar(p)
@@ -1279,10 +1593,27 @@ def main(argv):
             cnxn.commit()
             processed += 1
             print(f"CSL OK: {os.path.basename(p)}")
-        print(f"Procesados: {processed} archivo(s)")
-        return 0
+        status = 0
+    except KeyboardInterrupt:
+        print("Ejecución interrumpida por el usuario")
+        status = 130
+    except Exception as e:
+        print(f"Error durante la carga: {e}")
+        status = 1
     finally:
-        cnxn.close()
+        try:
+            cnxn.close()
+        except Exception:
+            pass
+        # Resumen siempre al final
+        print(f"Procesados: {processed} archivo(s)")
+        end_dt = datetime.now()
+        elapsed = time.perf_counter() - start_perf
+        duration = timedelta(seconds=elapsed)
+        print(f"Inicio: {start_dt:%Y-%m-%d %H:%M:%S}")
+        print(f"Fin: {end_dt:%Y-%m-%d %H:%M:%S}")
+        print(f"Duración: {duration}")
+    return status
 
 
 if __name__ == "__main__":
