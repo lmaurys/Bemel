@@ -31,9 +31,15 @@ XML_ROOT = Settings.xml_root or os.path.join(ROOT, "XMLS_COL")
 NS = {"u": "http://www.cargowise.com/Schemas/Universal/2011/11"}
 # Quiet mode suppresses expected fallback logs
 QUIET = False
+# Commit batching: commit every N files (default 1 = current behavior)
+COMMIT_EVERY = int(os.getenv("COMMIT_EVERY", "5"))
 class UpsertError(Exception):
     pass
 
+# Per-run caches to reduce DB round-trips for dimensions
+# Keyed by (fully-qualified table name like [Dwh2].[DimCountry], code)
+_DIM_KEY_CACHE: Dict[Tuple[str, str], int] = {}
+_DIM_ATTR_CACHE: Dict[Tuple[str, str], Tuple[Optional[str], Tuple[Tuple[str, object], ...]]] = {}
 
 
 def text(node: Optional[etree._Element]) -> str:
@@ -87,21 +93,47 @@ def _upsert_scalar_dim(cur: pyodbc.Cursor, table: str, code_col: str, code: str,
             table_sql = f"[{sch}].[{tbl}]"
         else:
             table_sql = f"[{table}]"
+    # Build current attribute signature for caching comparisons
+    curr_attrs_name = name if name_col else None
+    curr_attrs_extra_items: Tuple[Tuple[str, object], ...] = tuple(sorted([
+        (k, (_clean_str(v) if isinstance(v, str) else v)) for k, v in (extra_cols or {}).items()
+    ]))
+    cache_key = (table_sql, code)
+    prev = _DIM_ATTR_CACHE.get(cache_key)
+    cached_key = _DIM_KEY_CACHE.get(cache_key)
+    # If we have a cached key, only update once per change of attributes
+    if cached_key is not None:
+        if (name_col or extra_cols) and prev != (curr_attrs_name, curr_attrs_extra_items):
+            set_parts = []
+            params: list[object] = []
+            if name_col and curr_attrs_name is not None:
+                set_parts.append(f"[{name_col}] = ?")
+                params.append(curr_attrs_name)
+            for k, v in curr_attrs_extra_items:
+                set_parts.append(f"[{k}] = ?")
+                params.append(v)
+            if set_parts:
+                set_sql = ", ".join(set_parts) + ", UpdatedAt = SYSUTCDATETIME()"
+                cur.execute(f"UPDATE {table_sql} SET {set_sql} WHERE [{code_col}] = ?", *params, code)
+                _DIM_ATTR_CACHE[cache_key] = (curr_attrs_name, curr_attrs_extra_items)
+        return cached_key
+    # No cache: perform update-then-select path
     if name_col and name is not None:
         cur.execute(f"UPDATE {table_sql} SET [{name_col}] = ?, UpdatedAt = SYSUTCDATETIME() WHERE [{code_col}] = ?", name, code)
-    # Handle extras on update if provided
     if extra_cols:
-        # sanitize string values in extra cols
-        clean_vals = []
-        for v in extra_cols.values():
-            clean_vals.append(_clean_str(v) if isinstance(v, str) else v)
-        sets = ", ".join([f"[{c}] = ?" for c in extra_cols.keys()])
-        cur.execute(f"UPDATE {table_sql} SET {sets}, UpdatedAt = SYSUTCDATETIME() WHERE [{code_col}] = ?",
-                    *clean_vals, code)
+        clean_pairs = [(k, (_clean_str(v) if isinstance(v, str) else v)) for k, v in extra_cols.items()]
+        if clean_pairs:
+            sets = ", ".join([f"[{c}] = ?" for c, _ in clean_pairs])
+            vals = [v for _, v in clean_pairs]
+            cur.execute(f"UPDATE {table_sql} SET {sets}, UpdatedAt = SYSUTCDATETIME() WHERE [{code_col}] = ?",
+                        *vals, code)
     cur.execute(f"SELECT {key_col} FROM {table_sql} WHERE [{code_col}] = ?", code)
     row = cur.fetchone()
     if row:
-        return int(row[0])
+        k = int(row[0])
+        _DIM_KEY_CACHE[cache_key] = k
+        _DIM_ATTR_CACHE[cache_key] = (curr_attrs_name, curr_attrs_extra_items)
+        return k
     # Insert
     cols = [code_col]
     vals = [code]
@@ -124,7 +156,12 @@ def _upsert_scalar_dim(cur: pyodbc.Cursor, table: str, code_col: str, code: str,
         raise
     cur.execute(f"SELECT {key_col} FROM {table_sql} WHERE [{code_col}] = ?", code)
     row = cur.fetchone()
-    return int(row[0]) if row else None
+    if row:
+        k = int(row[0])
+        _DIM_KEY_CACHE[cache_key] = k
+        _DIM_ATTR_CACHE[cache_key] = (curr_attrs_name, curr_attrs_extra_items)
+        return k
+    return None
 
 
 def ensure_country(cur: pyodbc.Cursor, code: str, name: str) -> Optional[int]:
@@ -344,17 +381,7 @@ def parse_ar(path: str) -> Tuple[Dict, Dict]:
     usr_code = text(usr.find("u:Code", NS)) if usr is not None else ""
     usr_name = text(usr.find("u:Name", NS)) if usr is not None else ""
 
-    # Event Branch (for FactShipment.BranchKey)
-    evb = dc.find("u:EventBranch", NS) if dc is not None else None
-    evb_code = text(evb.find("u:Code", NS)) if evb is not None else ""
-    evb_name = text(evb.find("u:Name", NS)) if evb is not None else ""
-
-    # Event Branch (for FactShipment.BranchKey)
-    evb = dc.find("u:EventBranch", NS) if dc is not None else None
-    evb_code = text(evb.find("u:Code", NS)) if evb is not None else ""
-    evb_name = text(evb.find("u:Name", NS)) if evb is not None else ""
-
-    # Event Branch (for FactShipment.BranchKey)
+    # Event Branch (for DimBranch, used in AR context as issuer branch)
     evb = dc.find("u:EventBranch", NS) if dc is not None else None
     evb_code = text(evb.find("u:Code", NS)) if evb is not None else ""
     evb_name = text(evb.find("u:Name", NS)) if evb is not None else ""
@@ -811,8 +838,8 @@ def upsert_ar(cur: pyodbc.Cursor, dims: Dict, fact: Dict) -> None:
                 try:
                     # NULL-safe existence check for AddressType
                     cur.execute(
-                        "IF NOT EXISTS (SELECT 1 FROM Dwh2.OrganizationRegistrationNumber WHERE OrganizationKey=? AND ((AddressType IS NULL AND ? IS NULL) OR AddressType=?) AND [Value]=?) "
-                        "INSERT INTO Dwh2.OrganizationRegistrationNumber (OrganizationKey, AddressType, TypeCode, TypeDescription, CountryOfIssueCode, CountryOfIssueName, [Value]) VALUES (?,?,?,?,?,?,?);",
+                        "IF NOT EXISTS (SELECT 1 FROM Dwh2.DimOrganizationRegistrationNumber WHERE OrganizationKey=? AND ((AddressType IS NULL AND ? IS NULL) OR AddressType=?) AND [Value]=?) "
+                        "INSERT INTO Dwh2.DimOrganizationRegistrationNumber (OrganizationKey, AddressType, TypeCode, TypeDescription, CountryOfIssueCode, CountryOfIssueName, [Value]) VALUES (?,?,?,?,?,?,?);",
                         org_key, addr_type, addr_type, val, org_key, addr_type, t_code, t_desc, coi_code, coi_name, val
                     )
                 except Exception:
@@ -1577,20 +1604,27 @@ def main(argv):
 
     cnxn = connect()
     processed = 0
+    last_commit = 0
     try:
         cur = cnxn.cursor()
         # AR
         for p in ar_files:
             dims, fact = parse_ar(p)
             upsert_ar(cur, dims, fact)
-            cnxn.commit()
+            last_commit += 1
+            if last_commit >= max(1, COMMIT_EVERY):
+                cnxn.commit()
+                last_commit = 0
             processed += 1
             print(f"AR OK: {os.path.basename(p)}")
         # CSL
         for p in csl_files:
             dims, fact = parse_csl(p)
             upsert_csl(cur, dims, fact)
-            cnxn.commit()
+            last_commit += 1
+            if last_commit >= max(1, COMMIT_EVERY):
+                cnxn.commit()
+                last_commit = 0
             processed += 1
             print(f"CSL OK: {os.path.basename(p)}")
         status = 0
@@ -1602,6 +1636,9 @@ def main(argv):
         status = 1
     finally:
         try:
+            # Final commit if pending work exists
+            if last_commit > 0:
+                cnxn.commit()
             cnxn.close()
         except Exception:
             pass
