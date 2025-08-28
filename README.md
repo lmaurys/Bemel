@@ -21,10 +21,27 @@ Highlights:
 
 Schema notes:
 - Key dims: Country, Currency, Port, Company, User, Department, EventType, ActionPurpose, RecipientRole, AccountGroup, ScreeningStatus, ServiceLevel, ContainerMode, PaymentMethod, Unit, Branch, Organization, Job, Enterprise, Server, DataProvider, Co2eStatus.
-- Facts: `FactAccountsReceivableTransaction` (AR), `FactShipment` (CSL).
-- Bridges: `BridgeFactAROrganization`, `BridgeFactShipmentOrganization`, `BridgeFactARRecipientRole`, `FactARMessageNumber`.
+- Facts: core facts `FactAccountsReceivableTransaction` (AR) and `FactShipment` (CSL), plus unified detail facts:
+	- `FactEventDate` (from DateCollection, AR + CSL)
+	- `FactException` (from ExceptionCollection, AR + CSL)
+	- `FactMessageNumber` (from MessageNumberCollection, AR + CSL)
+	- `FactMilestone` (from MilestoneCollection, AR + CSL)
+	- `FactSubShipment` (from SubShipmentCollection, CSL)
+	- `FactTransportLeg` (from TransportLegCollection; parent can be Shipment, SubShipment, or AR)
+	- `FactChargeLine` (from JobCosting/ChargeLineCollection; parent can be SubShipment or AR)
+- Bridges: `BridgeFactAROrganization`, `BridgeFactShipmentOrganization`, `BridgeFactARRecipientRole`.
 - Removed (not used): `FactARPostingJournal`, `FactARPostingJournalDetail`, `FactARRatingBasis`.
 - Renamed: `OrganizationRegistrationNumber` -> `DimOrganizationRegistrationNumber`.
+
+Mapping coverage (XML -> Dwh2):
+- OrganizationAddressCollection → `DimOrganization` rows enriched and linked via `BridgeFactAROrganization` / `BridgeFactShipmentOrganization`; registration numbers → `DimOrganizationRegistrationNumber`.
+- DateCollection → `FactEventDate` (one-parent rule: attaches to AR or Shipment).
+- ExceptionCollection → `FactException` (one-parent rule).
+- MessageNumberCollection → `FactMessageNumber` (unified for AR + CSL, deduped per parent + Type).
+- MilestoneCollection → `FactMilestone` (AR + CSL).
+- SubShipmentCollection → `FactSubShipment` (CSL) with per-sub nested data.
+- TransportLegCollection → `FactTransportLeg` under Shipment, SubShipment, or AR, with dates/times and carrier/creditor organizations.
+- JobCosting/ChargeLineCollection → `FactChargeLine` under SubShipment (CSL) or AR, with cost/sell, currencies, taxes, and posted transaction references.
 
 Setup (optional commands):
 ```bash
@@ -75,6 +92,12 @@ while cur<=end:
 	cur+=datetime.timedelta(days=1)
 print('=== All done ===', flush=True)
 PY
+```
+
+Alternative: use the range helper
+```bash
+# Processes days inclusively, skipping missing folders
+python -m tools.etl.load_by_range --start 20250707 --end 20250812 --quiet
 ```
 
 Validate XMLs (optional commands):

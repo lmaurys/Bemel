@@ -1,0 +1,47 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Init DB and load DimDate",
+			"type": "shell",
+			"command": "python3 -u tools/etl/init_db.py && python3 -u tools/etl/exec_sql.py tools/sql/dwh2_load_dimdate.sql",
+			"problemMatcher": [
+				"$python"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Load DimDate via proc",
+			"type": "shell",
+			"command": "python3 - <<'PY'\nimport pyodbc\nfrom tools.etl.config import build_connection_string\ncn=pyodbc.connect(build_connection_string())\ncur=cn.cursor()\ncur.execute(\"EXEC Dwh2.SpLoadDimDate @StartDate='2000-01-01', @EndDate='2040-12-31', @DeleteExisting=0;\")\ncn.commit()\ncn.close()\nprint('DimDate loaded')\nPY",
+			"problemMatcher": [
+				"$python"
+			],
+			"group": "build"
+		},
+		{
+			"label": "Re-init DB for updated DDL",
+			"type": "shell",
+			"command": "python3 -u tools/etl/init_db.py && python3 -u tools/etl/exec_sql.py tools/sql/dwh2_load_dimdate.sql",
+			"group": "build"
+		},
+		{
+			"label": "Init DB and load DimDate",
+			"type": "shell",
+			"command": "python3 -u tools/etl/init_db.py && python3 -u tools/etl/exec_sql.py tools/sql/dwh2_load_dimdate.sql",
+			"group": "build"
+		},
+		{
+			"label": "AR only 20250707 ingest",
+			"type": "shell",
+			"command": "python3 -u tools/etl/load_by_date.py --only AR --date 20250707",
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "Temp: Re-init then ingest AR 20250707",
+			"type": "shell",
+			"command": "python3 -u tools/etl/init_db.py && python3 -u tools/etl/exec_sql.py tools/sql/dwh2_load_dimdate.sql && python3 -u tools/etl/load_by_date.py --only AR --date 20250707 --verbose"
+		}
+	]
+}

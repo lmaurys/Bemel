@@ -12,7 +12,10 @@ import argparse
 import os
 import sys
 
+import pyodbc
+
 from .exec_sql import run_sql_file
+from .config import build_connection_string
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 
@@ -36,9 +39,25 @@ def main(argv):
             print(f"Executing DimDate SP: {sp}")
             run_sql_file(sp)
             print("DimDate SP created.")
+            # Also load the calendar into DimDate for a large range
+            try:
+                conn_str = build_connection_string()
+                cnxn = pyodbc.connect(conn_str)
+                cur = cnxn.cursor()
+                print("Loading DimDate for 2000-01-01..2040-12-31 …")
+                cur.execute("EXEC Dwh2.SpLoadDimDate @StartDate=?, @EndDate=?, @DeleteExisting=?", '2000-01-01', '2040-12-31', 0)
+                cnxn.commit()
+                print("DimDate loaded.")
+            except Exception as e:
+                print(f"Warning: failed to load DimDate: {e}")
+            finally:
+                try:
+                    cnxn.close()
+                except Exception:
+                    pass
         else:
             print(f"DimDate SP script not found: {sp}")
-    return 0
+
 
 
 if __name__ == '__main__':

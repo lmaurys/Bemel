@@ -256,13 +256,13 @@ Breve: Relación N:M entre AR y roles de recipientes.
 
 Columnas: FactAccountsReceivableTransactionKey, RecipientRoleKey, UpdatedAt.
 
-### Dwh2.FactARMessageNumber
-Breve: Números de mensaje asociados a un AR; evita duplicados por tipo/valor.
-- PK: FactARMessageNumberKey
-- FK: FactAccountsReceivableTransaction
-- Unicidad: (FactAccountsReceivableTransactionKey, Type, Value) o (Fact…, Value) con Type NULL
+### Dwh2.FactMessageNumber
+Breve: Números de mensaje (MessageNumberCollection) asociados a AR o CSL; unificada como en FactException.
+- PK: FactMessageNumberKey
+- FKs: FactShipment o FactAccountsReceivableTransaction (exactamente uno), DimCompany, DimDepartment, DimUser, DimDataProvider
+- Unicidad: evita duplicados por padre + (Type, Value); maneja Type NULL con índices filtrados
 
-Columnas: FactAccountsReceivableTransactionKey, Value, Type, UpdatedAt.
+Columnas: FactShipmentKey, FactAccountsReceivableTransactionKey, Source('CSL'|'AR'), Value, Type, CompanyKey, DepartmentKey, EventUserKey, DataProviderKey, UpdatedAt.
 
 ### Dwh2.BridgeFactAROrganization
 Breve: Relación N:M entre AR y organizaciones por AddressType.
@@ -285,7 +285,21 @@ Columnas: FactShipmentKey, OrganizationKey, AddressType, UpdatedAt.
 - UQ_FactAR_Number: único por Number
 - Índices de ayuda en fechas/puertos/servicios para consulta
 - DimOrganizationRegistrationNumber: UX por (OrganizationKey, AddressType, Value) y variante con AddressType NULL
-- FactARMessageNumber: UX por (Fact…, Type, Value) y variante con Type NULL
+- FactMessageNumber: UX por (FactShipmentKey, Type, Value) o (FactShipmentKey, Value con Type NULL); idem para AR cuando el padre es FactAccountsReceivableTransaction
+
+### Dwh2.FactException
+Breve: Excepciones (ExceptionCollection) asociadas a Shipments (CSL) o AR.
+- PK: FactExceptionKey
+- FKs: FactShipment o FactAccountsReceivableTransaction (exactamente uno), DimDate (Raised/Resolved), DimCompany, DimDepartment, DimUser, DimDataProvider
+
+Columnas: FactShipmentKey, FactAccountsReceivableTransactionKey, Source('CSL'|'AR'), Code, Type, Severity, Status, Description, IsResolved, RaisedDateKey, RaisedTime, ResolvedDateKey, ResolvedTime, CompanyKey, DepartmentKey, EventUserKey, DataProviderKey, UpdatedAt.
+
+### Dwh2.FactEventDate
+Breve: Fechas de evento (DateCollection) asociadas a Shipments (CSL) o AR.
+- PK: FactEventDateKey
+- FKs: FactShipment o FactAccountsReceivableTransaction (exactamente uno), DimDate (DateKey), DimCompany, DimDepartment, DimUser, DimDataProvider
+
+Columnas: FactShipmentKey, FactAccountsReceivableTransactionKey, Source('CSL'|'AR'), DateTypeCode, DateTypeDescription, DateKey, Time, DateTimeText, TimeZone, CompanyKey, DepartmentKey, EventUserKey, DataProviderKey, UpdatedAt.
 
 ---
 

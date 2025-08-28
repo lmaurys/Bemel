@@ -67,7 +67,24 @@ python -m tools.etl.load_by_date --date 20250709 --quiet
 #   --quiet         Silencia logs de fallback
 # Rendimiento: COMMIT_EVERY=10 (env) para confirmar cada N archivos
 ```
-El ETL inserta/upserta dimensiones, `FactAccountsReceivableTransaction` (AR) y `FactShipment` (CSL), y puentes.
+ El ETL inserta/upserta dimensiones, `FactAccountsReceivableTransaction` (AR) y `FactShipment` (CSL), y además los hechos de detalle unificados:
+ - `FactEventDate` (DateCollection, AR + CSL)
+ - `FactException` (ExceptionCollection, AR + CSL)
+ - `FactMessageNumber` (MessageNumberCollection, AR + CSL)
+ - `FactMilestone` (MilestoneCollection, AR + CSL)
+ - `FactSubShipment` (SubShipmentCollection, CSL)
+ - `FactTransportLeg` (TransportLegCollection, padre = Shipment/SubShipment/AR)
+ - `FactChargeLine` (JobCosting/ChargeLineCollection, padre = SubShipment o AR)
+
+Cobertura de mapeos (XML → Dwh2):
+- OrganizationAddressCollection → `DimOrganization` con enriquecimiento básico (país/puerto) y vínculo por puente (`BridgeFactAROrganization` / `BridgeFactShipmentOrganization`); RegistrationNumberCollection → `DimOrganizationRegistrationNumber`.
+- DateCollection → `FactEventDate` (regla de un solo padre: AR o Shipment).
+- ExceptionCollection → `FactException` (regla de un solo padre).
+- MessageNumberCollection → `FactMessageNumber` (unificado para AR + CSL; único por padre + Type).
+- MilestoneCollection → `FactMilestone` (AR + CSL).
+- SubShipmentCollection → `FactSubShipment` (CSL) con sus medidas/banderas.
+- TransportLegCollection → `FactTransportLeg` bajo Shipment, SubShipment o AR, con fechas/horas y organizaciones Carrier/Creditor.
+- JobCosting/ChargeLineCollection → `FactChargeLine` bajo SubShipment (CSL) o AR, con importes cost/sell, monedas, impuestos y referencias de transacciones posteadas.
 
 ### Ejemplo: ejecutar un rango de fechas (omitiendo días sin carpeta)
 ```bash
@@ -90,6 +107,11 @@ while cur<=end:
 	cur+=datetime.timedelta(days=1)
 print('=== All done ===', flush=True)
 PY
+```
+
+Alternativa: usar el helper de rango
+```bash
+python -m tools.etl.load_by_range --start 20250707 --end 20250812 --quiet
 ```
 
 ## Notas
