@@ -121,9 +121,56 @@ python -m tools.etl.load_by_range --start 20250707 --end 20250812 --quiet
 - Organización: registros adicionales en `Dwh2.DimOrganizationRegistrationNumber` (renombrado desde `OrganizationRegistrationNumber`).
 - Se removieron tablas no utilizadas: `FactARPostingJournal`, `FactARPostingJournalDetail`, `FactARRatingBasis`.
 
+### Ejecutar en Windows
+
+El ETL funciona en Windows:
+
+- Instala Python 3.10+ y crea un entorno virtual.
+- Instala el driver ODBC de Microsoft para SQL Server (versión 18 recomendada):
+	- https://learn.microsoft.com/sql/connect/odbc/windows/release-notes-odbc-sql-server
+	- Si el nombre del driver difiere, define `AZURE_SQL_DRIVER` (por defecto `ODBC Driver 18 for SQL Server`).
+- Crea un archivo `.env` en la raíz con variables leídas por `tools/etl/config.py`:
+	- `AZURE_SQL_SERVER`, `AZURE_SQL_DATABASE`
+	- Autenticación SQL: `AZURE_SQL_USER`, `AZURE_SQL_PASSWORD`
+	- o Azure AD: `AZURE_SQL_AUTHENTICATION=ActiveDirectoryDefault`
+- Opcional: `XML_ROOT` para apuntar a tu carpeta local de XML, por ejemplo `C:\\data\\XMLS_COL`.
+
+Ejemplo (PowerShell):
+
+```powershell
+python -m tools.etl.load_by_date --date 20250707 --only AR
+```
+
+### Obtener archivos desde SFTP
+
+Incluimos una utilidad SFTP: `python -m tools.etl.sftp_fetch`.
+
+Variables de entorno requeridas:
+
+- `SFTP_HOST`, `SFTP_PORT` (22 por defecto)
+- `SFTP_USER`
+- Uno de: `SFTP_PASSWORD` o `SFTP_KEY_FILE` (+ `SFTP_KEY_PASSPHRASE` si aplica)
+
+Ejemplo (descargar a `XMLS_COL/20250707` y luego ejecutar ETL):
+
+```powershell
+$env:SFTP_HOST = "sftp.ejemplo.com"
+$env:SFTP_USER = "usuario"
+$env:SFTP_PASSWORD = "secreto"
+python -m tools.etl.sftp_fetch --remote-dir /drop/20250707 --local-dir XMLS_COL/20250707 --patterns "AR_*.xml" "CSL*.xml"
+python -m tools.etl.load_by_date --date 20250707
+```
+
+Mover a archivo remoto tras la descarga:
+
+```powershell
+python -m tools.etl.sftp_fetch --remote-dir /drop/20250707 --local-dir XMLS_COL/20250707 --patterns "*.xml" --move-remote-to /archive/20250707
+```
+
 Consulta el diccionario de datos para detalles de cada campo: `docs/dwh2_diccionario_datos.md`.
 
 ## Próximos pasos
 - Métricas por tipo (AR/CSL) en el resumen.
 - Paralelización por archivos o días con control de concurrencia a BD.
 - Integración con SFTP para origen en producción.
+	- Hecho: utilidad `tools/etl/sftp_fetch.py` y dependencia `paramiko` en `tools/requirements.txt`.

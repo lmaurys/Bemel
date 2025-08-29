@@ -109,3 +109,48 @@ python tools/validate_ar_xml.py XSD/UniversalShipment.strict.xsd CSL
 Notes
 - Strict XSDs are inferred from current samples; regenerate if structures change.
 - ETL prints a summary (start, end, duration, processed). Ensure `DimDate` is populated for referenced dates.
+
+## Running on Windows
+
+The ETL runs on Windows as well.
+
+- Install Python 3.10+ and create a virtual environment.
+- Install the Microsoft ODBC Driver for SQL Server (v18 recommended):
+	- https://learn.microsoft.com/sql/connect/odbc/windows/release-notes-odbc-sql-server
+	- If your driver name differs, set `AZURE_SQL_DRIVER` accordingly (default is `ODBC Driver 18 for SQL Server`).
+- Create a `.env` in repo root with DB settings recognized by `tools/etl/config.py`:
+	- `AZURE_SQL_SERVER`, `AZURE_SQL_DATABASE`
+	- Either `AZURE_SQL_USER` + `AZURE_SQL_PASSWORD` (SQL auth), or `AZURE_SQL_AUTHENTICATION=ActiveDirectoryDefault` (AAD).
+- Optionally set `XML_ROOT` to point to your local XML folders, e.g. `C:\\data\\XMLS_COL`.
+
+Example (PowerShell):
+
+```powershell
+python -m tools.etl.load_by_date --date 20250707 --only AR
+```
+
+## Pull files from SFTP
+
+Use `python -m tools.etl.sftp_fetch` to download AR/CSL XMLs into `XMLS_COL/YYYYMMDD`.
+
+Environment variables (provide host/user and one auth method):
+
+- `SFTP_HOST`, `SFTP_PORT` (default 22)
+- `SFTP_USER`
+- One of: `SFTP_PASSWORD` or `SFTP_KEY_FILE` (+ `SFTP_KEY_PASSPHRASE` if needed)
+
+Examples:
+
+```powershell
+$env:SFTP_HOST = "sftp.example.com"
+$env:SFTP_USER = "myuser"
+$env:SFTP_PASSWORD = "secret"
+python -m tools.etl.sftp_fetch --remote-dir /drop/20250707 --local-dir XMLS_COL/20250707 --patterns "AR_*.xml" "CSL*.xml"
+python -m tools.etl.load_by_date --date 20250707
+```
+
+Move remote to archive after download:
+
+```powershell
+python -m tools.etl.sftp_fetch --remote-dir /drop/20250707 --local-dir XMLS_COL/20250707 --patterns "*.xml" --move-remote-to /archive/20250707
+```
